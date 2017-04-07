@@ -8,11 +8,11 @@
 
 <div class="container">
 <div>
-<iframe src="bk.html" frameborder="0" scrolling="no" style=" margin-top:-0px; width:1200px; height:300px;"></iframe>
+<iframe src="bk.php" frameborder="0" scrolling="no" style=" margin-top:-0px; width:1200px; height:300px;"></iframe>
 </div>
 	<div class="row clearfix">
 		<div class="col-md-3 column">
-		<iframe src="bk1.html" frameborder="0" scrolling="no" style=" margin-top:-0px; width:300px; height:700px;"></iframe>
+		<iframe src="bk1.php" frameborder="0" scrolling="no" style=" margin-top:-0px; width:300px; height:700px;"></iframe>
 		</div>
 		<div class="col-md-9 column">
 			<h3>
@@ -22,7 +22,7 @@
 				 <em>Git</em> 是一个分布式的版本控制系统，最初由 <strong>Linus Torvalds</strong> 编写，用作Linux内核代码的管理。在推出后，Git在其它项目中也取得了很大成功，尤其是在 <small>Ruby</small> 社区中。
 			</p>
 		<div>
-		<iframe src="pinglun.html" frameborder="0" scrolling="no" style=" margin-top:-0px; width:1200px;height:500px;"></iframe>
+		<iframe src="pinglun.php" frameborder="0" scrolling="no" style=" margin-top:-0px; width:1200px;height:500px;"></iframe>
 		</div>
 		</div>
 		
