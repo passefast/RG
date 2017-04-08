@@ -5,6 +5,11 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
 <div class="container">
 	<div class="row clearfix">
 	<center>
@@ -38,3 +43,5 @@
 		</div>
 	</div>
 </div>
+</body>
+</html>

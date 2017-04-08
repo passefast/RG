@@ -10,7 +10,27 @@
         <link rel="stylesheet" href="css/style.css">
 
     
-    
+    <script type="text/javascript" language="javascript" src="jquery.js"></script>  
+    <script type="text/javascript" language="javascript">   
+          
+        function fun(n) {  
+            var url = "sever.php"; 
+			var yonghu= document.getElementById("yonghuming").value;
+			var mima= document.getElementById("mima").value;
+            var data = {  
+                action : n.value, 
+				yonghuinfo:yonghu,
+				mimainfo:mima
+            };  
+            jQuery.post(url, data, callback);  
+        }  
+        function callback(data) { 
+			if (data==1)
+				window.location.href='index.php';	
+			else
+				alert(data);  
+        }  
+    </script> 
     
   </head>
 
@@ -22,19 +42,22 @@
       <div class="login__check"></div>
       <div class="login__form">
         <div class="login__row">
+		<form action="" method="post">
           <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
             <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
           </svg>
-          <input type="text" class="login__input name" placeholder="Username"/>
+		  
+          <input type="text" class="login__input name" placeholder="Phone" id="yonghuming"/>
         </div>
         <div class="login__row">
           <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
             <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
           </svg>
-          <input type="password" class="login__input pass" placeholder="Password"/>
+          <input type="password" class="login__input pass" placeholder="Password" id="mima"/>
         </div>
-        <button type="button" class="login__submit">Sign in</button>
-        <p class="login__signup">Don't have an account? &nbsp;<a>Sign up</a></p>
+        <button type="button" class="login__submit" value="signin" onclick="fun(this)">Sign in</button>
+		</form>
+        <p class="login__signup">Don't have an account? &nbsp;<a href="zhuce.php">Sign up</a></p>
       </div>
     </div>
     <div class="app">

@@ -5,26 +5,36 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<div class="container">
-<div>
-<iframe src="bk.php" frameborder="0" scrolling="no" style=" margin-top:-0px; width:1200px; height:300px;"></iframe>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<div style="background-image:url('images\\back.jpg')">
+<div class="container" >
+<div >
+<iframe src="bk.php" frameborder="0" scrolling="no" style=" margin-top:-0px; width:1100px; height:50px;"></iframe>
 </div>
-	<div class="row clearfix">
-		<div class="col-md-3 column">
+	<div class="row clearfix" style="margin-top:200px">
+		<div class="col-md-3 column" style="margin-right:10px">
 		<iframe src="bk1.php" frameborder="0" scrolling="no" style=" margin-top:-0px; width:300px; height:700px;"></iframe>
 		</div>
-		<div class="col-md-9 column">
+		<div class="col-md-8 column" >
+		<div style="background:#fff;margin-left:10px ">
 			<h3>
-				h3. 这是一套可视化布局系统.
+				鏍囬
 			</h3>
 			<p>
-				 <em>Git</em> 是一个分布式的版本控制系统，最初由 <strong>Linus Torvalds</strong> 编写，用作Linux内核代码的管理。在推出后，Git在其它项目中也取得了很大成功，尤其是在 <small>Ruby</small> 社区中。
+				姝ｆ枃 
 			</p>
-		<div>
+		</div>
+		<div style="margin-right:20px">
 		<iframe src="pinglun.php" frameborder="0" scrolling="no" style=" margin-top:-0px; width:1200px;height:500px;"></iframe>
 		</div>
 		</div>
 		
 	</div>
 </div>
+</div>
+</body>
+</html>
