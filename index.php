@@ -25,7 +25,7 @@
 							 <a href="#">首页</a>
 						</li>
 						<li>
-							 <a href="#">博文总概</a>
+							 <a href="zonggang.php">博文总览</a>
 						</li>
 						
 					</ul>
@@ -42,12 +42,14 @@
 							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">设置<strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
 								<li>
-									 <a href="#">我的博客</a>
+									 <a href="head.php">我的博客</a>
 								</li>
 								<li>
 									 <a href="edit.php">写博客</a>
 								</li>
-							
+								<li>
+									 <a href="photo.php">我的相册</a>
+								</li>
 								<li class="divider">
 								</li>
 								<li>

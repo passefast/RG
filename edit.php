@@ -40,8 +40,55 @@
 <body style="padding:0 20px;">
 
 	<center>
-	<div>
-		<iframe src="head.php" frameborder="0" scrolling="no" style=" margin-top:-0px; width:90%; height:200px;"></iframe>
+	<div frameborder="0" scrolling="no" style=" margin-top:-0px; width:100%; height:200px;">
+	<nav class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Bolg</a>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+					<ul class="nav navbar-nav">
+						<li >
+							 <a href="index.php">首页</a>
+						</li>
+						<li >
+							 <a href="zonggang.php">博文总览</a>
+						</li>
+						
+					</ul>
+					<form class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control" />
+						</div> <button type="submit" class="btn btn-default">查询</button>
+					</form>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							 <a href="#">未登录</a>
+						</li>
+						<li class="dropdown">
+							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">设置<strong class="caret"></strong></a>
+							<ul class="dropdown-menu">
+								<li>
+									 <a href="head.php">我的博客</a>
+								</li>
+								<li>
+									 <a href="#">写博客</a>
+								</li>
+								<li>
+									 <a href="photo.php">我的相册</a>
+								</li>
+								<li class="divider">
+								</li>
+								<li>
+									 <a href="#">退出</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				
+			</nav>
+
 		</div>
 		</center>
 

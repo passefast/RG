@@ -15,13 +15,13 @@
 					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Bolg</a>
 				</div>
 				
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-3">
 					<ul class="nav navbar-nav">
-						<li class="active">
-							 <a href="#">首页</a>
+						<li >
+							 <a href="index.php">首页</a>
 						</li>
 						<li>
-							 <a href="#">博文总概</a>
+							 <a href="zonggang.php">博文总概</a>
 						</li>
 						
 					</ul>
@@ -43,7 +43,9 @@
 								<li>
 									 <a href="edit.php">写博客</a>
 								</li>
-							
+								<li>
+									 <a href="photo.php">我的相册</a>
+								</li>
 								<li class="divider">
 								</li>
 								<li>
