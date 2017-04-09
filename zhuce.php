@@ -41,7 +41,7 @@
         	<div class="bj_bai">
             <h3>欢迎注册</h3>
        	  	  <form action="" method="post">
-                <input name="" type="text" class="kuang_txt phone" placeholder="手机号" id="num">
+                <input name="" type="text" class="kuang_txt phone" placeholder="用户名" id="num">
                 <input name="" type="text" class="kuang_txt email" placeholder="邮箱" id="email">
                 <input name="" type="text" class="kuang_txt possword" placeholder="密码" id="password">
            

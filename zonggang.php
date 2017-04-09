@@ -36,27 +36,31 @@ background-attachment: fixed;">
 						</div> <button type="submit" class="btn btn-default">查询</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
-						<li>
-							 <a href="#">未登录</a>
-						</li>
+						
 						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">设置<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-								<li>
-									 <a href="head.php">我的博客</a>
-								</li>
-								<li>
-									 <a href="edit.php">写博客</a>
-								</li>
-								<li>
-									 <a href="photo.php">我的相册</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									 <a href="#">退出</a>
-								</li>
-							</ul>
+							<?php  
+							 if($_SESSION["UserName"]=="未登录")
+								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
+							 else 
+							 {
+								echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$_SESSION["UserName"].'<strong class="caret"></strong></a>';
+							echo'<ul class="dropdown-menu">';
+							echo'<li>';
+								echo'<a href="head.php">我的博客</a>';
+								echo'</li>';
+								echo'<li>';
+							echo' <a href="edit.php">写博客</a>';
+							echo'</li>';
+							echo'<li>';
+							echo'<a href="photo.php">我的相册</a>';
+							echo'</li>';
+							echo'<li class="divider">';
+							echo'</li>';
+							echo'<li>';
+							echo'<a href="#">退出</a>';
+							echo'</li>';
+							 }
+								?>
 						</li>
 					</ul>
 				</div>
