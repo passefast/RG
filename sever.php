@@ -1,6 +1,6 @@
 
 <?php
-
+error_reporting(E_ALL ^ E_WARNING);
 	
 	
 	if (isset($_POST['action']))  
@@ -18,11 +18,92 @@
     
     function fabiao()  
     {  
-		echo "发表成功";
+	$link=connect();
+	if (isset($_POST['texttitle'])&&$_POST['texttitle']!="")  
+    { 		
+		$name=$_POST['texttitle'];
+		$result=mysql_query("select * from rg.`bolgtext` where texttitle='".$name."'");
+		$num=mysql_num_rows($result);
+		if($num==1)
+		{
+			echo "该标题已存在";
+			mysql_free_result($result);
+			mysql_close($link);
+		}
+	else if (isset($_POST['bolgtext'])&&$_POST['bolgtext']!="")  
+    { 
+		
+		$result=mysql_query("select * from `bolgtext`");
+		$num=mysql_num_rows($result);
+		$num=$num+1;
+		$title=$_POST['texttitle'];
+		$text=$_POST['bolgtext'];
+	    Session_Start();
+		$name=$_SESSION["UserName"];
+		//$insert="insert into rg.`bolgtext`(`id`,`texttitle`,`bolgtext`,`writer`,`zt`) values ('".$num."','".$title."','".$text."','".$name."','1')";
+		//$result=mysql_query($insert);
+		mysql_free_result($result);
+		mysql_close($link);
+		echo $text;
+	}
+
+	else
+	{
+		echo"博文内容不能为空";
+		mysql_close($link);
+	}
+	}
+	else
+	{
+		echo "文章标题未写";
+		mysql_close($link);
+	}
     }  
+	function quxiao()
+	{
+		header("Location: /rg/index.php");
+	}
     function baocun()  
     {  
+		$link=connect();
+	if (isset($_POST['texttitle'])&&$_POST['texttitle']!="")  
+    { 		
+		$name=$_POST['texttitle'];
+		$result=mysql_query("select * from rg.`bolgtext` where texttitle='".$name."'");
+		$num=mysql_num_rows($result);
+		if($num==1)
+		{
+			echo "该标题已存在";
+			mysql_free_result($result);
+			mysql_close($link);
+		}
+	else if (isset($_POST['bolgtext'])&&$_POST['bolgtext']!="")  
+    { 
+		
+		$result=mysql_query("select * from `bolgtext`");
+		$num=mysql_num_rows($result);
+		$num=$num+1;
+		$title=$_POST['texttitle'];
+		$text=$_POST['bolgtext'];
+	    Session_Start();
+		$name=$_SESSION["UserName"];
+		$insert="insert into rg.`bolgtext`(`id`,`texttitle`,`bolgtext`,`writer`,`zt`) values ('".$num."','".$title."','".$text."','".$name."','2')";
+		$result=mysql_query($insert);
+		mysql_close($link);
 		echo "保存成功";
+	}
+
+	else
+	{
+		echo"博文内容不能为空";
+		mysql_close($link);
+	}
+	}
+	else
+	{
+		echo "文章标题未写";
+		mysql_close($link);
+	}
     }  
 	function connect()
 	{
@@ -63,6 +144,7 @@
 					$id=0;
 				else
 					$id=count($result);
+				$id++;
 			   Session_Start();
 				$_SESSION["UserName"]=$_POST['phoneinfo'];
 				$insert="insert into rg.`use`(`id`,`usename`,`password`,`email`) values ('".$id."','".$name."','".$password."','".$email."')";

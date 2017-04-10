@@ -22,20 +22,13 @@
             position: relative;
         }
     </style>
-	<script type="text/javascript" language="javascript" src="jquery.js"></script>  
-    <script type="text/javascript" language="javascript">   
-          
-        function fun(n) {  
-            var url = "sever.php";  
-            var data = {  
-                action : n.value  
-            };  
-            jQuery.post(url, data, callback);  
-        }  
-        function callback(data) {  
-            alert(data);  
-        }  
-    </script> 
+	<?php
+	Session_start();
+	if(isset($_SESSION["UserName"]))
+	{}
+	else
+		$_SESSION["UserName"]="未登录";
+?>
 </head>
 <body style="padding:0 20px;">
 
@@ -65,7 +58,6 @@
 						
 						<li class="dropdown">
 							<?php  
-							Session_Start();
 							 if($_SESSION["UserName"]=="未登录")
 								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
 							 else 
@@ -96,7 +88,7 @@
 
 		</div>
 		</center>
-
+<form action="" method="post">
 <div style="margin-left:140px;margin-bottom:20px">
 <a>文章标题</a>
 </div>
@@ -115,44 +107,36 @@
        
     </div>
 	<div style="margin-top:10px;">
-	<form action="" method="post">
+
 	<button type="button" class="btn  btn-info btn-sm"style="margin-left:10px;" value="fabiao" onclick="fun(this)">发表</button>
 	<button type="button" class="btn  btn-info btn-sm"style="margin-left:10px;" value="baocun" onclick="fun(this)">保存</button>
 	<button type="button" class="btn  btn-info btn-sm"style="margin-left:10px;" value="quxiao" onclick="window.location.href='index.php'">取消</button>
-	</form>
+	
 	</div>
 	</center>
     <p><br></p>
-	
-    <script type="text/javascript" src="dist/js/lib/jquery-1.10.2.min.js"></script>
+	</form>
+	<script type="text/javascript" language="javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="dist/js/lib/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="dist/js/wangEditor.js"></script>
     <!--<script type="text/javascript" src="../dist/js/wangEditor.min.js"></script>-->
-	
     <script type="text/javascript">
         // 阻止输出log
         // wangEditor.config.printLog = false;
 
         var editor = new wangEditor('editor-trigger');
-		
-        // 上传图片
-        editor.config.uploadImgUrl = '/upload';
-        editor.config.uploadParams = {
- 
-        };
-        editor.config.uploadHeaders = {
-            // 'Accept' : 'text/x-json'
-        }
-        // editor.config.uploadImgFileName = 'myFileName';
 
-        // 隐藏网络图片
-        // editor.config.hideLinkImg = true;
+        // 上传图片
+        editor.config.uploadImgUrl = '/rg/upload.php';
+		editor.config.uploadImgFileName = 'myFileName';
+    
 
         // 表情显示项
         editor.config.emotionsShow = 'value';
         editor.config.emotions = {
             'default': {
                 title: '默认',
-                data: 'emotions.data'
+                data: './emotions.data'
             },
             'weibo': {
                 title: '微博表情',
@@ -186,6 +170,7 @@
         };
 
         
+
         // onchange 事件
         editor.onchange = function () {
             console.log(this.$txt.html());
@@ -193,7 +178,25 @@
 
         
         editor.create();
-		var text=editor.text();
+		
+		
+    
+          
+        function fun(n) {  
+            var url = "sever.php";  			
+			var texttitle=document.getElementById("texttitle").value;
+			var text=editor.$txt.html();
+            var data = {  
+                action : n.value,
+				texttitle:texttitle,
+				bolgtext:text
+            };  
+            jQuery.post(url, data, callback);  
+        }  
+        function callback(data) {  
+            alert(data);  
+        }  
+
     </script>
 </body>
 </html>

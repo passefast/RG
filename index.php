@@ -56,7 +56,7 @@
 							echo'<a href="head.php">我的博客</a>';
 							echo'</li>';
 							echo'<li>';
-							echo' <a href="edit.php">写博客</a>';
+							echo' <a href="edit.html?username='.$_SESSION["UserName"].'">写博客</a>';
 							echo'</li>';
 							echo'<li>';
 							echo'<a href="photo.php">我的相册</a>';

@@ -8,6 +8,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<?php
+	Session_start();
+	if(isset($_SESSION["UserName"]))
+	{}
+	else
+		$_SESSION["UserName"]="未登录";
+?>
 </head>
 <body  background="images\back.jpg"
 style=" background-repeat:no-repeat ;
@@ -39,8 +46,7 @@ background-attachment: fixed;">
 					<ul class="nav navbar-nav navbar-right">
 					
 						<li class="dropdown">
-							 <?php 
-							Session_Start();							 
+							 <?php 							 
 							 if($_SESSION["UserName"]=="未登录")
 								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
 							 else 

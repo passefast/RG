@@ -84,7 +84,7 @@
 	</div>
 	<span>你想对楼主说点什么</span>
 	<span class="tag">你最多可以输入30个字符</span>
-	<textarea id="text" cols="30" rows="10" maxlength="30" class="text"></textarea><br>
+	<textarea id="text" cols="20" rows="4" maxlength="30" class="text"></textarea><br>
 	<input type="button" value="发 表" id="ipt">
 	
 </div>

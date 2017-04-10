@@ -8,6 +8,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<?php
+	Session_start();
+	if(isset($_SESSION["UserName"]))
+	{}
+	else
+		$_SESSION["UserName"]="未登录";
+?>
 </head>
 <body>
 <div class="container">
@@ -35,7 +42,6 @@
 						
 						<li class="dropdown">
 							<?php  
-							Session_Start();
 							 if($_SESSION["UserName"]=="未登录")
 								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
 							 else 

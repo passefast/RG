@@ -7,6 +7,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <html>
 <head>
+<?php
+	Session_start();
+	if(isset($_SESSION["UserName"]))
+	{}
+	else
+		$_SESSION["UserName"]="Î´µÇÂ¼";
+?>
 </head>
 <body  background="images\back.jpg"
 style=" background-repeat:no-repeat ;
@@ -38,7 +45,7 @@ background-attachment: fixed;">
 					<ul class="nav navbar-nav navbar-right">
 						
 						<li class="dropdown">
-							<?php  
+							<?php							
 							 if($_SESSION["UserName"]=="Î´µÇÂ¼")
 								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
 							 else 
@@ -59,6 +66,7 @@ background-attachment: fixed;">
 							echo'<li>';
 							echo'<a href="#">ÍË³ö</a>';
 							echo'</li>';
+							echo'</ul>';
 							 }
 								?>
 						</li>
