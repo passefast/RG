@@ -93,6 +93,10 @@
 <a>文章标题</a>
 </div>
 <hr style="width:80%">
+
+<div style="margin-left:140px;font-size:20px">
+<select id="selType"><option value="杂谈">杂谈</option><option value="游戏">游戏</option><option value="体育">体育</option><option value="娱乐">娱乐</option><option value="IT">IT</option></select>
+</div>
 <div>
 <textarea  id="texttitle" cols="80" rows="1" maxlength="80" style="margin-left:140px;font-size:20px"></textarea>
 </div>
@@ -185,11 +189,13 @@
         function fun(n) {  
             var url = "sever.php";  			
 			var texttitle=document.getElementById("texttitle").value;
+			var biaoti=document.getElementById("selType").value;
 			var text=editor.$txt.html();
             var data = {  
                 action : n.value,
 				texttitle:texttitle,
-				bolgtext:text
+				bolgtext:text,
+				fenlei:biaoti
             };  
             jQuery.post(url, data, callback);  
         }  

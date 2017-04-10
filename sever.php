@@ -12,10 +12,23 @@ error_reporting(E_ALL ^ E_WARNING);
 			case "baocun":quxiao();break;
 			case "zhuce":zhuce();break;
 			case "signin":signin();break;
+			case "check": check();break;
             default:break;  
         }  
     }  
-    
+    //查询
+	function check()
+	{
+		if (isset($_POST['seachmg'])&&$_POST['seachmg']!="")  
+    {
+		
+	}
+	else
+	{
+		echo"查询内容不能为空";
+	}
+	}
+	//发表
     function fabiao()  
     {  
 	$link=connect();
@@ -32,7 +45,10 @@ error_reporting(E_ALL ^ E_WARNING);
 		}
 	else if (isset($_POST['bolgtext'])&&$_POST['bolgtext']!="")  
     { 
-		
+		if (isset($_POST['fenlei'])&&$_POST['fenlei']!="")
+		{
+			$biaoti=$_POST['fenlei'];
+			$showtime=date("Y-m-d H:i:s");
 		$result=mysql_query("select * from `bolgtext`");
 		$num=mysql_num_rows($result);
 		$num=$num+1;
@@ -40,11 +56,11 @@ error_reporting(E_ALL ^ E_WARNING);
 		$text=$_POST['bolgtext'];
 	    Session_Start();
 		$name=$_SESSION["UserName"];
-		//$insert="insert into rg.`bolgtext`(`id`,`texttitle`,`bolgtext`,`writer`,`zt`) values ('".$num."','".$title."','".$text."','".$name."','1')";
-		//$result=mysql_query($insert);
-		mysql_free_result($result);
+		$insert="insert into rg.`bolgtext`(`id`,`texttitle`,`bolgtext`,`writer`,`leibie`,`time`,`zt`) values ('".$num."','".$title."','".$text."','".$name."','".$biaoti."','".$showtime."','1')";
+		$result=mysql_query($insert);	
 		mysql_close($link);
-		echo $text;
+		echo "发表成功";
+		}
 	}
 
 	else
@@ -59,10 +75,12 @@ error_reporting(E_ALL ^ E_WARNING);
 		mysql_close($link);
 	}
     }  
+	//取消
 	function quxiao()
 	{
 		header("Location: /rg/index.php");
 	}
+	//保存
     function baocun()  
     {  
 		$link=connect();
@@ -79,7 +97,10 @@ error_reporting(E_ALL ^ E_WARNING);
 		}
 	else if (isset($_POST['bolgtext'])&&$_POST['bolgtext']!="")  
     { 
-		
+		if (isset($_POST['fenlei'])&&$_POST['fenlei']!="")
+		{
+			$biaoti=$_POST['fenlei'];
+			$showtime=date("Y-m-d H:i:s");
 		$result=mysql_query("select * from `bolgtext`");
 		$num=mysql_num_rows($result);
 		$num=$num+1;
@@ -87,10 +108,12 @@ error_reporting(E_ALL ^ E_WARNING);
 		$text=$_POST['bolgtext'];
 	    Session_Start();
 		$name=$_SESSION["UserName"];
-		$insert="insert into rg.`bolgtext`(`id`,`texttitle`,`bolgtext`,`writer`,`zt`) values ('".$num."','".$title."','".$text."','".$name."','2')";
-		$result=mysql_query($insert);
+		$insert="insert into rg.`bolgtext`(`id`,`texttitle`,`bolgtext`,`writer`,`leibie`,`time`,`zt`) values ('".$num."','".$title."','".$text."','".$name."','".$biaoti."','".$showtime."','2')";
+		$result=mysql_query($insert);	
 		mysql_close($link);
 		echo "保存成功";
+		}
+		
 	}
 
 	else
@@ -105,6 +128,7 @@ error_reporting(E_ALL ^ E_WARNING);
 		mysql_close($link);
 	}
     }  
+	//链接
 	function connect()
 	{
 		$link=mysql_connect('localhost','root','122947');

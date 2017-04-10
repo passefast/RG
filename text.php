@@ -15,6 +15,26 @@
 	else
 		$_SESSION["UserName"]="未登录";
 ?>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" language="javascript" src="jquery.js"></script>  
+    <script type="text/javascript" language="javascript">   
+          
+        function fun(n) {  
+            var url = "sever.php"; 
+			var seach=document.getElementById("seach").value;
+            var data = {  
+                action : n.value, 
+				seachmg : seach
+            };  
+            jQuery.post(url, data, callback);  
+        }  
+        function callback(data) { 
+			if (data==1)
+				window.location.href='index.php';	
+			else
+				alert(data);  
+        }  
+    </script> 
 </head>
 <body  background="images\back.jpg"
 style=" background-repeat:no-repeat ;
@@ -40,8 +60,8 @@ background-attachment: fixed;">
 					</ul>
 					<form class="navbar-form navbar-left" role="search">
 						<div class="form-group">
-							<input type="text" class="form-control" />
-						</div> <button type="submit" class="btn btn-default">查询</button>
+							<input type="text" class="form-control" id="seach"/>
+						</div> <button type="submit" class="btn btn-default"  value="check" onclick="fun(this)">查询</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 					
