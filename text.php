@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -16,7 +16,7 @@
 		$_SESSION["UserName"]="未登录";
 ?>
 <script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" language="javascript" src="jquery.js"></script>  
+	<script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
     <script type="text/javascript" language="javascript">   
           
         function fun(n) {  
@@ -101,7 +101,21 @@ background-attachment: fixed;">
 		<div class="container" frameborder="0" scrolling="no" style=" margin-top:-0px; width:300px; height:700px;">
 		<div class="col-md-12 column">
 		<center>
+		<div>
 			<img alt="140x140" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/140/140/default.jpg" class="img-circle"  style="margin-top:10px"/>
+			</div>
+			<div>
+			<?php
+			$id=$_SESSION["textid"];
+				$link=mysql_connect('localhost','root','122947');
+				if(!$link)
+					die('连接失败: '.mysql_error());
+				mysql_select_db('rg',$link) or die ('选定出错');
+				$result=mysql_query("SELECT `texttitle`,`bolgtext`,`writer`,`leibie`,`time` FROM rg.`bolgtext` WHERE `id`='".$id."'");
+				$row=mysql_fetch_row($result);
+			echo'<a font="15px">'.$row[2].'</a>';
+			?>
+			</div>
 			</center>
 			<h2>
 				Heading
@@ -141,14 +155,23 @@ background-attachment: fixed;">
 		</div>
 		</div>
 		<div class="col-md-8 column" >
+		
 		<div style="background:#fff;margin-left:10px ">
-			<h3>
-				标题
-			</h3>
-			<hr>
-			<p>
-				正文 
-			</p>
+			<?php	
+				
+				
+			echo'<h3 style="margin-right:50px">'.$row[0].'</h3>';
+			
+			echo'<a font="7px" style="margin-right:20px">'.$row[3].'</a>';
+			echo'<a font="7px" style="margin-right:20px">'.$row[4].'</a>';
+			echo'<hr>';
+			echo'<p>';
+			echo $row[1];
+			echo'</p>';
+			mysql_free_result($result);
+				mysql_close($link);
+				
+		?>
 		</div>
 		<div style="margin-right:20px">
 		<iframe src="pinglun.php" frameborder="0" scrolling="no" style=" margin-top:-0px; width:1200px;height:500px;"></iframe>

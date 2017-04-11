@@ -7,10 +7,10 @@
     
     
 
-        <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
     
-    <script type="text/javascript" language="javascript" src="jquery.js"></script>  
+    <script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
     <script type="text/javascript" language="javascript">   
           
         function fun(n) {  

@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <html>
 <head>
 
@@ -29,11 +29,30 @@
 	else
 		$_SESSION["UserName"]="未登录";
 ?>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
+    <script type="text/javascript" language="javascript">            
+        function fun1(n) {  
+            var url = "sever.php"; 
+			var seach=document.getElementById("seach").value;
+            var data = {  
+                action : n.value, 
+				seachmg : seach
+            };  
+            jQuery.post(url, data, callback1);  
+        }  
+        function callback1(data) { 
+			if (data==1)
+				window.location.href='zonggang.php';	
+			else
+				alert(data);						
+        }  
+    </script> 
 </head>
 <body style="padding:0 20px;">
 
 	<center>
-	<div frameborder="0" scrolling="no" style=" margin-top:-0px; width:86%; height:200px;">
+	<div frameborder="0" scrolling="no" style=" margin-top:-0px; width:92%; height:200px;">
 	<nav class="navbar navbar-default" role="navigation">
 				<div class="navbar-header">
 					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Bolg</a>
@@ -51,8 +70,8 @@
 					</ul>
 					<form class="navbar-form navbar-left" role="search">
 						<div class="form-group">
-							<input type="text" class="form-control" />
-						</div> <button type="submit" class="btn btn-default">查询</button>
+							<input type="text" class="form-control" id="seach"/>
+						</div> <button type="submit" class="btn btn-default"  value="check" onclick="fun1(this)">查询</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						

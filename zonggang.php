@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -16,7 +16,7 @@
 		$_SESSION["UserName"]="未登录";
 ?>
 <script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" language="javascript" src="jquery.js"></script>  
+	<script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
     <script type="text/javascript" language="javascript">   
           
         function fun(n) {  
@@ -30,7 +30,7 @@
         }  
         function callback(data) { 
 			if (data==1)
-				window.location.href='index.php';	
+				window.location.href='zonggang.php';	
 			else
 				alert(data);  
         }  
@@ -90,7 +90,8 @@ background-attachment: fixed;">
 							echo'</li>';
 							echo'</ul>';
 							 }
-								?>
+							
+							?>
 						</li>
 					</ul>
 				</div>
@@ -100,33 +101,38 @@ background-attachment: fixed;">
 		</center>
 	<div class="row clearfix" style=" margin-left:80px; margin-top:50px">
 		<div class="col-md-3 column" style=" margin-right:10px ;background:#fff ">
-		<h3 style=" margin-left:100px">精彩博文</h3>
+		<h3 style=" margin-left:60px">最新博文</h3>
 		<hr>
 			<ol>
-				<li>
-					Lorem ipsum dolor sit amet
-				</li>
-				<li>
-					Consectetur adipiscing elit
-				</li>
-				<li>
-					Integer molestie lorem at massa
-				</li>
-				<li>
-					Facilisis in pretium nisl aliquet
-				</li>
-				<li>
-					Nulla volutpat aliquam velit
-				</li>
-				<li>
-					Faucibus porta lacus fringilla vel
-				</li>
-				<li>
-					Aenean sit amet erat nunc
-				</li>
-				<li>
-					Eget porttitor lorem
-				</li>
+			<?php
+				$seach=$_SESSION["searchmg"];
+				$link=mysql_connect('localhost','root','122947');
+				if(!$link)
+					die('连接失败: '.mysql_error());
+				mysql_select_db('rg',$link) or die ('选定出错');
+				$result=mysql_query("SELECT `id`,`texttitle`,`time` FROM rg.`bolgtext` WHERE `zt`='1'");
+				$num=mysql_num_rows($result);
+				if($num==0)
+				{
+					echo '<center><a font="20px">暂无最新文章!!!!!</a></center>';
+				}
+				else{
+					$count=0;
+					while($row=mysql_fetch_row($result))
+					{
+						if($count>9)
+							break;
+						echo'<li>';
+						echo '<a style="margin-right:20px" font="7px" href="wenzhang.php?id='.$row[0].'">'.mb_substr($row[1],0,7,'UTF-8').'...</a>';
+						echo '<a style="margin-right:20px" font="7px">'.$row[2].'</a>';
+						echo'</li>';
+						$count++;
+					}
+				
+				}
+				mysql_free_result($result);
+				mysql_close($link);
+			?>
 			</ol>
 		</div>
 		
@@ -141,9 +147,9 @@ background-attachment: fixed;">
 				$seach=$_SESSION["searchmg"];
 				$link=mysql_connect('localhost','root','122947');
 				if(!$link)
-				die('连接失败: '.mysql_error());
+					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
-				$result=mysql_query("SELECT `texttitle`,`writer`,`leibie`,`time` FROM rg.`bolgtext` WHERE `texttitle` LIKE '%".$seach."%'");
+				$result=mysql_query("SELECT `id`,`texttitle`,`writer`,`leibie`,`time` FROM rg.`bolgtext` WHERE `texttitle` LIKE '%".$seach."%' and `zt`='1'");
 				$num=mysql_num_rows($result);
 				if($num==0)
 				{
@@ -154,10 +160,10 @@ background-attachment: fixed;">
 					while($row=mysql_fetch_row($result))
 					{
 						echo'<li>';
-						echo '<a style="margin-right:30px" font="7px" href="wenzhang.php">'.$row[0].'</a>';
-						echo '<a style="margin-right:30px" font="7px">'.$row[1].'</a>';
+						echo '<a style="margin-right:30px" font="7px" href="wenzhang.php?id='.$row[0].'">'.$row[1].'</a>';
 						echo '<a style="margin-right:30px" font="7px">'.$row[2].'</a>';
-						echo '<a style="margin-right:30px" font="7px">'.$row[3].'</a>';	
+						echo '<a style="margin-right:30px" font="7px">'.$row[3].'</a>';
+						echo '<a style="margin-right:30px" font="7px">'.$row[4].'</a>';	
 						echo'</li>';
 					}
 				
@@ -172,14 +178,14 @@ background-attachment: fixed;">
 				if(!$link)
 				die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
-				$result=mysql_query("SELECT `texttitle`,`writer`,`leibie`,`time` FROM rg.`bolgtext`");
+				$result=mysql_query("SELECT `id`,`texttitle`,`writer`,`leibie`,`time` FROM rg.`bolgtext` where `zt`='1'");
 				while($row=mysql_fetch_row($result))
 					{
 						echo'<li>';
-						echo '<a style="margin-right:30px" font="7px" href="wenzhang.php">'.$row[0].'</a>';
-						echo '<a style="margin-right:30px" font="7px">'.$row[1].'</a>';
+						echo '<a style="margin-right:30px" font="7px" href="wenzhang.php?id='.$row[0].'">'.$row[1].'</a>';
 						echo '<a style="margin-right:30px" font="7px">'.$row[2].'</a>';
-						echo '<a style="margin-right:30px" font="7px">'.$row[3].'</a>';			
+						echo '<a style="margin-right:30px" font="7px">'.$row[3].'</a>';
+						echo '<a style="margin-right:30px" font="7px">'.$row[4].'</a>';			
 						echo'</li>';
 					}
 				$_SESSION["searchmg"]="未搜索";

@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <link type="text/css" rel="stylesheet" href="css/login.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" language="javascript" src="jquery.js"></script>  
+	<script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
     <script type="text/javascript" language="javascript">   
           
         function fun(n) {  

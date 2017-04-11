@@ -4,15 +4,14 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 
 <html>
 <head>
 <meta charset="UTF-8">
 <script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" language="javascript" src="jquery.js"></script>  
-    <script type="text/javascript" language="javascript">   
-          
+	<script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
+    <script type="text/javascript" language="javascript">            
         function fun(n) {  
             var url = "sever.php"; 
 			var seach=document.getElementById("seach").value;
@@ -26,7 +25,7 @@
 			if (data==1)
 				window.location.href='zonggang.php';	
 			else
-				alert(data);  
+				alert(data);						
         }  
     </script> 
 </head>

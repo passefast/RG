@@ -24,8 +24,8 @@ error_reporting(E_ALL ^ E_WARNING);
 		Session_Start();
 		$mg=$_POST['seachmg'];
 		$_SESSION["searchmg"]=$mg;
-		$data=1;
-		echo json_encode($data);
+		$data1=1;
+		echo$data1;
 	}
 	else
 	{
@@ -178,7 +178,7 @@ error_reporting(E_ALL ^ E_WARNING);
 				$insert="insert into rg.`use`(`id`,`usename`,`password`,`email`) values ('".$id."','".$name."','".$password."','".$email."')";
 				$result=mysql_query($insert);
 				mysql_close($link);
-			  echo json_encode($data);
+				header("location: /rg/index.php");
 			  
 		  }
 		  else
