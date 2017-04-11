@@ -7,12 +7,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <html>
 <head>
+<meta charset="UTF-8">
 <?php
 	Session_start();
 	if(isset($_SESSION["UserName"]))
 	{}
 	else
-		$_SESSION["UserName"]="Î´µÇÂ¼";
+		$_SESSION["UserName"]="æœªç™»å½•";
 ?>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" language="javascript" src="jquery.js"></script>  
@@ -39,6 +40,7 @@
 style=" background-repeat:no-repeat ;
 background-size:100% 100%;
 background-attachment: fixed;">
+
 <div class="container" >
 <center>
 	<div frameborder="0" scrolling="no" style=" margin-top:-0px; width:100%; height:200px;">
@@ -50,41 +52,41 @@ background-attachment: fixed;">
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 					<ul class="nav navbar-nav">
 						<li >
-							 <a href="index.php">Ê×Ò³</a>
+							 <a href="index.php">é¦–é¡µ</a>
 						</li>
 						<li class="active">
-							 <a href="#">²©ÎÄ×ÜÀÀ</a>
+							 <a href="#">åšæ–‡æ€»è§ˆ</a>
 						</li>
 						
 					</ul>
 					<form class="navbar-form navbar-left" role="search">
 						<div class="form-group">
 							<input type="text" class="form-control" id="seach"/>
-						</div> <button type="submit" class="btn btn-default"  value="check" onclick="fun(this)">²éÑ¯</button>
+						</div> <button type="submit" class="btn btn-default"  value="check" onclick="fun(this)">æŸ¥è¯¢</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						
 						<li class="dropdown">
 							<?php							
-							 if($_SESSION["UserName"]=="Î´µÇÂ¼")
+							 if($_SESSION["UserName"]=="æœªç™»å½•")
 								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
 							 else 
 							 {
 								echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$_SESSION["UserName"].'<strong class="caret"></strong></a>';
 							echo'<ul class="dropdown-menu">';
 							echo'<li>';
-								echo'<a href="head.php">ÎÒµÄ²©¿Í</a>';
+								echo'<a href="head.php">æˆ‘çš„åšå®¢</a>';
 								echo'</li>';
 								echo'<li>';
-							echo' <a href="edit.php">Ğ´²©¿Í</a>';
+							echo' <a href="edit.php">å†™åšå®¢</a>';
 							echo'</li>';
 							echo'<li>';
-							echo'<a href="photo.php">ÎÒµÄÏà²á</a>';
+							echo'<a href="photo.php">æˆ‘çš„ç›¸å†Œ</a>';
 							echo'</li>';
 							echo'<li class="divider">';
 							echo'</li>';
 							echo'<li>';
-							echo'<a href="#">ÍË³ö</a>';
+							echo'<a href="#">é€€å‡º</a>';
 							echo'</li>';
 							echo'</ul>';
 							 }
@@ -98,7 +100,7 @@ background-attachment: fixed;">
 		</center>
 	<div class="row clearfix" style=" margin-left:80px; margin-top:50px">
 		<div class="col-md-3 column" style=" margin-right:10px ;background:#fff ">
-		<h3 style=" margin-left:100px">¾«²Ê²©ÎÄ</h3>
+		<h3 style=" margin-left:100px">ç²¾å½©åšæ–‡</h3>
 		<hr>
 			<ol>
 				<li>
@@ -131,33 +133,60 @@ background-attachment: fixed;">
 
 
 		<div class="col-md-8 column" style="background:#fff">
-		<h3>²©¿Í×ÜÀÀ</h3>
+		<h3>åšå®¢æ€»è§ˆ</h3>
 		<hr>
-			<ul>
-				<li>
-					Lorem ipsum dolor sit amet
-				</li>
-				<li>
-					Consectetur adipiscing elit
-				</li>
-				<li>
-					Integer molestie lorem at massa
-				</li>
-				<li>
-					Facilisis in pretium nisl aliquet
-				</li>
-				<li>
-					Nulla volutpat aliquam velit
-				</li>
-				<li>
-					Faucibus porta lacus fringilla vel
-				</li>
-				<li>
-					Aenean sit amet erat nunc
-				</li>
-				<li>
-					Eget porttitor lorem
-				</li>
+			<ul><?php
+			if(isset($_SESSION["searchmg"])&&$_SESSION["searchmg"]!="æœªæœç´¢")
+			{
+				$seach=$_SESSION["searchmg"];
+				$link=mysql_connect('localhost','root','122947');
+				if(!$link)
+				die('è¿æ¥å¤±è´¥: '.mysql_error());
+				mysql_select_db('rg',$link) or die ('é€‰å®šå‡ºé”™');
+				$result=mysql_query("SELECT `texttitle`,`writer`,`leibie`,`time` FROM rg.`bolgtext` WHERE `texttitle` LIKE '%".$seach."%'");
+				$num=mysql_num_rows($result);
+				if($num==0)
+				{
+					echo '<center><a font="20px">æœç´¢ä¸åˆ°æ‚¨æƒ³è¦çš„æ–‡ç« !!!!!</a></center>';
+				}
+				else{
+				
+					while($row=mysql_fetch_row($result))
+					{
+						echo'<li>';
+						echo '<a style="margin-right:30px" font="7px" href="wenzhang.php">'.$row[0].'</a>';
+						echo '<a style="margin-right:30px" font="7px">'.$row[1].'</a>';
+						echo '<a style="margin-right:30px" font="7px">'.$row[2].'</a>';
+						echo '<a style="margin-right:30px" font="7px">'.$row[3].'</a>';	
+						echo'</li>';
+					}
+				
+				}
+				$_SESSION["searchmg"]="æœªæœç´¢";
+				mysql_free_result($result);
+				mysql_close($link);
+			}
+			else
+			{
+				$link=mysql_connect('localhost','root','122947');
+				if(!$link)
+				die('è¿æ¥å¤±è´¥: '.mysql_error());
+				mysql_select_db('rg',$link) or die ('é€‰å®šå‡ºé”™');
+				$result=mysql_query("SELECT `texttitle`,`writer`,`leibie`,`time` FROM rg.`bolgtext`");
+				while($row=mysql_fetch_row($result))
+					{
+						echo'<li>';
+						echo '<a style="margin-right:30px" font="7px" href="wenzhang.php">'.$row[0].'</a>';
+						echo '<a style="margin-right:30px" font="7px">'.$row[1].'</a>';
+						echo '<a style="margin-right:30px" font="7px">'.$row[2].'</a>';
+						echo '<a style="margin-right:30px" font="7px">'.$row[3].'</a>';			
+						echo'</li>';
+					}
+				$_SESSION["searchmg"]="æœªæœç´¢";
+				mysql_free_result($result);
+				mysql_close($link);
+			}
+				?>
 			</ul>
 		</div>
 	</div>

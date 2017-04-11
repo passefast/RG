@@ -19,9 +19,13 @@ error_reporting(E_ALL ^ E_WARNING);
     //查询
 	function check()
 	{
-		if (isset($_POST['seachmg'])&&$_POST['seachmg']!="")  
+	if (isset($_POST['seachmg'])&&$_POST['seachmg']!="")  
     {
-		
+		Session_Start();
+		$mg=$_POST['seachmg'];
+		$_SESSION["searchmg"]=$mg;
+		$data=1;
+		echo json_encode($data);
 	}
 	else
 	{

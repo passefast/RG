@@ -24,7 +24,7 @@
         }  
         function callback(data) { 
 			if (data==1)
-				window.location.href='index.php';	
+				window.location.href='zonggang.php';	
 			else
 				alert(data);  
         }  
