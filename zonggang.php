@@ -2,7 +2,7 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <!-- Latest compiled and minified JavaScript -->
 
 <html>
@@ -43,19 +43,19 @@ background-attachment: fixed;">
 
 <div class="container" >
 <center>
-	<div frameborder="0" scrolling="no" style=" margin-top:-0px; width:100%; height:200px;">
+	<div  style=" margin-top:-0px; width:100%; height:200px;">
 	<nav class="navbar navbar-default" role="navigation">
 				<div class="navbar-header">
 					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Bolg</a>
 				</div>
 				
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li >
 							 <a href="index.php">首页</a>
 						</li>
 						<li class="active">
-							 <a href="#">博文总览</a>
+							 <a href="zonggang.php">博文总览</a>
 						</li>
 						
 					</ul>
@@ -65,37 +65,18 @@ background-attachment: fixed;">
 						</div> <button type="submit" class="btn btn-default"  value="check" onclick="fun(this)">查询</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
-						
 						<li class="dropdown">
-							<?php							
+							<?php  
 							 if($_SESSION["UserName"]=="未登录")
 								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
-							  else if($_SESSION["UserName"]=="管理员")
-							 {
-								echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$_SESSION["UserName"].'<strong class="caret"></strong></a>';
-							echo'<ul class="dropdown-menu">';
-							echo'<li>';
-							echo'<a href="head.php">博客管理</a>';
-							echo'</li>';
-						
-							echo'<li>';
-							echo'<a href="photo.php">相册管理</a>';
-							echo'</li>';
-							echo'<li class="divider">';
-							echo'</li>';
-							echo'<li>';
-							echo'<a href="wenzhang.php?case=quit">退出</a>';
-							echo'</li>';							
-							 echo'</ul>'; 
-							 }
 							 else 
 							 {
-								echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$_SESSION["UserName"].'<strong class="caret"></strong></a>';
+							echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$_SESSION["UserName"].'<strong class="caret"></strong></a>';
 							echo'<ul class="dropdown-menu">';
 							echo'<li>';
-								echo'<a href="head.php">我的博客</a>';
-								echo'</li>';
-								echo'<li>';
+							echo'<a href="head.php">我的博客</a>';
+							echo'</li>';
+							echo'<li>';
 							echo' <a href="edit.php">写博客</a>';
 							echo'</li>';
 							echo'<li>';
@@ -105,12 +86,11 @@ background-attachment: fixed;">
 							echo'</li>';
 							echo'<li>';
 							echo'<a href="wenzhang.php?case=quit">退出</a>';
-							echo'</li>';
-							echo'</ul>';
-							 }
-							
-							?>
+							echo'</li>';							
+							 echo'</ul>';
+							 }?>
 						</li>
+
 					</ul>
 				</div>
 				
@@ -123,7 +103,6 @@ background-attachment: fixed;">
 		<hr>
 			<ol>
 			<?php
-				$seach=$_SESSION["searchmg"];
 				$link=mysql_connect('localhost','root','122947');
 				if(!$link)
 					die('连接失败: '.mysql_error());
@@ -178,10 +157,11 @@ background-attachment: fixed;">
 					while($row=mysql_fetch_row($result))
 					{
 						echo'<li>';
-						echo '<a style="margin-right:30px" font="7px" href="wenzhang.php?id='.$row[0].'&case=wenzhang">'.$row[1].'</a>';
+						$lenth=376-strlen($row[1])*5;
+						echo '<a style="margin-right:'.$lenth.'px " font="7px" href="wenzhang.php?id='.$row[0].'&case=wenzhang" >'.$row[1].'</a>';
 						echo '<a style="margin-right:30px" font="7px">'.$row[2].'</a>';
 						echo '<a style="margin-right:30px" font="7px">'.$row[3].'</a>';
-						echo '<a style="margin-right:30px" font="7px">'.$row[4].'</a>';	
+						echo '<a style="margin-right:0px" font="7px">'.$row[4].'</a>';	
 						echo'</li>';
 					}
 				
@@ -200,7 +180,8 @@ background-attachment: fixed;">
 				while($row=mysql_fetch_row($result))
 					{
 						echo'<li>';
-						echo '<a style="margin-right:30px" font="7px" href="wenzhang.php?id='.$row[0].'&case=wenzhang">'.$row[1].'</a>';
+						$lenth=376-strlen($row[1])*5;
+						echo '<a style="margin-right:'.$lenth.'px " font="7px" href="wenzhang.php?id='.$row[0].'&case=wenzhang" >'.$row[1].'</a>';
 						echo '<a style="margin-right:30px" font="7px">'.$row[2].'</a>';
 						echo '<a style="margin-right:30px" font="7px">'.$row[3].'</a>';
 						echo '<a style="margin-right:30px" font="7px">'.$row[4].'</a>';			
@@ -215,5 +196,7 @@ background-attachment: fixed;">
 		</div>
 	</div>
 </div>
+<script src="//cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>

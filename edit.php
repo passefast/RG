@@ -52,7 +52,7 @@
 <body style="padding:0 20px;">
 
 	<center>
-	<div frameborder="0" scrolling="no" style=" margin-top:-0px; width:92%; height:200px;">
+	<div frameborder="0" scrolling="no" style=" margin-top:-0px; width:92%; height:100px;">
 	<nav class="navbar navbar-default" role="navigation">
 				<div class="navbar-header">
 					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Bolg</a>
@@ -113,7 +113,7 @@
 </div>
 <hr style="width:80%">
 
-<div style="margin-left:140px;font-size:20px">
+<div style="margin-left:140px;font-size:14px">
 <select id="selType"><option value="杂谈">杂谈</option><option value="游戏">游戏</option><option value="体育">体育</option><option value="娱乐">娱乐</option><option value="IT">IT</option></select>
 </div>
 <div>
@@ -126,7 +126,7 @@
 <hr style="width:80%">
 <center>
     <div id="editor-container" class="container">
-        <div id="editor-trigger"><p></p></div>
+        <div id="editor-trigger" style="width:80%;height:800px"><p></p></div>
        
     </div>
 	<div style="margin-top:10px;">
@@ -228,5 +228,7 @@
         }  
 
     </script>
+	<script src="//cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>

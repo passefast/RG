@@ -230,6 +230,8 @@ error_reporting(E_ALL ^ E_WARNING);
 			  else{
 				Session_Start();
 				$_SESSION["UserName"]=$_POST['yonghuinfo'];
+				if($_POST['yonghuinfo']=="管理员")
+					$data=2;
 				echo json_encode($data);
 			  }
 		  }

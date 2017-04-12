@@ -26,7 +26,9 @@
         }  
         function callback(data) { 
 			if (data==1)
-				window.location.href='index.php';	
+				window.location.href='index.php';
+			else if(data==2)
+				window.location.href='manage.php';
 			else
 				alert(data);  
         }  
