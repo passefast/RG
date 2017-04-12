@@ -25,7 +25,7 @@ error_reporting(E_ALL ^ E_WARNING);
 		$mg=$_POST['seachmg'];
 		$_SESSION["searchmg"]=$mg;
 		$data1=1;
-		echo$data1;
+		echo json_encode($data1);
 	}
 	else
 	{
@@ -63,7 +63,8 @@ error_reporting(E_ALL ^ E_WARNING);
 		$insert="insert into rg.`bolgtext`(`id`,`texttitle`,`bolgtext`,`writer`,`leibie`,`time`,`zt`) values ('".$num."','".$title."','".$text."','".$name."','".$biaoti."','".$showtime."','1')";
 		$result=mysql_query($insert);	
 		mysql_close($link);
-		echo "发表成功";
+		$data=1;
+		echo json_encode($data);
 		}
 	}
 
@@ -115,7 +116,8 @@ error_reporting(E_ALL ^ E_WARNING);
 		$insert="insert into rg.`bolgtext`(`id`,`texttitle`,`bolgtext`,`writer`,`leibie`,`time`,`zt`) values ('".$num."','".$title."','".$text."','".$name."','".$biaoti."','".$showtime."','2')";
 		$result=mysql_query($insert);	
 		mysql_close($link);
-		echo "保存成功";
+		$data=1;
+		echo json_encode($data);
 		}
 		
 	}

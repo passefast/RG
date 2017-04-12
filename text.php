@@ -30,7 +30,7 @@
         }  
         function callback(data) { 
 			if (data==1)
-				window.open('zonggang.php');	
+				window.location.href="zonggang.php";	
 			else
 				alert(data);  
         }  
@@ -69,6 +69,24 @@ background-attachment: fixed;">
 							 <?php 							 
 							 if($_SESSION["UserName"]=="未登录")
 								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
+							  else if($_SESSION["UserName"]=="管理员")
+							 {
+								echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$_SESSION["UserName"].'<strong class="caret"></strong></a>';
+							echo'<ul class="dropdown-menu">';
+							echo'<li>';
+							echo'<a href="head.php">博客管理</a>';
+							echo'</li>';
+						
+							echo'<li>';
+							echo'<a href="photo.php">相册管理</a>';
+							echo'</li>';
+							echo'<li class="divider">';
+							echo'</li>';
+							echo'<li>';
+							echo'<a href="wenzhang.php?case=quit">退出</a>';
+							echo'</li>';							
+							 echo'</ul>'; 
+							 }
 							 else 
 							 {
 								echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$_SESSION["UserName"].'<strong class="caret"></strong></a>';
@@ -85,7 +103,7 @@ background-attachment: fixed;">
 							echo'<li class="divider">';
 							echo'</li>';
 							echo'<li>';
-							echo'<a href="tuichu.php">退出</a>';
+							echo'<a href="wenzhang.php?case=quit">退出</a>';
 							echo'</li>';							
 							 echo'</ul>';
 							 }?>

@@ -30,7 +30,7 @@
         }  
         function callback(data) { 
 			if (data==1)
-				window.open('zonggang.php');	
+				window.location.href="zonggang.php";	
 			else
 				alert(data);  
         }  
@@ -64,6 +64,24 @@
 							<?php  
 							 if($_SESSION["UserName"]=="未登录")
 								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
+							  else if($_SESSION["UserName"]=="管理员")
+							 {
+								echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$_SESSION["UserName"].'<strong class="caret"></strong></a>';
+							echo'<ul class="dropdown-menu">';
+							echo'<li>';
+							echo'<a href="head.php">博客管理</a>';
+							echo'</li>';
+						
+							echo'<li>';
+							echo'<a href="photo.php">相册管理</a>';
+							echo'</li>';
+							echo'<li class="divider">';
+							echo'</li>';
+							echo'<li>';
+							echo'<a href="wenzhang.php?case=quit">退出</a>';
+							echo'</li>';							
+							 echo'</ul>'; 
+							 }
 							 else 
 							 {
 								echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$_SESSION["UserName"].'<strong class="caret"></strong></a>';
@@ -80,7 +98,7 @@
 							echo'<li class="divider">';
 							echo'</li>';
 							echo'<li>';
-							echo'<a href="tuichu.php">退出</a>';
+							echo'<a href="wenzhang.php?case=quit">退出</a>';
 							echo'</li>';							
 							 echo'</ul>';
 							 }?>
@@ -112,10 +130,20 @@
 					<div class="tab-pane active" id="panel-45526">
 						<p>
 						<?php
-						echo '<a style="margin-right:530px;margin-left:30px" font="7px">文章名</a>';
-						echo '<a style="margin-right:20px" font="7px">类别</a>';
+						if($_SESSION["UserName"]=="管理员")
+						{
+						echo '<a style="margin-right:460px;margin-left:100px" font="7px">文章名</a>';
+						echo '<a style="margin-right:40px" font="7px">类别</a>';
+						echo '<a style="margin-right:40px" font="7px">作者</a>';
 						echo '<a style="margin-right:90px" font="7px">编写时间</a>';
 						echo '<a style="margin-right:20px" font="7px">状态</a>';
+						}
+						else{
+						echo '<a style="margin-right:460px;margin-left:100px" font="7px">文章名</a>';
+						echo '<a style="margin-right:40px" font="7px">类别</a>';
+						echo '<a style="margin-right:70px" font="7px">编写时间</a>';
+						echo '<a style="margin-right:20px" font="7px">状态</a>';	
+						}
 						?>
 							<ol>
 					<?php
@@ -124,6 +152,34 @@
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
+				if($name=="管理员")
+				{
+				$result=mysql_query("SELECT `id`,`texttitle`,`writer`,`leibie`,`time`,`zt` FROM rg.`bolgtext`");
+				$num=mysql_num_rows($result);
+				if($num==0)
+				{
+					echo '<center><a font="20px">暂无文章!!!!!</a></center>';
+				}
+				else{
+					while($row=mysql_fetch_row($result))
+					{
+						echo'<li>';
+						$lenth=576-strlen($row[1])*5;
+						echo '<a style="margin-right:'.$lenth.'px " font="7px" href="wenzhang.php?id='.$row[0].'&case=wenzhang" >'.$row[1].'</a>';
+						echo '<a style="margin-right:30px" font="7px">'.$row[3].'</a>';
+						echo '<a style="margin-right:20px" font="7px">'.$row[2].'</a>';
+						echo '<a style="margin-right:20px" font="7px">'.$row[4].'</a>';
+						if($row[5]=="1")
+							echo '<a style="margin-right:20px" font="7px">发表</a>';
+						if($row[5]=="2")
+							echo '<a style="margin-right:20px" font="7px">未发表</a>';
+						echo '<a style="margin-right:20px" font="7px" href="wenzhang.php?id='.$row[0].'&case=delete1">删除</a>';
+						echo'</li>';
+					}
+				
+				}
+				}
+				else{
 				$result=mysql_query("SELECT `id`,`texttitle`,`leibie`,`time`,`zt` FROM rg.`bolgtext` WHERE `writer`='".$name."'");
 				$num=mysql_num_rows($result);
 				if($num==0)
@@ -135,17 +191,18 @@
 					{
 						echo'<li>';
 						$lenth=576-strlen($row[1])*5;
-						echo '<a style="margin-right:'.$lenth.'px " font="7px" >'.$row[1].'</a>';
+						echo '<a style="margin-right:'.$lenth.'px " font="7px" href="wenzhang.php?id='.$row[0].'&case=wenzhang" >'.$row[1].'</a>';
 						echo '<a style="margin-right:20px" font="7px">'.$row[2].'</a>';
 						echo '<a style="margin-right:20px" font="7px">'.$row[3].'</a>';
 						if($row[4]=="1")
 							echo '<a style="margin-right:20px" font="7px">发表</a>';
 						if($row[4]=="2")
 							echo '<a style="margin-right:20px" font="7px">未发表</a>';
-						echo '<a style="margin-right:20px" font="7px" href="delete.php?id='.$row[0].'">删除</a>';
+						echo '<a style="margin-right:20px" font="7px" href="wenzhang.php?id='.$row[0].'&case=delete1">删除</a>';
 						echo'</li>';
 					}
 				
+				}
 				}
 				mysql_free_result($result);
 				mysql_close($link);
@@ -157,17 +214,50 @@
 						<p>
 							<p>
 						<?php
-						echo '<a style="margin-right:530px;margin-left:30px" font="7px">文章名</a>';
-						echo '<a style="margin-right:20px" font="7px">类别</a>';
-						echo '<a style="margin-right:90px" font="7px">编写时间</a>';
+						if($name=="管理员")
+						{
+						echo '<a style="margin-right:460px;margin-left:100px" font="7px">文章名</a>';
+						echo '<a style="margin-right:40px" font="7px">类别</a>';
+						echo '<a style="margin-right:40px" font="7px">作者</a>';
+						echo '<a style="margin-right:70px" font="7px">编写时间</a>';
+						}
+						else{
+						echo '<a style="margin-right:460px;margin-left:100px" font="7px">文章名</a>';
+						echo '<a style="margin-right:40px" font="7px">类别</a>';
+						echo '<a style="margin-right:70px" font="7px">编写时间</a>';
+						}
 						?>
 							<ol>
 					<?php
-				$name=$_SESSION["UserName"];
+				$name=$_SESSION["UserName"];			
 				$link=mysql_connect('localhost','root','122947');
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
+				if($name=="管理员")
+				{
+					$result=mysql_query("SELECT `id`,`texttitle`,`writer`,`leibie`,`time` FROM rg.`bolgtext` WHERE `zt`='2'");
+				$num=mysql_num_rows($result);
+				if($num==0)
+				{
+					echo '<center><a font="20px">暂无文章!!!!!</a></center>';
+				}
+				else{
+					while($row=mysql_fetch_row($result))
+					{
+						echo'<li>';
+						$lenth=400-strlen($row[1]);
+						echo '<a style="margin-right:'.$lenth.'px " font="7px" href="wenzhang.php?id='.$row[0].'&case=wenzhang">'.$row[1].'</a>';
+						echo '<a style="margin-right:30px" font="7px">'.$row[3].'</a>';
+						echo '<a style="margin-right:20px" font="7px">'.$row[2].'</a>';
+						echo '<a style="margin-right:20px" font="7px">'.$row[4].'</a>';
+						echo '<a style="margin-right:20px" font="7px" href="wenzhang.php?id='.$row[0].'&case=delete1">删除</a>';
+						echo'</li>';
+					}
+				
+				}
+				}
+				else{
 				$result=mysql_query("SELECT `id`,`texttitle`,`leibie`,`time` FROM rg.`bolgtext` WHERE `writer`='".$name."' and `zt`='2'");
 				$num=mysql_num_rows($result);
 				if($num==0)
@@ -179,13 +269,14 @@
 					{
 						echo'<li>';
 						$lenth=400-strlen($row[1]);
-						echo '<a style="margin-right:'.$lenth.'px " font="7px" >'.$row[1].'</a>';
+						echo '<a style="margin-right:'.$lenth.'px " font="7px" href="wenzhang.php?id='.$row[0].'&case=wenzhang">'.$row[1].'</a>';
 						echo '<a style="margin-right:20px" font="7px">'.$row[2].'</a>';
 						echo '<a style="margin-right:20px" font="7px">'.$row[3].'</a>';
-						echo '<a style="margin-right:20px" font="7px" href="fabiao.php?id='.$row[0].'">发表</a>';
+						echo '<a style="margin-right:20px" font="7px" href="wenzhang.php?id='.$row[0].'&case=fabiao">发表</a>';
 						echo'</li>';
 					}
 				
+				}
 				}
 				mysql_free_result($result);
 				mysql_close($link);

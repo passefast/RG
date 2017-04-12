@@ -43,7 +43,7 @@
         }  
         function callback1(data) { 
 			if (data==1)
-				window.location.href='zonggang.php';	
+				window.location.href="zonggang.php";	
 			else
 				alert(data);						
         }  
@@ -219,7 +219,12 @@
             jQuery.post(url, data, callback);  
         }  
         function callback(data) {  
-            alert(data);  
+			if(data==1)
+			{
+				location.reload();
+			}
+			else
+				alert (data);
         }  
 
     </script>

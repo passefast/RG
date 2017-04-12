@@ -30,7 +30,7 @@
         }  
         function callback(data) { 
 			if (data==1)
-				window.open('zonggang.php');	
+				window.location.href="zonggang.php";	
 			else
 				alert(data);  
         }  
@@ -70,6 +70,24 @@ background-attachment: fixed;">
 							<?php							
 							 if($_SESSION["UserName"]=="未登录")
 								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
+							  else if($_SESSION["UserName"]=="管理员")
+							 {
+								echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$_SESSION["UserName"].'<strong class="caret"></strong></a>';
+							echo'<ul class="dropdown-menu">';
+							echo'<li>';
+							echo'<a href="head.php">博客管理</a>';
+							echo'</li>';
+						
+							echo'<li>';
+							echo'<a href="photo.php">相册管理</a>';
+							echo'</li>';
+							echo'<li class="divider">';
+							echo'</li>';
+							echo'<li>';
+							echo'<a href="wenzhang.php?case=quit">退出</a>';
+							echo'</li>';							
+							 echo'</ul>'; 
+							 }
 							 else 
 							 {
 								echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$_SESSION["UserName"].'<strong class="caret"></strong></a>';
@@ -86,7 +104,7 @@ background-attachment: fixed;">
 							echo'<li class="divider">';
 							echo'</li>';
 							echo'<li>';
-							echo'<a href="#">退出</a>';
+							echo'<a href="wenzhang.php?case=quit">退出</a>';
 							echo'</li>';
 							echo'</ul>';
 							 }
@@ -123,7 +141,7 @@ background-attachment: fixed;">
 						if($count>9)
 							break;
 						echo'<li>';
-						echo '<a style="margin-right:20px" font="7px" href="wenzhang.php?id='.$row[0].'">'.mb_substr($row[1],0,7,'UTF-8').'...</a>';
+						echo '<a style="margin-right:20px" font="7px" href="wenzhang.php?id='.$row[0].'&case=wenzhang">'.mb_substr($row[1],0,7,'UTF-8').'...</a>';
 						echo '<a style="margin-right:20px" font="7px">'.$row[2].'</a>';
 						echo'</li>';
 						$count++;
@@ -160,7 +178,7 @@ background-attachment: fixed;">
 					while($row=mysql_fetch_row($result))
 					{
 						echo'<li>';
-						echo '<a style="margin-right:30px" font="7px" href="wenzhang.php?id='.$row[0].'">'.$row[1].'</a>';
+						echo '<a style="margin-right:30px" font="7px" href="wenzhang.php?id='.$row[0].'&case=wenzhang">'.$row[1].'</a>';
 						echo '<a style="margin-right:30px" font="7px">'.$row[2].'</a>';
 						echo '<a style="margin-right:30px" font="7px">'.$row[3].'</a>';
 						echo '<a style="margin-right:30px" font="7px">'.$row[4].'</a>';	
@@ -182,7 +200,7 @@ background-attachment: fixed;">
 				while($row=mysql_fetch_row($result))
 					{
 						echo'<li>';
-						echo '<a style="margin-right:30px" font="7px" href="wenzhang.php?id='.$row[0].'">'.$row[1].'</a>';
+						echo '<a style="margin-right:30px" font="7px" href="wenzhang.php?id='.$row[0].'&case=wenzhang">'.$row[1].'</a>';
 						echo '<a style="margin-right:30px" font="7px">'.$row[2].'</a>';
 						echo '<a style="margin-right:30px" font="7px">'.$row[3].'</a>';
 						echo '<a style="margin-right:30px" font="7px">'.$row[4].'</a>';			

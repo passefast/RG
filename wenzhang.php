@@ -1,6 +1,49 @@
 <?php
+
+$case=$_GET["case"];
+if (isset($case))  
+    {  
+        switch($case)  
+        {  
+            case "fabiao":fabiao();break;  
+            case "wenzhang":wenzhang();break;  
+			case "delete1":delete1();break;
+			case "quit":quit();break;
+            default:break;  
+        }  
+    }  
+function wenzhang(){
 $result = $_GET["id"];
 Session_Start();
 $_SESSION["textid"]=$result;
 header("location:/rg/text.php");
+}
+function fabiao()
+{
+$id = $_GET["id"];
+$link=mysql_connect('localhost','root','122947');
+if(!$link)
+	die('连接失败: '.mysql_error());
+mysql_select_db('rg',$link) or die ('选定出错');
+$result=mysql_query("update rg.`bolgtext` set `zt`='1' WHERE `id`='".$id."'");
+mysql_close($link);
+header("location:/rg/head.php");
+}
+function delete1()
+{
+$id = $_GET["id"];
+$link=mysql_connect('localhost','root','122947');
+if(!$link)
+	die('连接失败: '.mysql_error());
+mysql_select_db('rg',$link) or die ('选定出错');
+$result=mysql_query("delete  FROM rg.`bolgtext` WHERE `id`='".$id."'");
+mysql_close($link);
+header("location:/rg/head.php");
+}
+function quit()
+{
+	Session_Start();
+	$_SESSION["UserName"]="未登录";
+	header("Location: /rg/index.php");
+}
 ?>
