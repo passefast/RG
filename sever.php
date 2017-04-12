@@ -53,9 +53,9 @@ error_reporting(E_ALL ^ E_WARNING);
 		{
 			$biaoti=$_POST['fenlei'];
 			$showtime=date("Y-m-d H:i:s");
-		$result=mysql_query("select * from `bolgtext`");
-		$num=mysql_num_rows($result);
-		$num=$num+1;
+		$result=mysql_query("SELECT `id` from rg.`bolgtext` where `id` = (SELECT max(`id`) FROM rg.`bolgtext`)");
+		$row=mysql_fetch_row($result);
+		$num=$row[0]+1;
 		$title=$_POST['texttitle'];
 		$text=$_POST['bolgtext'];
 	    Session_Start();
@@ -105,9 +105,9 @@ error_reporting(E_ALL ^ E_WARNING);
 		{
 			$biaoti=$_POST['fenlei'];
 			$showtime=date("Y-m-d H:i:s");
-		$result=mysql_query("select * from `bolgtext`");
-		$num=mysql_num_rows($result);
-		$num=$num+1;
+		$result=mysql_query("SELECT `id` from rg.`bolgtext` where `id` = (SELECT max(`id`) FROM rg.`bolgtext`)");
+		$row=mysql_fetch_row($result);
+		$num=$row[0]+1;
 		$title=$_POST['texttitle'];
 		$text=$_POST['bolgtext'];
 	    Session_Start();
@@ -167,19 +167,16 @@ error_reporting(E_ALL ^ E_WARNING);
 			  $email=$_POST['emailinfo'];
 			  $password=$_POST['miaminfo'];
 			  $data=1;
-				$result=mysql_query("select * from `use`");
-				if($result==NULL)
-					$id=0;
-				else
-					$id=count($result);
-				$id++;
-			   Session_Start();
+				$result=mysql_query("SELECT `id` from rg.`use` where `id` = (SELECT max(`id`) FROM rg.`use`)");
+				$row=mysql_fetch_row($result);
+				$id=$row[0]+1;
+				Session_Start();
 				$_SESSION["UserName"]=$_POST['phoneinfo'];
 				$insert="insert into rg.`use`(`id`,`usename`,`password`,`email`) values ('".$id."','".$name."','".$password."','".$email."')";
-				$result=mysql_query($insert);
-				mysql_close($link);
-				header("location: /rg/index.php");
-			  
+				$result1=mysql_query($insert);
+				mysql_free_result($result);
+				mysql_close($link);				
+				echo json_encode($data);
 		  }
 		  else
 		  {

@@ -23,7 +23,7 @@
         }  
         function callback(data) { 
 			if (data==1)
-				window.location.href='zonggang.php';	
+				window.open('zonggang.php');	
 			else
 				alert(data);						
         }  

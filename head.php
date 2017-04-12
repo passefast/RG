@@ -30,7 +30,7 @@
         }  
         function callback(data) { 
 			if (data==1)
-				window.location.href='zonggang.php';	
+				window.open('zonggang.php');	
 			else
 				alert(data);  
         }  
@@ -90,7 +90,12 @@
 				
 			</nav>
 			<div>
-			<h3>xxx的博文管理</h3>
+			<?php
+			if($_SESSION["UserName"]=="管理员")
+				echo'<h3>所有博文管理</h3>';
+			else
+				echo'<h3>'.$_SESSION["UserName"].'的博文管理</h3>';
+			?>
 			</div>
 	<div class="row clearfix" style=" margin-top:100px">
 		<div class="col-md-12 column">
@@ -106,17 +111,86 @@
 				<div class="tab-content">
 					<div class="tab-pane active" id="panel-45526">
 						<p>
+						<?php
+						echo '<a style="margin-right:530px;margin-left:30px" font="7px">文章名</a>';
+						echo '<a style="margin-right:20px" font="7px">类别</a>';
+						echo '<a style="margin-right:90px" font="7px">编写时间</a>';
+						echo '<a style="margin-right:20px" font="7px">状态</a>';
+						?>
 							<ol>
-				<li>
-					Lorem ipsum dolor sit amet
-				</li>
+					<?php
+				$name=$_SESSION["UserName"];
+				$link=mysql_connect('localhost','root','122947');
+				if(!$link)
+					die('连接失败: '.mysql_error());
+				mysql_select_db('rg',$link) or die ('选定出错');
+				$result=mysql_query("SELECT `id`,`texttitle`,`leibie`,`time`,`zt` FROM rg.`bolgtext` WHERE `writer`='".$name."'");
+				$num=mysql_num_rows($result);
+				if($num==0)
+				{
+					echo '<center><a font="20px">暂无文章!!!!!</a></center>';
+				}
+				else{
+					while($row=mysql_fetch_row($result))
+					{
+						echo'<li>';
+						$lenth=576-strlen($row[1])*5;
+						echo '<a style="margin-right:'.$lenth.'px " font="7px" >'.$row[1].'</a>';
+						echo '<a style="margin-right:20px" font="7px">'.$row[2].'</a>';
+						echo '<a style="margin-right:20px" font="7px">'.$row[3].'</a>';
+						if($row[4]=="1")
+							echo '<a style="margin-right:20px" font="7px">发表</a>';
+						if($row[4]=="2")
+							echo '<a style="margin-right:20px" font="7px">未发表</a>';
+						echo '<a style="margin-right:20px" font="7px" href="delete.php?id='.$row[0].'">删除</a>';
+						echo'</li>';
+					}
 				
+				}
+				mysql_free_result($result);
+				mysql_close($link);
+				?>
 				</ol>
 						</p>
 					</div>
 					<div class="tab-pane" id="panel-873725">
 						<p>
-							Howdy, I'm in Section 2.
+							<p>
+						<?php
+						echo '<a style="margin-right:530px;margin-left:30px" font="7px">文章名</a>';
+						echo '<a style="margin-right:20px" font="7px">类别</a>';
+						echo '<a style="margin-right:90px" font="7px">编写时间</a>';
+						?>
+							<ol>
+					<?php
+				$name=$_SESSION["UserName"];
+				$link=mysql_connect('localhost','root','122947');
+				if(!$link)
+					die('连接失败: '.mysql_error());
+				mysql_select_db('rg',$link) or die ('选定出错');
+				$result=mysql_query("SELECT `id`,`texttitle`,`leibie`,`time` FROM rg.`bolgtext` WHERE `writer`='".$name."' and `zt`='2'");
+				$num=mysql_num_rows($result);
+				if($num==0)
+				{
+					echo '<center><a font="20px">暂无文章!!!!!</a></center>';
+				}
+				else{
+					while($row=mysql_fetch_row($result))
+					{
+						echo'<li>';
+						$lenth=400-strlen($row[1]);
+						echo '<a style="margin-right:'.$lenth.'px " font="7px" >'.$row[1].'</a>';
+						echo '<a style="margin-right:20px" font="7px">'.$row[2].'</a>';
+						echo '<a style="margin-right:20px" font="7px">'.$row[3].'</a>';
+						echo '<a style="margin-right:20px" font="7px" href="fabiao.php?id='.$row[0].'">发表</a>';
+						echo'</li>';
+					}
+				
+				}
+				mysql_free_result($result);
+				mysql_close($link);
+				?>
+				</ol>
 						</p>
 					</div>
 				</div>
