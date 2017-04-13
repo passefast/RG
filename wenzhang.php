@@ -9,6 +9,7 @@ if (isset($case))
             case "wenzhang":wenzhang();break;  
 			case "delete1":delete1();break;
 			case "quit":quit();break;
+			case "photo":photo();break;
             default:break;  
         }  
     }  
@@ -45,5 +46,12 @@ function quit()
 	Session_Start();
 	$_SESSION["UserName"]="未登录";
 	header("Location: /rg/index.php");
+}
+function photo()
+{
+	$name = $_GET["name"];
+	Session_Start();
+	$_SESSION["photouser"]=$name;
+	header("Location: /rg/photo.php");
 }
 ?>

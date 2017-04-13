@@ -208,14 +208,12 @@ background-attachment: fixed;">
 			?>
 			</div>
 			</center>
-			<h2>
-				Heading
-			</h2>
+			<?php
+			echo'<a font="15px" href="wenzhang.php?case=photo&name='.$row[2].'">'.$row[2].'的相册</a>';
+			?>
+	
 			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
-			
-				 <a class="btn" href="#">View details »</a>
+			博主是个沉默寡言的人，他（她）把自己感兴趣的内容以博文和照片的形式呈现，博主的相册中有更具体的内容。。。	
 			</p>
 			</div>
 			
@@ -274,10 +272,10 @@ background-attachment: fixed;">
 		else{
 		$result1=mysql_query("SELECT `touxiang`FROM rg.`use` WHERE `usename`='".$row[0]."'");
 		$row1=mysql_fetch_row($result1);
-		if($row1[1]=="")
+		if($row1[0]=="")
 			$bmp="images/1.jpg";
 		else
-			$bmp=$row1[1];
+			$bmp=$row1[0];
 		mysql_free_result($result1);
 			}
 		
