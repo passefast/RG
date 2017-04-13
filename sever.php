@@ -13,6 +13,8 @@ error_reporting(E_ALL ^ E_WARNING);
 			case "zhuce":zhuce();break;
 			case "signin":signin();break;
 			case "check": check();break;
+			case "pinglun": pinglun();break;
+			case "dpinglun":dpinglun();break;
             default:break;  
         }  
     }  
@@ -174,7 +176,7 @@ error_reporting(E_ALL ^ E_WARNING);
 				$id=$row[0]+1;
 				Session_Start();
 				$_SESSION["UserName"]=$_POST['phoneinfo'];
-				$insert="insert into rg.`use`(`id`,`usename`,`password`,`email`) values ('".$id."','".$name."','".$password."','".$email."')";
+				$insert="insert into rg.`use`(`id`,`usename`,`password`,`email`,`touxiang`) values ('".$id."','".$name."','".$password."','".$email."','')";
 				$result1=mysql_query($insert);
 				mysql_free_result($result);
 				mysql_close($link);				
@@ -249,5 +251,38 @@ error_reporting(E_ALL ^ E_WARNING);
 	}
 		
     }  
-
+	function pinglun()
+	{
+	$link=connect();
+	if (isset($_POST['text'])&&$_POST['text']!="")  
+    { 	Session_Start();
+		$name=$_SESSION["UserName"];
+		if($name=="未登录")
+			$name="游客";
+		$result=mysql_query("SELECT `id` from rg.`pinglun` where `id` = (SELECT max(`id`) FROM rg.`pinglun`)");
+		$row=mysql_fetch_row($result);
+		$id=$row[0]+1;
+		$text=$_POST['text'];
+		$writer=$_SESSION["textid"];
+		$time=date("Y-m-d H:i:s");
+		$insert="insert into rg.`pinglun`(`id`,`name`,`text`,`time`,`writer`,`zhuangtai`) values ('".$id."','".$name."','".$text."','".$time."','".$writer."','1')";
+		$result1=mysql_query($insert);
+		mysql_free_result($result);					
+		mysql_close($link);
+		$data=1;
+		echo json_encode($data);
+	}
+	else
+	{
+		echo"请输入评论内容";
+		mysql_close($link);		
+	}
+	}
+	function dpinglun()
+	{
+		$link=connect();
+		$id=$_POST['id'];
+		$result=mysql_query("update rg.`pinglun` set `zhuangtai`='2' WHERE `id`='".$id."'");
+		mysql_close($link);
+	}
 	?>

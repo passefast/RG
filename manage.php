@@ -1,10 +1,9 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
 
 <!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
 <!-- Latest compiled and minified JavaScript -->
-
 
 <html>
 <head>
@@ -12,7 +11,7 @@
 </head>
 <body>
 <div>
-		<div style="float:left; width:200px;height:1000px;position:fixed">
+		<div style="float:left; width:200px;height:500px;position:fixed">
 			<div class="panel-group" id="panel-796172">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -56,7 +55,7 @@
 					</div>
 					<div id="panel-element-295509" class="panel-collapse collapse">
 						<div class="panel-body">
-							<center><a>未删除评论</a></center>
+							<center><a href="javascript:;" onclick="refresh()">未删除评论</a></center>
 						</div>
 					</div>
 				</div>
@@ -66,14 +65,24 @@
 		<div style="height:1000px;margin-left:210px" id="fresh">
 		asfihhsa 
 		</div>
+		<div>
+		<?php
+		error_reporting(E_ALL ^ E_WARNING);
+		$showtime=date("Y-m-d H:i:s");
+		echo $showtime;
+		?>
+		</div>
 
 </div>
-<script src="//cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>
-<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="bootstrap-3.3.7-dist/js/jquery.js"></script>
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
-    <script type="text/javascript" language="javascript">    
-$("#fresh").html("");
+    <script type="text/javascript" language="javascript">   
+function refresh()
+{	
+$("#fresh").html("asfasf");
+}
 </script>
 </body>
 </html>

@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
 
 <!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
+<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" />
 <!-- Latest compiled and minified JavaScript -->
 
 <html>
@@ -95,7 +95,7 @@
 							echo'<li class="divider">';
 							echo'</li>';
 							echo'<li>';
-							echo'<a href="tuichu.php">退出</a>';
+							echo'<a href="wenzhang.php?case=quit">退出</a>';
 							echo'</li>';							
 							 echo'</ul>';
 							 }?>
@@ -228,7 +228,7 @@
         }  
 
     </script>
-	<script src="//cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>
-<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="bootstrap-3.3.7-dist/js/jquery.js"></script>
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>
 </html>
