@@ -86,9 +86,9 @@
 								echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$_SESSION["UserName"].'<strong class="caret"></strong></a>';
 							echo'<ul class="dropdown-menu">';
 							echo'<li>';
-								echo'<a href="head.php">我的博客</a>';
-								echo'</li>';
-								echo'<li>';
+							echo'<a href="head.php">我的博客</a>';
+							echo'</li>';
+							echo'<li>';
 							echo' <a href="edit.php">写博客</a>';
 							echo'</li>';
 							echo'<li>';
@@ -108,54 +108,7 @@
 				
 			</nav>
 	<div class="row clearfix">
-	<?php
-	if(isset($_SESSION["photouser"])==FALSE||$_SESSION["UserName"]==$_SESSION["photouser"]){
-		$_SESSION["photouser"]=$_SESSION["UserName"];
-	echo'<form action="#"  name="form" method="post" enctype="multipart/form-data">
-		<p style="margin-left:20px">
-		<input type="file" name="img" value="选择上传文件" style="display:inline"/>	
-		<input type="submit" value="上传"/>
-		</p>
-		</form>';
-
-	date_default_timezone_set("PRC");         //设置时区 
-	if(count($_FILES)>0){ 
-	$sort = array("image/jpeg","image/jpg","image/gif","image/pdg"); 
-	//判断是否是图片类型
-	if(in_array($_FILES['img']['type'],$sort)){ 
-	 $img = "upload";    //获取上传到的文件夹位置
-	//判断文件夹是否存在 ,如果不存在创建一个
-	if(!file_exists($img)){
-	   mkdir("$img",0700);        //0700最高权限
-	}
-	$time=date("Y_m_d_H_i_s");     //获取当前时间
-	$file_name = explode(".",$_FILES['img']['name']);         //$_FILES['img']['name'] 上传文件的名称 explode字符串打断转字符串
-	$file_name[0]=$time;  
-	$name = implode(".",$file_name);    //implode 把数组拼接成字符串
-	$img_name = "upload/".$name;
-	if(move_uploaded_file($_FILES['img']['tmp_name'],$img_name)){ 	//move_uploaded_file 移动文件
-	$link=mysql_connect('localhost','root','122947');
-	if(!$link)
-		die('连接失败: '.mysql_error());
-	mysql_select_db('rg',$link) or die ('选定出错');
-	$result=mysql_query("SELECT `id` from rg.`photo` where `id` = (SELECT max(`id`) FROM rg.`photo`)");
-	$row=mysql_fetch_row($result);
-	$id=$row[0]+1;
-	$time=date("Y-m-d H:i:s");
-	$writer=$_SESSION["UserName"];
-	$insert="insert into rg.`photo`(`id`,`writer`,`name`,`time`) values ('".$id."','".$img_name."','".$writer."','".$time."')";
-	$result=mysql_query($insert);
-	mysql_close($link);
-	header("location:/rg/photo.php");
-	}else{
-		 echo "<script>alert('上传失败');</script>";  
-	}
-	}else{ 
-	echo "<script>alert('不是图片类型');</script>";
-	}
-	}
-	}
-	?>
+	
 	<?php	
 	$link=mysql_connect('localhost','root','122947');
 	if(!$link)
@@ -174,6 +127,50 @@
 		
 		</center>';
 	mysql_free_result($result1);
+	?>
+<?php
+	if($_SESSION["UserName"]==$_SESSION["photouser"]){
+		
+	echo'<center><form action="#"  name="form" method="post" enctype="multipart/form-data">
+		<p style="margin-left:20px">
+		<input type="file" name="img" value="选择上传文件" style="display:inline"/>	
+		<input type="submit" value="上传"/>
+		</p>
+		</form></center>';
+
+	date_default_timezone_set("PRC");         //设置时区 
+	if(count($_FILES)>0){ 
+	$sort = array("image/jpeg","image/jpg","image/gif","image/pdg"); 
+	//判断是否是图片类型
+	if(in_array($_FILES['img']['type'],$sort)){ 
+	 $img = "upload";    //获取上传到的文件夹位置
+	//判断文件夹是否存在 ,如果不存在创建一个
+	if(!file_exists($img)){
+	   mkdir("$img",0700);        //0700最高权限
+	}
+	$time=date("Y_m_d_H_i_s");     //获取当前时间
+	$file_name = explode(".",$_FILES['img']['name']);         //$_FILES['img']['name'] 上传文件的名称 explode字符串打断转字符串
+	$file_name[0]=$time;  
+	$name = implode(".",$file_name);    //implode 把数组拼接成字符串
+	$img_name = "upload/".$name;
+	if(move_uploaded_file($_FILES['img']['tmp_name'],$img_name)){ 	//move_uploaded_file 移动文件
+	
+	$result=mysql_query("SELECT `id` from rg.`photo` where `id` = (SELECT max(`id`) FROM rg.`photo`)");
+	$row=mysql_fetch_row($result);
+	$id=$row[0]+1;
+	$time=date("Y-m-d H:i:s");
+	$writer=$_SESSION["UserName"];
+	$insert="insert into rg.`photo`(`id`,`writer`,`name`,`time`) values ('".$id."','".$img_name."','".$writer."','".$time."')";
+	$result=mysql_query($insert);
+	header("location:/rg/photo.php");
+	}else{
+		 echo "<script>alert('上传失败');</script>";  
+	}
+	}else{ 
+	echo "<script>alert('不是图片类型');</script>";
+	}
+	}
+	}
 	?>	
 	</div>
 	<div class="row clearfix">
@@ -189,96 +186,100 @@
 					<li>
 						 <a href="#panel-3942" data-toggle="tab">两个月之前</a>
 					</li>
-					
+					<li>
+						 <a href="#panel-3941" data-toggle="tab">总和</a>
+					</li>
 				</ul>
 				<div class="tab-content">
 				
 					<?php
-					$writer=$_SESSION["UserName"];
-					$result2=mysql_query("SELECT `id`,`writer`,`time` FROM rg.`photo` WHERE `name`='".$writer."'");
-					$num=mysql_num_rows($result2);
-					if($num==0)
-					{
-					echo'<div class="tab-pane active" id="panel-536282">
-						<p>
-	
-					</p>
-					</div>';
-					echo'<div class="tab-pane" id="panel-3943">
-						<p>
-						
-					</p>
-					</div>';
-					echo'<div class="tab-pane" id="panel-3942">
-						<p>
-							
-					</p>
-					</div>';
-					}
-					else{
+					error_reporting(E_ALL ^ E_WARNING);
+					$writer=$_SESSION["photouser"];
 						$date=date("Y-m");
 						$date1=date('Y-m',strtotime("$date
 						-1 month"));
 						$date2=date('Y-m',strtotime("$date
 						-2 month"));
-						$result2=mysql_query("SELECT `writer` FROM rg.`photo` WHERE  `time` LIKE '%".$date."%'");
-						$num=mysql_num_rows($result2);
+						$result2=mysql_query("SELECT `writer` FROM rg.`photo` WHERE  `time` LIKE '%".$date."%' and `name`='".$writer."'");
+						$num1=mysql_num_rows($result2);
 						echo'<div class="tab-pane active" id="panel-536282">
 							<p>';
-						if($num==0)
+						if($num1==0)
 						{	
-						
+							echo"博主很懒，暂无图片";
 						}
 						else
 						{	
 							while($row=mysql_fetch_row($result2))
 							{
-							echo'<img alt="140x140" name="pic" src="'.$row[0].'" class="img-thumbnail" />';
+							echo'<img alt="140x140" name="pic" width="140px" src="'.$row[0].'" class="img-thumbnail" />';
 							}
-							echo'<center><a href="">点击我预览</a></center>';
-						}
-						echo'</p>
-							</div>';
-						$result2=mysql_query("SELECT `writer` FROM rg.`photo` WHERE  `time` LIKE '%".$date1."%'");
-						$num=mysql_num_rows($result2);
-						echo'<div class="tab-pane active" id="panel-3943">
-							<p>';
-						if($num==0)
-						{				
-						
-						}
-						else
-						{							
-							while($row=mysql_fetch_row($result2))
-							{
-							echo'<img alt="140x140" name="pic" src="'.$row[0].'" class="img-thumbnail" />';
-							}
-							echo'<center><a href="">点击我预览</a></center>';
-						}
-						echo'</p>
-							</div>';
-						$result2=mysql_query("SELECT `writer` FROM rg.`photo` WHERE  `time` LIKE '%".$date2."%'");
-						$num=mysql_num_rows($result2);
-						echo'<div class="tab-pane active" id="panel-3942">
-							<p>';
-						if($num==0)
-						{
-													
-						}
-						else
-						{
-						
-							while($row=mysql_fetch_row($result2))
-							{
-							echo'<img alt="140x140" name="pic" src="'.$row[0].'" class="img-thumbnail" />';
-							}
-							echo'<center><a href="">点击我预览</a></center>';
+							echo'<center><a href="liulan.php?date='.$date.'">点击我预览</a></center>';
 							mysql_free_result($result2);
 						}
 						echo'</p>
 							</div>';
+						$result3=mysql_query("SELECT `writer` FROM rg.`photo` WHERE  `time` LIKE '%".$date1."%'and `name`='".$writer."'");
+						$num2=mysql_num_rows($result3);
+						echo'<div class="tab-pane " id="panel-3943">
+							<p>';
+						if($num2==0)
+						{				
+							echo"博主很懒，暂无图片";
+						}
+						else
+						{							
+							while($row=mysql_fetch_row($result3))
+							{
+							echo'<img alt="140x140" name="pic" width="140px" src="'.$row[0].'" class="img-thumbnail" />';
+							}
+							echo'<center><a href="liulan.php?date='.$date1.'">点击我预览</a></center>';
+							mysql_free_result($result3);
+						}
+						echo'</p>
+							</div>';
+						$result4=mysql_query("SELECT `writer` FROM rg.`photo` WHERE  `time` LIKE '%".$date2."%'and `name`='".$writer."'");
+						$num3=mysql_num_rows($result4);
+						echo'<div class="tab-pane" id="panel-3942">
+							<p>';
+						if($num3==0)
+						{
+							echo"博主很懒，暂无图片";						
+						}
+						else
+						{
+						
+							while($row=mysql_fetch_row($result4))
+							{
+							echo'<img alt="140x140" name="pic"  width="140px" src="'.$row[0].'" class="img-thumbnail" />';
+							}
+							echo'<center><a href="liulan.php?date='.$date2.'">点击我预览</a></center>';
+							mysql_free_result($result4);
+						}
+						echo'</p>
+							</div>';
+						$result4=mysql_query("SELECT `writer` FROM rg.`photo` WHERE `name`='".$writer."'");
+						$num3=mysql_num_rows($result4);
+						echo'<div class="tab-pane" id="panel-3941">
+							<p>';
+						if($num3==0)
+						{
+							echo"博主很懒，暂无图片";						
+						}
+						else
+						{
+						
+							while($row=mysql_fetch_row($result4))
+							{
+							echo'<img alt="140x140" name="pic"  width="140px" src="'.$row[0].'" class="img-thumbnail" />';
+							}
+							echo'<center><a href="liulan.php?date=0">点击我预览</a></center>';
+							mysql_free_result($result4);
+						}
+						echo'</p>
+							</div>';
 						mysql_close($link);
-					}
+				
 					?>
 
 						
@@ -287,7 +288,7 @@
 		</div>
 	</div>
 </div>
- <script type="text/javascript">  
+<!-- <script type="text/javascript">  
         function setImg(w, h){   
             //var imgList = document.getElementsByTagName('img');  
             var imgList = document.getElementsByName("pic");  
@@ -299,7 +300,7 @@
             }  
         }  
         setImg(140,140);  
-    </script> 
+    </script> -->
 <script src="bootstrap-3.3.7-dist/js/jquery.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>

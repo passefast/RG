@@ -10,6 +10,7 @@ if (isset($case))
 			case "delete1":delete1();break;
 			case "quit":quit();break;
 			case "photo":photo();break;
+			case "photo1":photo1();break;
             default:break;  
         }  
     }  
@@ -52,6 +53,13 @@ function photo()
 	$name = $_GET["name"];
 	Session_Start();
 	$_SESSION["photouser"]=$name;
+	header("Location: /rg/photo.php");
+}
+function photo1()
+{
+	$name = $_GET["name"];
+	Session_Start();
+	$_SESSION["photouser"]=$_SESSION["UserName"];
 	header("Location: /rg/photo.php");
 }
 ?>

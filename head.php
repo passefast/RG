@@ -75,7 +75,7 @@
 							echo' <a href="edit.php">写博客</a>';
 							echo'</li>';
 							echo'<li>';
-							echo'<a href="photo.php">我的相册</a>';
+							echo'<a href="wenzhang.php?case=photo1">我的相册</a>';
 							echo'</li>';
 							echo'<li class="divider">';
 							echo'</li>';
