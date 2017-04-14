@@ -285,4 +285,5 @@ error_reporting(E_ALL ^ E_WARNING);
 		$result=mysql_query("update rg.`pinglun` set `zhuangtai`='2' WHERE `id`='".$id."'");
 		mysql_close($link);
 	}
+
 	?>

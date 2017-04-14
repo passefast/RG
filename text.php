@@ -193,9 +193,6 @@ background-attachment: fixed;">
 		<div class="col-md-12 column">
 		<center>
 		<div>
-			<img alt="140x140" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/140/140/default.jpg" class="img-circle"  style="margin-top:10px"/>
-			</div>
-			<div>
 			<?php
 			$id=$_SESSION["textid"];
 				$link=mysql_connect('localhost','root','122947');
@@ -204,12 +201,24 @@ background-attachment: fixed;">
 				mysql_select_db('rg',$link) or die ('选定出错');
 				$result=mysql_query("SELECT `texttitle`,`bolgtext`,`writer`,`leibie`,`time` FROM rg.`bolgtext` WHERE `id`='".$id."'");
 				$row=mysql_fetch_row($result);
+				$result2=mysql_query("SELECT `touxiang` FROM rg.`use` WHERE `usename`='".$row[2]."'");
+				$row3=mysql_fetch_row($result2);
+				if($row3[0]=="")
+					$bmp="images/1.jpg";
+				else
+					$bmp=$row3[0];
+			echo'<img alt="140x140" width="140px"src="'.$bmp.'" class="img-circle"  style="margin-top:10px"/>
+			</div>
+			<div>';
+			mysql_free_result($result2);
+				
 			echo'<a font="15px">'.$row[2].'</a>';
 			?>
 			</div>
 			</center>
 			<?php
-			echo'<a font="15px" href="wenzhang.php?case=photo&name='.$row[2].'">'.$row[2].'的相册</a>';
+			echo'<center><a font="15px" href="wenzhang.php?case=photo&name='.$row[2].'">'.$row[2].'的相册</a></center>';
+			$bozhu=$row[2];
 			?>
 	
 			<p>
@@ -221,21 +230,132 @@ background-attachment: fixed;">
 			<div class="panel-group" id="panel-109935">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						 <a class="panel-title" data-toggle="collapse" data-parent="#panel-109935" href="#panel-element-62027">Collapsible Group Item #1</a>
+						 <center><a class="panel-title" data-toggle="collapse" data-parent="#panel-109935" href="#panel-element-62027">杂谈</a></center>
 					</div>
 					<div id="panel-element-62027" class="panel-collapse collapse in">
 						<div class="panel-body">
-							Anim pariatur cliche...
+				<?php
+				$result=mysql_query("SELECT `id`,`texttitle`,`time` FROM rg.`bolgtext` WHERE `zt`='1' and `writer`='".$bozhu."' and `leibie`='杂谈'");
+				$num=mysql_num_rows($result);
+				if($num==0)
+				{
+					echo '<center><a font="20px">暂无最新文章!!!!!</a></center>';
+				}
+				else{
+					while($row1=mysql_fetch_row($result))
+					{
+						echo'<li>';
+						echo '<a style="margin-right:20px" font="7px" href="wenzhang.php?id='.$row1[0].'&case=wenzhang">'.mb_substr($row1[1],0,7,'UTF-8').'...</a>';
+						echo '<a style="margin-right:20px" font="7px">'.$row1[2].'</a>';
+						echo'</li>';
+					}
+				
+				}
+				
+				?>
 						</div>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						 <a class="panel-title" data-toggle="collapse" data-parent="#panel-109935" href="#panel-element-101541">Collapsible Group Item #2</a>
+						<center> <a class="panel-title" data-toggle="collapse" data-parent="#panel-109935" href="#panel-element-101541">游戏</a></center>
 					</div>
 					<div id="panel-element-101541" class="panel-collapse collapse">
 						<div class="panel-body">
-							Anim pariatur cliche...
+				<?php	$result=mysql_query("SELECT `id`,`texttitle`,`time` FROM rg.`bolgtext` WHERE `zt`='1' and `writer`='".$bozhu."' and `leibie`='游戏'");
+				$num=mysql_num_rows($result);
+				if($num==0)
+				{
+					echo '<center><a font="20px">暂无最新文章!!!!!</a></center>';
+				}
+				else{
+					while($row1=mysql_fetch_row($result))
+					{
+						echo'<li>';
+						echo '<a style="margin-right:20px" font="7px" href="wenzhang.php?id='.$row1[0].'&case=wenzhang">'.mb_substr($row1[1],0,7,'UTF-8').'...</a>';
+						echo '<a style="margin-right:20px" font="7px">'.$row1[2].'</a>';
+						echo'</li>';
+					}
+				
+				}?>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 <center><a class="panel-title" data-toggle="collapse" data-parent="#panel-109935" href="#panel-element-62026">体育</a></center>
+					</div>
+					<div id="panel-element-62026" class="panel-collapse collapse ">
+						<div class="panel-body">
+						<?php	$result=mysql_query("SELECT `id`,`texttitle`,`time` FROM rg.`bolgtext` WHERE `zt`='1' and `writer`='".$bozhu."' and `leibie`='体育'");
+				$num=mysql_num_rows($result);
+				if($num==0)
+				{
+					echo '<center><a font="20px">暂无最新文章!!!!!</a></center>';
+				}
+				else{
+					while($row1=mysql_fetch_row($result))
+					{
+						echo'<li>';
+						echo '<a style="margin-right:20px" font="7px" href="wenzhang.php?id='.$row1[0].'&case=wenzhang">'.mb_substr($row1[1],0,7,'UTF-8').'...</a>';
+						echo '<a style="margin-right:20px" font="7px">'.$row1[2].'</a>';
+						echo'</li>';
+					}
+				
+				}?>	
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 <center><a class="panel-title" data-toggle="collapse" data-parent="#panel-109935" href="#panel-element-62025">娱乐</a></center>
+					</div>
+					<div id="panel-element-62025" class="panel-collapse collapse">
+						<div class="panel-body">
+						<?php	
+				$result=mysql_query("SELECT `id`,`texttitle`,`time` FROM rg.`bolgtext` WHERE `zt`='1' and `writer`='".$bozhu."' and `leibie`='娱乐'");
+				$num=mysql_num_rows($result);
+				if($num==0)
+				{
+					echo '<center><a font="20px">暂无最新文章!!!!!</a></center>';
+				}
+				else{
+					while($row1=mysql_fetch_row($result))
+					{
+						echo'<li>';
+						echo '<a style="margin-right:20px" font="7px" href="wenzhang.php?id='.$row1[0].'&case=wenzhang">'.mb_substr($row1[1],0,7,'UTF-8').'...</a>';
+						echo '<a style="margin-right:20px" font="7px">'.$row1[2].'</a>';
+						echo'</li>';
+					}
+				
+				}?>	
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 <center><a class="panel-title" data-toggle="collapse" data-parent="#panel-109935" href="#panel-element-62024">IT</a></center>
+					</div>
+					<div id="panel-element-62024" class="panel-collapse collapse ">
+						<div class="panel-body">
+						<?php	$result=mysql_query("SELECT `id`,`texttitle`,`time` FROM rg.`bolgtext` WHERE `zt`='1' and `writer`='".$bozhu."' and `leibie`='IT'");
+				$num=mysql_num_rows($result);
+				if($num==0)
+				{
+					echo '<center><a font="20px">暂无最新文章!!!!!</a></center>';
+				}
+				else{
+					while($row1=mysql_fetch_row($result))
+					{
+
+						echo'<li>';
+						echo '<a style="margin-right:20px" font="7px" href="wenzhang.php?id='.$row1[0].'&case=wenzhang">'.mb_substr($row1[1],0,7,'UTF-8').'...</a>';
+						echo '<a style="margin-right:20px" font="7px">'.$row1[2].'</a>';
+						echo'</li>';
+						mysql_free_result($result);
+					}
+				
+				}?>	
 						</div>
 					</div>
 				</div>
@@ -248,14 +368,12 @@ background-attachment: fixed;">
 		<div style="background:#fff;margin-left:10px;border:5px;border-style:solid; border-width:10px; border-color:#fff">
 			<?php		
 			echo'<h3 style="margin-right:50px">'.$row[0].'</h3>';		
-			echo'<a font="7px" style="margin-right:20px>'.$row[3].'</a>';
+			echo'<a font="7px" style="margin-right:20px">'.$row[3].'</a>';
 			echo'<a font="7px" style="margin-right:20px">'.$row[4].'</a>';
 			echo'<hr>';
 			echo'<p>';
 			echo $row[1];
-			echo'</p>';
-			
-				
+			echo'</p>';				
 		?>
 		</div>
 		<div  style="margin-left:10px; margin-top:10px; width:1200px;">	

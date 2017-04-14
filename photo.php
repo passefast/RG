@@ -7,6 +7,51 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+.file {
+    position: relative;
+    display: inline-block;
+    background: #D0EEFF;
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.file:hover {
+    background: #AADFFD;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
+}
+</style>
+<script type="text/javascript">  
+   function $$(obj) {
+    return document.getElementById(obj);
+}
+function upload(f){    
+    var str = "";
+    for(var i=0;i<f.length;i++){
+        var reader = new FileReader();
+        reader.readAsDataURL(f[i]);
+        reader.onload = function(e){
+            str+="<img class='img-circle' width='140px' alt='140x140'src='"+e.target.result+"'/>";		
+            $$("dd").innerHTML = str;
+        }
+    }
+ 
+}
+    </script> 
 <script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
     <script type="text/javascript" language="javascript">   
@@ -26,8 +71,12 @@
 			else
 				alert(data);  
         }  
+
+	
+
     </script> 
 	<?php
+	error_reporting(E_ALL ^ E_WARNING);
 	Session_start();
 	if(isset($_SESSION["UserName"]))
 	{}
@@ -122,20 +171,49 @@
 	else
 		$bmp=$row1[0];
 	echo'<center>	
-	<img alt="140x140" src="'.$bmp.'" class="img-circle" /><br>
+	<img alt="140x140" src="'.$bmp.'" width="140px"class="img-circle" /><br>
 			<a font-size:15px>'.$usename.'的相册</a>
 		
 		</center>';
 	mysql_free_result($result1);
 	?>
-<?php
+	<?php
 	if($_SESSION["UserName"]==$_SESSION["photouser"]){
+		echo'
+	<center><a id="modal-961304" href="#modal-container-961304" role="button" class="btn" data-toggle="modal">更换头像</a></center>
+			
+			<div class="modal fade" id="modal-container-961304" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">
+								更换头像
+							</h4>
+						</div>
+						<div class="modal-body" id="dd">
+							预览
+						</div>
+						<div class="modal-footer">
+							<form action="upload_file.php" method="post" enctype="multipart/form-data"> 
+							<a href="javascript:;"style="position: absolute; left:10px" class="file">选择文件<input type="file" name="file" id="file"  onchange="upload(this.files)"/> </a>
+							 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <input type="submit" class="btn btn-primary" name="submit" value="保存" /> 
+							</form>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>';
+
+
 		
 	echo'<center><form action="#"  name="form" method="post" enctype="multipart/form-data">
 		<p style="margin-left:20px">
-		<input type="file" name="img" value="选择上传文件" style="display:inline"/>	
-		<input type="submit" value="上传"/>
+		<a href="javascript:;" style="position: absolute; left:1000px"class="file">选择文件<input type="file" name="img" value="选择上传文件" />	</a>
+		<input type="submit"style="position: absolute; left:1100px" class="btn" value="上传"/>		
 		</p>
+		
 		</form></center>';
 
 	date_default_timezone_set("PRC");         //设置时区 
@@ -288,19 +366,7 @@
 		</div>
 	</div>
 </div>
-<!-- <script type="text/javascript">  
-        function setImg(w, h){   
-            //var imgList = document.getElementsByTagName('img');  
-            var imgList = document.getElementsByName("pic");  
-            for(var i=0;i<imgList.length;i++){  
-                if(imgList[i].width>w || imgList[i].height>h){  
-                    imgList[i].width = w;  
-                    imgList[i].heigth = h;  
-                }  
-            }  
-        }  
-        setImg(140,140);  
-    </script> -->
+
 <script src="bootstrap-3.3.7-dist/js/jquery.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>
