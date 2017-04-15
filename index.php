@@ -293,7 +293,7 @@
 			<a >博主展示</a>
 			</div>
 			<?php
-			$result=mysql_query("SELECT `usename`,`touxiang`,`zishu` FROM (SELECT * FROM rg.`use` ORDER BY id DESC LIMIT 5)X ORDER BY RAND() LIMIT 3");
+			$result=mysql_query("SELECT `usename`,`touxiang`,`zishu` FROM (SELECT * FROM rg.`use` ORDER BY id DESC )X ORDER BY RAND() LIMIT 3");
 			$count=0;
 			while($row=mysql_fetch_row($result))
 			{
