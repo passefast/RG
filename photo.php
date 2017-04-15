@@ -112,28 +112,27 @@ function upload(f){
 							 <?php  
 							 if($_SESSION["UserName"]=="未登录")
 								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
-							  else if($_SESSION["UserName"]=="管理员")
-							 {
-								echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$_SESSION["UserName"].'<strong class="caret"></strong></a>';
+							
+							 else 
+							 {$link=mysql_connect('localhost','root','122947');
+							if(!$link)
+								die('连接失败: '.mysql_error());
+							mysql_select_db('rg',$link) or die ('选定出错');
+							$result2=mysql_query("SELECT `touxiang` FROM rg.`use` WHERE `usename`='".$_SESSION["UserName"]."'");
+							$row3=mysql_fetch_row($result2);
+							if($row3[0]=="")
+								$bmp="images/1.jpg";
+							else
+								$bmp=$row3[0];
+							mysql_free_result($result2);
+							echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$_SESSION["UserName"].'<strong class="caret"></strong></a>';
 							echo'<ul class="dropdown-menu">';
 							echo'<li>';
-							echo'<a href="head.php">博客管理</a>';
+							echo'<center><img alt="140x140" width="40px"src="'.$bmp.'" class="img-circle"  /></center>';
 							echo'</li>';
-						
-							echo'<li>';
-							echo'<a href="photo.php">相册管理</a>';
 							echo'</li>';
 							echo'<li class="divider">';
 							echo'</li>';
-							echo'<li>';
-							echo'<a href="wenzhang.php?case=quit">退出</a>';
-							echo'</li>';							
-							 echo'</ul>'; 
-							 }
-							 else 
-							 {
-								echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$_SESSION["UserName"].'<strong class="caret"></strong></a>';
-							echo'<ul class="dropdown-menu">';
 							echo'<li>';
 							echo'<a href="head.php">我的博客</a>';
 							echo'</li>';
@@ -149,6 +148,7 @@ function upload(f){
 							echo'<a href="wenzhang.php?case=quit">退出</a>';
 							echo'</li>';
 							echo'</ul>';
+							mysql_close($link);
 							 }
 								?>
 						</li>
