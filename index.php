@@ -103,35 +103,35 @@
 				</ol>
 				<div class="carousel-inner">
 					<div class="item active">
-						<img alt="" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/1600/500/sports/1/default.jpg" />
+						<img alt="" src="images/0.jpg"  />
 						<div class="carousel-caption">
 							<h4>
-								First Thumbnail label
+								
 							</h4>
 							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+								一切都如生命一般，在悄然地发生着变化，就如这黑夜一样，失去了光明，却得到了星空的美。
 							</p>
 						</div>
 					</div>
 					<div class="item">
-						<img alt="" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/1600/500/sports/2/default.jpg" />
+						<img alt="" src="images/02.jpg" />
 						<div class="carousel-caption">
 							<h4>
-								Second Thumbnail label
+								
 							</h4>
 							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+								我会住在其中的一颗星星上面，在某一颗星星上微笑着，每当夜晚你仰望星空的时候，就会像是看到所有的星星都在微笑一般。
 							</p>
 						</div>
 					</div>
 					<div class="item">
-						<img alt="" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/1600/500/sports/3/default.jpg" />
+						<img alt="" src="images/01.jpg" />
 						<div class="carousel-caption">
 							<h4>
-								Third Thumbnail label
+							
 							</h4>
 							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+								遥望着彼岸的星空，除了遥远，似乎就剩下了寂寞。
 							</p>
 						</div>
 					</div>
@@ -142,90 +142,178 @@
 			<div class="tabbable" id="tabs-922846">
 				<ul class="nav nav-tabs">
 					<li class="active">
-						 <a href="#panel-986527" data-toggle="tab">Section 1</a>
+						 <a href="#panel-986527" data-toggle="tab">杂谈</a>
 					</li>
 					<li>
-						 <a href="#panel-326488" data-toggle="tab">Section 2</a>
+						 <a href="#panel-326488" data-toggle="tab">游戏</a>
+					</li>
+					<li>
+						 <a href="#ty" data-toggle="tab">体育</a>
+					</li>
+					<li>
+						 <a href="#yl" data-toggle="tab">娱乐</a>
+					</li>
+					<li>
+						 <a href="#it" data-toggle="tab">IT</a>
 					</li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="panel-986527">
 						<p>
-							I'm in Section 1.
+							<div class="jumbotron">
+							<?php
+							$link=mysql_connect('localhost','root','122947');
+							if(!$link)
+								die('连接失败: '.mysql_error());
+							mysql_select_db('rg',$link) or die ('选定出错');
+							$result=mysql_query("SELECT `id`,`texttitle`,`bolgtext` FROM rg.`bolgtext` WHERE `zt`='1' and `leibie`='杂谈'");
+							$num=mysql_num_rows($result);
+							if($num==0)
+								echo'<center><a>暂无新文章</a></center>';
+							else{
+								$row=mysql_fetch_row($result);
+							echo'<h4>
+								<a href="wenzhang.php?id='.$row[0].'&case=wenzhang">'.$row[1].'</a>
+							</h4>
+							<p >
+								'.mb_substr($row[2],0,130,'UTF-8').'......(未完)</p>
+							</p>';
+							}
+							?>
+						</div>
 						</p>
 					</div>
 					<div class="tab-pane" id="panel-326488">
 						<p>
-							Howdy, I'm in Section 2.
+							<div class="jumbotron">
+							<?php
+							$result=mysql_query("SELECT `id`,`texttitle`,`bolgtext` FROM rg.`bolgtext` WHERE `zt`='1' and `leibie`='游戏'");
+							$num=mysql_num_rows($result);
+							if($num==0)
+								echo'<center><a>暂无新文章</a></center>';
+							else{
+								$row=mysql_fetch_row($result);
+							echo'<h4>
+								<a href="wenzhang.php?id='.$row[0].'&case=wenzhang">'.$row[1].'</a>
+							</h4>
+							<p >
+								'.mb_substr($row[2],0,130,'UTF-8').'......(未完)</p>
+							</p>';
+							}
+							?>
+							
+						</div>
 						</p>
+					</div>
+					<div class="tab-pane" id="yl">
+						<div class="jumbotron">
+						<?php
+							$result=mysql_query("SELECT `id`,`texttitle`,`bolgtext` FROM rg.`bolgtext` WHERE `zt`='1' and `leibie`='娱乐'");
+							$num=mysql_num_rows($result);
+							if($num==0)
+								echo'<center><a>暂无新文章</a></center>';
+							else{
+								$row=mysql_fetch_row($result);
+							echo'<h4>
+								<a href="wenzhang.php?id='.$row[0].'&case=wenzhang">'.$row[1].'</a>
+							</h4>
+							<p >
+								'.mb_substr($row[2],0,130,'UTF-8').'......(未完)</p>
+							</p>';
+							}
+							?>
+						</div>
+					</div>
+					<div class="tab-pane" id="it">
+						<div class="jumbotron">
+						<?php
+							$result=mysql_query("SELECT `id`,`texttitle`,`bolgtext` FROM rg.`bolgtext` WHERE `zt`='1' and `leibie`='IT'");
+							$num=mysql_num_rows($result);
+							if($num==0)
+								echo'<center><a>暂无新文章</a></center>';
+							else{
+								$row=mysql_fetch_row($result);
+							echo'<h4>
+								<a href="wenzhang.php?id='.$row[0].'&case=wenzhang">'.$row[1].'</a>
+							</h4>
+							<p >
+								'.mb_substr($row[2],0,130,'UTF-8').'......(未完)</p>
+							</p>';
+							}
+							?>
+						</div>
+					</div>
+					<div class="tab-pane" id="ty">
+							<div class="jumbotron">
+							<?php
+							$result=mysql_query("SELECT `id`,`texttitle`,`bolgtext` FROM rg.`bolgtext` WHERE `zt`='1' and `leibie`='体育'");
+							$num=mysql_num_rows($result);
+							if($num==0)
+								echo'<center><a>暂无新文章</a></center>';
+							else{
+								$row=mysql_fetch_row($result);
+							echo'<h4>
+								<a href="wenzhang.php?id='.$row[0].'&case=wenzhang">'.$row[1].'</a>
+							</h4>
+							<p >
+								'.mb_substr($row[2],0,130,'UTF-8').'......(未完)</p>
+							</p>';
+							mysql_free_result($result);
+							}
+							
+						
+							?>
+							
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="jumbotron">
-				<h1>
-					Hello, world!
-				</h1>
-				<p>
-					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
-				</p>
-				<p>
-					 <a class="btn btn-primary btn-large" href="#">Learn more</a>
-				</p>
-			</div>
+			
 		</div>
 		<div class="col-md-6 column">
 		<div style="margin-top:10px;margin-bottom:10px">
-			<a >信息展示</a>
+			<a >老资历博主展示</a>
 			</div>
-			<div class="row">
+			<?php
+			$result=mysql_query("SELECT `usename`,`touxiang`,`zishu` FROM rg.`use` where `id`!='1'");
+			$count=0;
+			while($row=mysql_fetch_row($result))
+			{
+			if($count>=3||$row[0]=="")
+					break;
+			echo'<div class="row">
 				<div class="col-md-4">
-					<div class="thumbnail">
-						<img alt="300x200" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/600/200/people/default.jpg" />
-						<div class="caption">
+					<div class="thumbnail">';
+			if($row[1]=="")
+				$bmp="images/1.jpg";
+			else
+				$bmp=$row[1];					
+						echo'<img alt="140x140" width="140px" src="'.$bmp.'" class="img-circle"  />';
+						
+						echo'<div class="caption">
 							<h3>
-								Thumbnail label
-							</h3>
-							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							</p>
-							<p>
-								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-							</p>
+								'.$row[0].'
+							</h3>';
+							if($row[2]=="")
+								$mesg="博主是个沉默寡言的人，他（她）把自己感兴趣的内容以博文和照片的形式呈现，博主的相册中有更具体的内容。。。";
+							else
+								$mesg=$row[2];
+							echo'<p>
+								'.$mesg.'		
+								</p>';
+							echo'<p>';
+							$result1=mysql_query("SELECT COUNT(*) FROM rg.`bolgtext` WHERE `writer`= '".$row[0]."' and `zt`='1'");
+							$row1=mysql_fetch_row($result1);
+							echo'<a>发表博文'.$row1[0].'篇</a>	
+								</p>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<img alt="300x200" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/600/200/city/default.jpg" />
-						<div class="caption">
-							<h3>
-								Thumbnail label
-							</h3>
-							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							</p>
-							<p>
-								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<img alt="300x200" src="http://ibootstrap-file.b0.upaiyun.com/lorempixel.com/600/200/sports/default.jpg" />
-						<div class="caption">
-							<h3>
-								Thumbnail label
-							</h3>
-							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							</p>
-							<p>
-								 <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-							</p>
-						</div>
-					</div>
-				</div>
+				</div>';
+				$count++;
+			}
+				mysql_free_result($result);
+				mysql_free_result($result1);
+				mysql_close($link);?>
 			</div>
 		</div>
 	</div>

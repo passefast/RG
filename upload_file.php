@@ -17,6 +17,7 @@ $time=date("Y_m_d_H_i_s");     //获取当前时间
 	die('连接失败: '.mysql_error());
 	mysql_select_db('rg',$link) or die ('选定出错');
 	$usename=$_SESSION["photouser"];
+	
 	$result1=mysql_query("update rg.`use` set `touxiang`='".$img_name."' WHERE `usename`='".$usename."'");
 	mysql_close($link);
 	header("location:/rg/photo.php");

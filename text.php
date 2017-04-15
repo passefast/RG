@@ -54,6 +54,21 @@
 			else
 				alert(data);  
         } 
+		function fun4(n) {  
+            var url = "sever.php";
+			var text=document.getElementById("message").value;
+            var data = {  
+                action : n.value, 
+				mesg:text
+            };  
+            jQuery.post(url, data, callback4);  
+        }  
+        function callback4(data) { 
+			if (data==1)
+				window.location.href="text.php";	
+			else
+				alert(data);  
+        } 
 		function fun3(n) {  
             var url = "sever.php";
             var data = {  
@@ -201,7 +216,7 @@ background-attachment: fixed;">
 				mysql_select_db('rg',$link) or die ('选定出错');
 				$result=mysql_query("SELECT `texttitle`,`bolgtext`,`writer`,`leibie`,`time` FROM rg.`bolgtext` WHERE `id`='".$id."'");
 				$row=mysql_fetch_row($result);
-				$result2=mysql_query("SELECT `touxiang` FROM rg.`use` WHERE `usename`='".$row[2]."'");
+				$result2=mysql_query("SELECT `touxiang`,`zishu` FROM rg.`use` WHERE `usename`='".$row[2]."'");
 				$row3=mysql_fetch_row($result2);
 				if($row3[0]=="")
 					$bmp="images/1.jpg";
@@ -210,7 +225,6 @@ background-attachment: fixed;">
 			echo'<img alt="140x140" width="140px"src="'.$bmp.'" class="img-circle"  style="margin-top:10px"/>
 			</div>
 			<div>';
-			mysql_free_result($result2);
 				
 			echo'<a font="15px">'.$row[2].'</a>';
 			?>
@@ -219,13 +233,51 @@ background-attachment: fixed;">
 			<?php
 			echo'<center><a font="15px" href="wenzhang.php?case=photo&name='.$row[2].'">'.$row[2].'的相册</a></center>';
 			$bozhu=$row[2];
-			?>
-	
-			<p>
-			博主是个沉默寡言的人，他（她）把自己感兴趣的内容以博文和照片的形式呈现，博主的相册中有更具体的内容。。。	
-			</p>
-			</div>
+			if($bozhu==$_SESSION["UserName"])
+			{
+				echo' <a id="modal-935329" href="#modal-container-935329" style="margin-left:150px"role="button" class="btn" data-toggle="modal">修改个性签名</a>
 			
+			<div class="modal fade" id="modal-container-935329" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">
+								修改
+							</h4>
+						</div>
+						<div class="modal-body">';
+						if($row3[1]=="")
+							echo'
+								<p>
+								<textarea  cols="70" rows="5" maxlength="70"  id="message"></textarea>	
+								</p>';
+						else
+							echo'<p><textarea  cols="70" rows="5" maxlength="70"  id="message">'.$row3[1].'</textarea></p>';
+							
+						echo'</div>
+						<div class="modal-footer">
+							 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary" value="save" onclick="fun4(this)">保存</button>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>';
+			}
+			?>
+			<?php
+			if($row3[1]=="")
+				echo'
+				<p>
+				博主是个沉默寡言的人，他（她）把自己感兴趣的内容以博文和照片的形式呈现，博主的相册中有更具体的内容。。。	
+				</p>';
+			else
+				echo'<p>'.$row3[1].'</p>';
+			
+			mysql_free_result($result2)
+			?>
+			</div>
 			<div class="col-md-12 column" >
 			<div class="panel-group" id="panel-109935">
 				<div class="panel panel-default">

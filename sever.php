@@ -15,6 +15,7 @@ error_reporting(E_ALL ^ E_WARNING);
 			case "check": check();break;
 			case "pinglun": pinglun();break;
 			case "dpinglun":dpinglun();break;
+			case "save":save();break;
             default:break;  
         }  
     }  
@@ -176,7 +177,7 @@ error_reporting(E_ALL ^ E_WARNING);
 				$id=$row[0]+1;
 				Session_Start();
 				$_SESSION["UserName"]=$_POST['phoneinfo'];
-				$insert="insert into rg.`use`(`id`,`usename`,`password`,`email`,`touxiang`) values ('".$id."','".$name."','".$password."','".$email."','')";
+				$insert="insert into rg.`use`(`id`,`usename`,`password`,`email`,`touxiang`,`zishu`) values ('".$id."','".$name."','".$password."','".$email."','','')";
 				$result1=mysql_query($insert);
 				mysql_free_result($result);
 				mysql_close($link);				
@@ -285,5 +286,19 @@ error_reporting(E_ALL ^ E_WARNING);
 		$result=mysql_query("update rg.`pinglun` set `zhuangtai`='2' WHERE `id`='".$id."'");
 		mysql_close($link);
 	}
+	function save()
+	{
+		$link=connect();
+		Session_Start();
+		$name=$_SESSION["UserName"];
+		if (isset($_POST['mesg']))  
+		{
+			$mg=$_POST['mesg'];
+		$result=mysql_query("update rg.`use` set `zishu`='".$mg."' WHERE `usename`='".$name."'");
+		mysql_close($link);
+		$data=1;
+		echo json_encode($data);
+		}
 
+	}
 	?>
