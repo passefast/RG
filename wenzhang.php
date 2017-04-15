@@ -8,6 +8,7 @@ if (isset($case))
             case "fabiao":fabiao();break;  
             case "wenzhang":wenzhang();break;  
 			case "delete1":delete1();break;
+			case "delete2":delete2();break;
 			case "quit":quit();break;
 			case "photo":photo();break;
 			case "photo1":photo1();break;
@@ -41,6 +42,17 @@ mysql_select_db('rg',$link) or die ('选定出错');
 $result=mysql_query("delete  FROM rg.`bolgtext` WHERE `id`='".$id."'");
 mysql_close($link);
 header("location:/rg/head.php");
+}
+function delete2()
+{
+$id = $_GET["id"];
+$link=mysql_connect('localhost','root','122947');
+if(!$link)
+	die('连接失败: '.mysql_error());
+mysql_select_db('rg',$link) or die ('选定出错');
+$result=mysql_query("delete  FROM rg.`bolgtext` WHERE `id`='".$id."'");
+mysql_close($link);
+header("location:/rg/manage.php");
 }
 function quit()
 {

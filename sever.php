@@ -9,7 +9,6 @@ error_reporting(E_ALL ^ E_WARNING);
         {  
             case "fabiao":fabiao();break;  
             case "baocun":baocun();break;  
-			case "baocun":quxiao();break;
 			case "zhuce":zhuce();break;
 			case "signin":signin();break;
 			case "check": check();break;
@@ -83,11 +82,7 @@ error_reporting(E_ALL ^ E_WARNING);
 		mysql_close($link);
 	}
     }  
-	//取消
-	function quxiao()
-	{
-		header("Location: /rg/index.php");
-	}
+
 	//保存
     function baocun()  
     {  
