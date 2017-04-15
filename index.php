@@ -102,6 +102,7 @@
 							echo'<a href="wenzhang.php?case=quit">退出</a>';
 							echo'</li>';							
 							 echo'</ul>';
+							 mysql_close($link);
 							 }?>
 						</li>
 
@@ -179,7 +180,10 @@
 						<p>
 							<div class="jumbotron">
 							<?php
-							
+							$link=mysql_connect('localhost','root','122947');
+							if(!$link)
+								die('连接失败: '.mysql_error());
+							mysql_select_db('rg',$link) or die ('选定出错');
 							$result=mysql_query("SELECT `id`,`texttitle`,`bolgtext` FROM rg.`bolgtext` WHERE `zt`='1' and `leibie`='杂谈'");
 							$num=mysql_num_rows($result);
 							if($num==0)
@@ -286,15 +290,13 @@
 		</div>
 		<div class="col-md-6 column">
 		<div style="margin-top:10px;margin-bottom:10px">
-			<a >老资历博主展示</a>
+			<a >博主展示</a>
 			</div>
 			<?php
-			$result=mysql_query("SELECT `usename`,`touxiang`,`zishu` FROM rg.`use` where `id`!='1'");
+			$result=mysql_query("SELECT `usename`,`touxiang`,`zishu` FROM (SELECT * FROM rg.`use` ORDER BY id DESC LIMIT 5)X ORDER BY RAND() LIMIT 3");
 			$count=0;
 			while($row=mysql_fetch_row($result))
 			{
-			if($count>=3||$row[0]=="")
-					break;
 			echo'<div class="row">
 				<div class="col-md-4">
 					<div class="thumbnail">';

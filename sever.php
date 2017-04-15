@@ -155,7 +155,7 @@ error_reporting(E_ALL ^ E_WARNING);
 		$name=$_POST['phoneinfo'];
 		$result=mysql_query("select * from rg.`use` where usename='".$name."'");
 		$num=mysql_num_rows($result);
-		if($num==1)
+		if($num==1||$_POST['phoneinfo']=="admin")
 		{
 			echo "用户已存在";
 			mysql_free_result($result);
@@ -211,13 +211,19 @@ error_reporting(E_ALL ^ E_WARNING);
 		$name=$_POST['yonghuinfo'];
 		$result=mysql_query("select * from rg.`use` where usename='".$name."'");
 		$num=mysql_num_rows($result);
-		if($num==0)
+		if($num==0&&$_POST['yonghuinfo']!="admin")
 		{
 			echo "不存在该用户";
 			mysql_close($link);
 		}
 		 else if (isset($_POST['mimainfo'])&&$_POST['mimainfo']!="") 
-		  {
+		  {	
+			if($_POST['yonghuinfo']=="admin"&&$_POST['mimainfo']=="admin")
+			{
+				$data=2;
+				echo json_encode($data);
+			}
+			else{
 			  $password=$_POST['mimainfo'];
 			  $data=1;
 			  $result=mysql_query("select * from rg.`use` where usename='".$name."' and password='".$password."'");
@@ -230,10 +236,10 @@ error_reporting(E_ALL ^ E_WARNING);
 			  else{
 				Session_Start();
 				$_SESSION["UserName"]=$_POST['yonghuinfo'];
-				if($_POST['yonghuinfo']=="管理员")
-					$data=2;
 				echo json_encode($data);
 			  }
+			}
+				
 		  }
 		  else
 		  {

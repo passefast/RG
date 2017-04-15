@@ -84,7 +84,7 @@
 	}
 </style>
 </head>
-<body>
+<body style="background-color:#383838">
 <div>
 		<div style="float:left; width:200px;height:500px;position:fixed">
 			<div class="panel-group" id="panel-796172">

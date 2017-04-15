@@ -70,7 +70,7 @@ function photo()
 }
 function photo1()
 {
-	$name = $_GET["name"];
+	//$name = $_GET["name"];
 	Session_Start();
 	$_SESSION["photouser"]=$_SESSION["UserName"];
 	header("Location: /rg/photo.php");

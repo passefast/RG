@@ -9,7 +9,7 @@
 </head>
 <body>
 <div>
-<a href="javascript:history.back();">取消预览</a>
+<a href="photo.php">取消预览</a>
 <div class="swiper-container">
 
   <div class="pagination"></div>

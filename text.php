@@ -140,7 +140,7 @@
 	}
 </style>
 </head>
-<body  background="images\back.jpg"
+<body  background="images\back1.jpg"
 style=" background-repeat:no-repeat ;
 background-size:100% 100%;
 background-attachment: fixed;">
@@ -286,7 +286,7 @@ background-attachment: fixed;">
 			<?php
 			if($row3[1]=="")
 				echo'
-				<p>
+				<p style="white">
 				博主是个沉默寡言的人，他（她）把自己感兴趣的内容以博文和照片的形式呈现，博主的相册中有更具体的内容。。。	
 				</p>';
 			else

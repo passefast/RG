@@ -35,7 +35,7 @@
         }  
     </script> 
 </head>
-<body  background="images\back.jpg"
+<body  background="images\back1.jpg"
 style=" background-repeat:no-repeat ;
 background-size:100% 100%;
 background-attachment: fixed;">

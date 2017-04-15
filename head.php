@@ -35,7 +35,10 @@
         }  
     </script> 
 </head>
-<body>
+<body  background="images\back1.jpg"
+style=" background-repeat:no-repeat ;
+background-size:100% 100%;
+background-attachment: fixed;">
 
 <div class="container">
 <nav class="navbar navbar-default" role="navigation">

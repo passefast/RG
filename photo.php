@@ -84,7 +84,10 @@ function upload(f){
 		$_SESSION["UserName"]="未登录";
 ?>
 </head>
-<body>
+<body  background="images\back1.jpg"
+style=" background-repeat:no-repeat ;
+background-size:100% 100%;
+background-attachment: fixed;">
 <div class="container">
 <nav class="navbar navbar-default" role="navigation">
 				<div class="navbar-header">
@@ -112,9 +115,9 @@ function upload(f){
 							 <?php  
 							 if($_SESSION["UserName"]=="未登录")
 								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
-							
 							 else 
-							 {$link=mysql_connect('localhost','root','122947');
+							 {
+							$link=mysql_connect('localhost','root','122947');
 							if(!$link)
 								die('连接失败: '.mysql_error());
 							mysql_select_db('rg',$link) or die ('选定出错');
@@ -140,17 +143,16 @@ function upload(f){
 							echo' <a href="edit.php">写博客</a>';
 							echo'</li>';
 							echo'<li>';
-							echo'<a href="#">我的相册</a>';
+							echo'<a href="wenzhang.php?case=photo1">我的相册</a>';
 							echo'</li>';
 							echo'<li class="divider">';
 							echo'</li>';
 							echo'<li>';
 							echo'<a href="wenzhang.php?case=quit">退出</a>';
-							echo'</li>';
-							echo'</ul>';
-							mysql_close($link);
-							 }
-								?>
+							echo'</li>';							
+							 echo'</ul>';
+							 mysql_close($link);
+							 }?>
 						</li>
 					</ul>
 				</div>
@@ -210,7 +212,7 @@ function upload(f){
 		
 	echo'<center><form action="#"  name="form" method="post" enctype="multipart/form-data">
 		<p style="margin-left:20px">
-		<a href="javascript:;" style="position: absolute; left:1000px"class="file">选择文件<input type="file" name="img" value="选择上传文件" />	</a>
+		<a href="javascript:;" style="margin-left:800px"class="file">选择文件<input type="file" name="img" value="选择上传文件" />	</a>
 		<input type="submit"style="position: absolute; left:1100px" class="btn" value="上传"/>		
 		</p>
 		
