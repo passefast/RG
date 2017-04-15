@@ -8,6 +8,81 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
+    <script type="text/javascript" language="javascript">
+		function fun3(n) {  
+            var url = "sever.php";
+            var data = {  
+                action : n.value, 
+				id:n.id
+            };  
+            jQuery.post(url, data, callback2);  
+        }  
+        function callback2(data) { 
+				alert("删除成功");	  
+        }		
+    </script> 
+
+
+<style>
+	
+	.creatediv{
+		width: 730px;
+		height: 80px;
+		border: 1px solid gray;
+		background:#fff;
+		position: relative;
+		margin-top: 10px;
+		padding-left: 75px;
+	}
+	.createinput{
+		width: 80px;
+		height: 30px;
+		position:absolute;
+		right: 5px;
+		bottom:5px;
+	}
+	.createimg{
+		width: 30px;
+		height: 30px;
+		position: absolute;
+		top: 15px;
+		left: 15px;
+	}
+	.createname{
+		position: absolute;
+		top: 45px;
+		left: 15px;
+	}
+	.createtime{
+		position: absolute;
+		font-size:7px;
+		top: 12px;
+		left: 65px;
+	}
+	.createdivs{
+		width:600px;
+		height:50px;
+		position: absolute;
+		top: 30px;
+		left: 85px;
+	}
+	.tag{
+		font-size: 13px;
+		margin-left: 420px;
+		vertical-align: bottom;
+		text-align: center;
+		margin-bottom: 0;
+	}
+	.text{
+		width: 730px;
+		height: 180px;
+		margin:0 auto;
+
+		resize:none;
+	}
+</style>
 </head>
 <body>
 <div>

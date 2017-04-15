@@ -12,6 +12,7 @@ if (isset($case))
 			case "quit":quit();break;
 			case "photo":photo();break;
 			case "photo1":photo1();break;
+			case "pic":pic();break;
             default:break;  
         }  
     }  
@@ -74,4 +75,15 @@ function photo1()
 	$_SESSION["photouser"]=$_SESSION["UserName"];
 	header("Location: /rg/photo.php");
 }
+function pic()
+	{
+		$link=mysql_connect('localhost','root','122947');
+		if(!$link)
+			die('连接失败: '.mysql_error());
+		mysql_select_db('rg',$link) or die ('选定出错');
+		$id=$_GET['id'];
+		$result=mysql_query("delete from rg.`photo`  WHERE `id`='".$id."'");
+		mysql_close($link);
+		header("location:/rg/manage.php");
+	}
 ?>

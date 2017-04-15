@@ -14,7 +14,9 @@ error_reporting(E_ALL ^ E_WARNING);
 			case "check": check();break;
 			case "pinglun": pinglun();break;
 			case "dpinglun":dpinglun();break;
+			case "mdpinglun":mdpinglun();break;
 			case "save":save();break;
+			
             default:break;  
         }  
     }  
@@ -281,6 +283,13 @@ error_reporting(E_ALL ^ E_WARNING);
 		$result=mysql_query("update rg.`pinglun` set `zhuangtai`='2' WHERE `id`='".$id."'");
 		mysql_close($link);
 	}
+	function mdpinglun()
+	{
+		$link=connect();
+		$id=$_POST['id'];
+		$result=mysql_query("delete from rg.`pinglun`  WHERE `id`='".$id."'");
+		mysql_close($link);
+	}
 	function save()
 	{
 		$link=connect();
@@ -296,4 +305,5 @@ error_reporting(E_ALL ^ E_WARNING);
 		}
 
 	}
+	
 	?>

@@ -9,7 +9,7 @@
 </head>
 <body>
 <div>
-<a href="photo.php">取消预览</a>
+<a href="javascript:history.back();">取消预览</a>
 <div class="swiper-container">
 
   <div class="pagination"></div>
@@ -21,8 +21,11 @@
 	if(!$link)
 	die('连接失败: '.mysql_error());
 	mysql_select_db('rg',$link) or die ('选定出错');
-	$writer=$_SESSION["photouser"];
-	$date=$_GET["date"];
+
+	if(isset($_GET["date"])&&isset($_SESSION["photouser"]))
+	{
+		$date=$_GET["date"];
+		$writer=$_SESSION["photouser"];
 	if($date==0)
 		$result2=mysql_query("SELECT `writer` FROM rg.`photo` WHERE `name`='".$writer."'");
 	else
@@ -34,8 +37,9 @@
 	  echo'<img style="margin-top:100px"src="'.$row[0].'" alt=""/>';
 	  echo'</div></div>';
 	  }
-	  
-	  mysql_free_result($result2);
+	   mysql_free_result($result2);
+	}
+	 
 	  mysql_close($link);
 	  ?>
     
