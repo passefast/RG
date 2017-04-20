@@ -176,7 +176,6 @@ background-attachment: fixed;">
 					</div>
 					<div class="tab-pane" id="panel-873725">
 						<p>
-							<p>
 						<?php
 						echo '<a style="margin-right:460px;margin-left:100px" font="7px">文章名</a>';
 						echo '<a style="margin-right:40px" font="7px">类别</a>';

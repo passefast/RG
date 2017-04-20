@@ -280,7 +280,7 @@ background-attachment: fixed;">
 						-1 month"));
 						$date2=date('Y-m',strtotime("$date
 						-2 month"));
-						$result2=mysql_query("SELECT `writer` FROM rg.`photo` WHERE  `time` LIKE '%".$date."%' and `name`='".$writer."'");
+						$result2=mysql_query("SELECT `id`,`writer` FROM rg.`photo` WHERE  `time` LIKE '%".$date."%' and `name`='".$writer."'");
 						$num1=mysql_num_rows($result2);
 						echo'<div class="tab-pane active" id="panel-536282">
 							<p>';
@@ -291,8 +291,14 @@ background-attachment: fixed;">
 						else
 						{	
 							while($row=mysql_fetch_row($result2))
+							{							
+							if($_SESSION["UserName"]==$_SESSION["photouser"])
 							{
-							echo'<img alt="140x140" name="pic" width="140px" src="'.$row[0].'" class="img-thumbnail" />';
+								echo'<div style="float:left"><img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" /><br>';
+								echo'<center><a href="wenzhang.php?case=pic2&id='.$row[0].'">删除</a><center></div>';
+							}
+							else
+								echo'<img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" />';
 							}
 							echo'<center><a href="liulan.php?date='.$date.'">点击我预览</a></center>';
 							mysql_free_result($result2);
@@ -311,7 +317,13 @@ background-attachment: fixed;">
 						{							
 							while($row=mysql_fetch_row($result3))
 							{
-							echo'<img alt="140x140" name="pic" width="140px" src="'.$row[0].'" class="img-thumbnail" />';
+							if($_SESSION["UserName"]==$_SESSION["photouser"])
+							{
+								echo'<div style="float:left"><img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" /><br>';
+								echo'<center><a href="wenzhang.php?case=pic2&id='.$row[0].'">删除</a><center></div>';
+							}
+							else
+								echo'<img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" />';
 							}
 							echo'<center><a href="liulan.php?date='.$date1.'">点击我预览</a></center>';
 							mysql_free_result($result3);
@@ -331,7 +343,13 @@ background-attachment: fixed;">
 						
 							while($row=mysql_fetch_row($result4))
 							{
-							echo'<img alt="140x140" name="pic"  width="140px" src="'.$row[0].'" class="img-thumbnail" />';
+							if($_SESSION["UserName"]==$_SESSION["photouser"])
+							{
+								echo'<div style="float:left"><img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" /><br>';
+								echo'<center><a href="wenzhang.php?case=pic2&id='.$row[0].'">删除</a><center></div>';
+							}
+							else
+								echo'<img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" />';
 							}
 							echo'<center><a href="liulan.php?date='.$date2.'">点击我预览</a></center>';
 							mysql_free_result($result4);
@@ -351,7 +369,13 @@ background-attachment: fixed;">
 						
 							while($row=mysql_fetch_row($result4))
 							{
-							echo'<img alt="140x140" name="pic"  width="140px" src="'.$row[0].'" class="img-thumbnail" />';
+							if($_SESSION["UserName"]==$_SESSION["photouser"])
+							{
+								echo'<div style="float:left"><img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" /><br>';
+								echo'<center><a href="wenzhang.php?case=pic2&id='.$row[0].'">删除</a><center></div>';
+							}
+							else
+								echo'<img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" />';
 							}
 							echo'<center><a href="liulan.php?date=0">点击我预览</a></center>';
 							mysql_free_result($result4);
