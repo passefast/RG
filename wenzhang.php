@@ -99,4 +99,5 @@ function pic()
 		mysql_close($link);
 		header("location:/rg/photo.php");
 	}
+
 ?>

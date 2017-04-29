@@ -20,7 +20,8 @@
             jQuery.post(url, data, callback2);  
         }  
         function callback2(data) { 
-				alert("删除成功");	  
+				alert("删除成功");	
+				window.location.href="manage.php";
         }		
     </script> 
 

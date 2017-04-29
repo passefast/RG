@@ -338,7 +338,8 @@ error_reporting(E_ALL ^ E_WARNING);
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
 			$result=mysql_query("SELECT `id`,`name`,`text`,`time` FROM rg.`pinglun` WHERE `zhuangtai`='1'");
-		if(mysql_num_rows($result)==0)
+			$resultx=mysql_query("SELECT `id`,`name`,`text`,`time` FROM rg.`fupinglun` WHERE `zhuangtai`='1'");
+		if(mysql_num_rows($result)==0&&mysql_num_rows($resultx)==0)
 			echo'<a font-size:10px style="margin-left:350px">暂无评论</a><br>
 		<br>';
 		else{
@@ -363,9 +364,31 @@ error_reporting(E_ALL ^ E_WARNING);
 		echo'<button class="createinput btn btn-default btn-link" value="mdpinglun" id="'.$row[0].'"onclick="fun3(this)">删除</button>';
 		echo'</div>';
 		}
+		while($row=mysql_fetch_row($resultx))
+		{
+		if($row[1]=="游客")
+			$bmp="images/1.jpg";
+		else{
+		$result1=mysql_query("SELECT `touxiang`FROM rg.`use` WHERE `usename`='".$row[0]."'");
+		$row1=mysql_fetch_row($result1);
+		if($row1[0]=="")
+			$bmp="images/1.jpg";
+		else
+			$bmp=$row1[0];
+		mysql_free_result($result1);
+			}
+		echo'<div class="creatediv">';
+		echo'<img class="createimg" src="'.$bmp.'">';
+		echo '<a class="createname">'.$row[1].'</a>';
+		echo '<a class="createtime">'.$row[3].'</a>';
+		echo'<p class="createdivs">'.$row[2].'</p>';
+		echo'<button class="createinput btn btn-default btn-link" value="mdfpinglun" id="'.$row[0].'"onclick="fun3(this)">删除</button>';
+		echo'</div>';
+		}
 		}
 		
 		mysql_free_result($result);
+		mysql_free_result($resultx);
 		mysql_close($link);
 		}
 	function dpinglun()
@@ -375,7 +398,8 @@ error_reporting(E_ALL ^ E_WARNING);
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
 			$result=mysql_query("SELECT `id`,`name`,`text`,`time` FROM rg.`pinglun` WHERE `zhuangtai`='2'");
-		if(mysql_num_rows($result)==0)
+			$resultx=mysql_query("SELECT `id`,`name`,`text`,`time` FROM rg.`fupinglun` WHERE `zhuangtai`='2'");
+		if(mysql_num_rows($result)==0&&mysql_num_rows($resultx)==0)
 			echo'<a font-size:10px style="margin-left:350px">暂无评论</a><br>
 		<br>';
 		else{
@@ -400,8 +424,29 @@ error_reporting(E_ALL ^ E_WARNING);
 		echo'<button class="createinput btn btn-default btn-link" value="mdpinglun" id="'.$row[0].'"onclick="fun3(this)">删除</button>';
 		echo'</div>';
 		}
+		while($row=mysql_fetch_row($resultx))
+		{
+		if($row[1]=="游客")
+			$bmp="images/1.jpg";
+		else{
+		$result1=mysql_query("SELECT `touxiang`FROM rg.`use` WHERE `usename`='".$row[0]."'");
+		$row1=mysql_fetch_row($result1);
+		if($row1[0]=="")
+			$bmp="images/1.jpg";
+		else
+			$bmp=$row1[0];
+		mysql_free_result($result1);
+			}
+		echo'<div class="creatediv">';
+		echo'<img class="createimg" src="'.$bmp.'">';
+		echo '<a class="createname">'.$row[1].'</a>';
+		echo '<a class="createtime">'.$row[3].'</a>';
+		echo'<p class="createdivs">'.$row[2].'</p>';
+		echo'<button class="createinput btn btn-default btn-link" value="mdfpinglun" id="'.$row[0].'"onclick="fun3(this)">删除</button>';
+		echo'</div>';
 		}
-		
+		}
+		mysql_free_result($result1);
 		mysql_free_result($result);
 		mysql_close($link);
 		}

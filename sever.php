@@ -15,8 +15,10 @@ error_reporting(E_ALL ^ E_WARNING);
 			case "pinglun": pinglun();break;
 			case "dpinglun":dpinglun();break;
 			case "mdpinglun":mdpinglun();break;
+			case "mdfpinglun":mdfpinglun();break;
 			case "save":save();break;
-			
+			case "huifu":huifu();break;
+			case "dfpinglun":dfpinglun();break;
             default:break;  
         }  
     }  
@@ -296,6 +298,13 @@ error_reporting(E_ALL ^ E_WARNING);
 		$result=mysql_query("delete from rg.`pinglun`  WHERE `id`='".$id."'");
 		mysql_close($link);
 	}
+	function mdfpinglun()
+	{
+		$link=connect();
+		$id=$_POST['id'];
+		$result=mysql_query("delete from rg.`fupinglun`  WHERE `id`='".$id."'");
+		mysql_close($link);
+	}
 	function save()
 	{
 		$link=connect();
@@ -311,5 +320,35 @@ error_reporting(E_ALL ^ E_WARNING);
 		}
 
 	}
-	
+	function huifu()
+	{
+		$link=connect();
+	if (isset($_POST['text'])&&$_POST['text']!="")  
+    { 	Session_Start();
+		$name=$_SESSION["UserName"];
+		if($name=="未登录")
+			$name="游客";
+		$huifu=$_POST['id'];
+		$result=mysql_query("SELECT `id` from rg.`fupinglun` where `id` = (SELECT max(`id`) FROM rg.`fupinglun`)");
+		$row=mysql_fetch_row($result);
+		$id=$row[0]+1;
+		$text=$_POST['text'];
+		$writer=$_SESSION["textid"];
+		$time=date("Y-m-d H:i:s");
+		$insert="insert into rg.`fupinglun`(`id`,`name`,`text`,`time`,`writer`,`huifu`,`zhuangtai`) values ('".$id."','".$name."','".$text."','".$time."','".$writer."','".$huifu."','1')";
+		$result1=mysql_query($insert);
+		mysql_free_result($result);					
+		mysql_close($link);
+		$data=1;
+		echo json_encode($data);
+	}
+	mysql_close($link);
+	}
+	function dfpinglun()
+	{
+		$link=connect();
+		$id=$_POST['id'];
+		$result=mysql_query("update rg.`fupinglun` set `zhuangtai`='2' WHERE `id`='".$id."'");
+		mysql_close($link);
+	}
 	?>

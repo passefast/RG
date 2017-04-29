@@ -39,6 +39,25 @@
 			else
 				alert(data);  
         } 
+		function func(n) {  
+            var url = "sever.php";  
+			var strs= new Array(); //定义一数组 
+
+			strs=n.id.split(","); 					
+			var text=document.getElementById(strs[1]).value;
+            var data = {  
+                action : n.value, 
+				id :strs[0],
+				text:text
+            };  
+            jQuery.post(url, data, callbackc);  
+        }  
+        function callbackc(data) { 
+			if (data==1)
+				window.location.href="text.php";	
+			else
+				alert(data);  
+        } 
 		function fun2(n) {  
             var url = "sever.php";
 			var text=document.getElementById("pingluntext").value;
@@ -92,6 +111,15 @@
 		margin-top: 10px;
 		padding-left: 75px;
 	}
+	.creatediv1{
+		width: 630px;
+		height: 60px;
+		border: 1px solid gray;
+		background:#fff;
+		position: relative;
+		margin-top: 10px;
+		padding-left: 75px;
+	}
 	.createinput{
 		width: 80px;
 		height: 30px;
@@ -124,6 +152,32 @@
 		top: 30px;
 		left: 85px;
 	}
+	.createimg1{
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		top: 10px;
+		left: 10px;
+	}
+	.createname1{
+		position: absolute;
+		top: 30px;
+		left: 10px;
+		font-size: 3px;
+	}
+	.createtime1{
+		position: absolute;
+		font-size:5px;
+		top: 7px;
+		left: 65px;
+	}
+	.createdivs1{
+		width:500px;
+		height:45px;
+		position: absolute;
+		top: 25px;
+		left: 85px;
+	}
 	.tag{
 		font-size: 13px;
 		margin-left: 420px;
@@ -133,6 +187,13 @@
 	}
 	.text{
 		width: 730px;
+		height: 180px;
+		margin:0 auto;
+
+		resize:none;
+	}
+	.text1{
+		width: 500px;
 		height: 180px;
 		margin:0 auto;
 
@@ -475,6 +536,7 @@ background-attachment: fixed;">
 		echo'<p class="createdivs">'.$row[2].'</p>';
 		echo'<button class="createinput btn btn-default btn-link" value="dpinglun" id="'.$row[0].'"onclick="fun3(this)">删除</button>';
 		echo'</div>';
+		
 		}
 		else{
 		
@@ -483,19 +545,103 @@ background-attachment: fixed;">
 		echo '<a class="createname">'.$row[1].'</a>';
 		echo '<a class="createtime">'.$row[3].'</a>';
 		echo'<p class="createdivs">'.$row[2].'</p>';
-		echo'</div>';			
-
+					
+		echo' <a id="modal-537286" href="#modal-container-537286"style="position: absolute;top: 50px;right: 15px" role="button" class="btn" data-toggle="modal" >回复</a>
+			
+			<div class="modal fade" id="modal-container-537286" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel" >
+								你想对Ta说点什么
+							</h4>
+						</div>
+						<div class="modal-body">
+							<textarea id='.$row[3].'" cols="30" rows="10" maxlength="30" class="text1"></textarea><br>
+						</div>
+						<div class="modal-footer">
+							 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" id="'.$row[0].','.$row[3].'" class="btn btn-primary"value="huifu" onclick="func(this,'.$row[3].')" >发表</button>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+			</div>';
+		}
+		echo'<div>';
+		$resultx=mysql_query("SELECT `id`,`name`,`text`,`time` FROM rg.`fupinglun` WHERE `zhuangtai`='1'and`writer`='".$id."'and`huifu`='".$row[0]."'");
+		if(mysql_num_rows($resultx)>0)
+		{
+			while($rowx=mysql_fetch_row($resultx)){
+				if($rowx[1]=="游客")
+			$bmp="images/1.jpg";
+		else{
+		$result1=mysql_query("SELECT `touxiang`FROM rg.`use` WHERE `usename`='".$row[0]."'");
+		$row1=mysql_fetch_row($result1);
+		if($row1[0]=="")
+			$bmp="images/1.jpg";
+		else
+			$bmp=$row1[0];
+		mysql_free_result($result1);
+			}
+		if($_SESSION["UserName"]!="未登录"&&$_SESSION["UserName"]==$rowx[1])
+		{
+		echo'<div class="creatediv1">';
+		echo'<img class="createimg1" src="'.$bmp.'">';
+		echo '<a class="createname1">'.$rowx[1].'</a>';
+		echo '<a class="createtime1">'.$rowx[3].'</a>';
+		echo'<p class="createdivs1">'.$rowx[2].'</p>';
+		echo'<button class="createinput btn btn-default btn-link" value="dfpinglun" id="'.$rowx[0].'"onclick="fun3(this)">删除</button>';
+		echo'</div>';
+		
+		}
+		else{		
+		echo'<div class="creatediv1">';
+		echo'<img class="createimg1" src="'.$bmp.'">';
+		echo '<a class="createname1">'.$rowx[1].'</a>';
+		echo '<a class="createtime1">'.$rowx[3].'</a>';
+		echo'<p class="createdivs1">'.$rowx[2].'</p>';
+		echo' <a id="modal-144829" href="#modal-container-144829" style="position: absolute;top: 25px;right: 15px" role="button" class="btn" data-toggle="modal">回复</a>
+			
+			<div class="modal fade" id="modal-container-144829" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">
+								你想对Ta说点什么
+							</h4>
+						</div>
+						<div class="modal-body">
+							<textarea id="'.$rowx[3].'" cols="30" rows="10" maxlength="30" class="text1"></textarea><br>
+						</div>
+						<div class="modal-footer">
+							 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button id="'.$row[0].','.$rowx[3].'"type="button" class="btn btn-primary" value="huifu" onclick="func(this)">发表</button>
+						</div>
+					</div>
+					
+				</div>
+			</div>	
+			</div>';
+		}
+		}
+		echo'</div>';
+		mysql_free_result($resultx);
 		}
 		}
 		}		
 		mysql_free_result($result);
 		mysql_close($link);
 		?>
+		<div>
 	<a style="display:inline">你想对楼主说点什么</a>
 	<a class="tag">你最多可以输入30个字符</a>
 	<textarea id="pingluntext" cols="30" rows="10" maxlength="30" class="text"></textarea><br>
 
 	<button type="submit" style="height:30px;width:50px;"value="pinglun" onclick="fun2(this)">发表</button>
+	</div>
 	</div>
 		</div>
 		
