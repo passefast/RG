@@ -39,6 +39,20 @@
 			else
 				alert(data);  
         } 
+		function show(n) {       					
+			var div=document.getElementById(n.value);
+			if(div.style.display=="")
+			{
+				div.style.display="none";
+				n.innerText="展开"
+			}
+			else
+			{
+				div.style.display="";
+				n.innerText="收起"
+			}
+         
+        } 
 		function func(n) {  
             var url = "sever.php";  
 			var strs= new Array(); //定义一数组 
@@ -513,12 +527,14 @@ background-attachment: fixed;">
 			echo'<a font-size:10px style="margin-left:350px">暂无评论</a><br>
 		<br>';
 		else{
+			$countfor=0;
 		while($row=mysql_fetch_row($result))
 		{
+			$resultx=mysql_query("SELECT `id`,`name`,`text`,`time` FROM rg.`fupinglun` WHERE `zhuangtai`='1'and`writer`='".$id."'and`huifu`='".$row[0]."'");
 		if($row[1]=="游客")
 			$bmp="images/1.jpg";
 		else{
-		$result1=mysql_query("SELECT `touxiang`FROM rg.`use` WHERE `usename`='".$row[0]."'");
+		$result1=mysql_query("SELECT `touxiang`FROM rg.`use` WHERE `usename`='".$row[1]."'");
 		$row1=mysql_fetch_row($result1);
 		if($row1[0]=="")
 			$bmp="images/1.jpg";
@@ -534,7 +550,11 @@ background-attachment: fixed;">
 		echo '<a class="createname">'.$row[1].'</a>';
 		echo '<a class="createtime">'.$row[3].'</a>';
 		echo'<p class="createdivs">'.$row[2].'</p>';
-		echo'<button class="createinput btn btn-default btn-link" value="dpinglun" id="'.$row[0].'"onclick="fun3(this)">删除</button>';
+		echo'<button style="position: absolute;top: 30px;right: 5px; outline:none" class="createinput btn btn-sm btn-link" value="dpinglun" id="'.$row[0].'"onclick="fun3(this)">删除</button>';
+		if(mysql_num_rows($resultx)>0)
+		{
+			echo'<button style="position:absolute;top:50px;right:5px; outline:none" class="createinput btn btn-xs btn-link" value="'.$countfor.'" onclick="show(this)">展开</button>';
+		}
 		echo'</div>';
 		
 		}
@@ -546,7 +566,7 @@ background-attachment: fixed;">
 		echo '<a class="createtime">'.$row[3].'</a>';
 		echo'<p class="createdivs">'.$row[2].'</p>';
 					
-		echo' <a id="modal-537286" href="#modal-container-537286"style="position: absolute;top: 50px;right: 15px" role="button" class="btn" data-toggle="modal" >回复</a>
+		echo' <a id="modal-537286" href="#modal-container-537286"style="position: absolute;top: 30px;right: 15px;outline:none" role="button" class="btn btn-sm" data-toggle="modal" >回复</a>
 			
 			<div class="modal fade" id="modal-container-537286" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -567,18 +587,23 @@ background-attachment: fixed;">
 					
 				</div>
 				
-			</div>
 			</div>';
-		}
-		echo'<div>';
-		$resultx=mysql_query("SELECT `id`,`name`,`text`,`time` FROM rg.`fupinglun` WHERE `zhuangtai`='1'and`writer`='".$id."'and`huifu`='".$row[0]."'");
 		if(mysql_num_rows($resultx)>0)
 		{
+			echo'<button style="position:absolute;top:50px;right:-2px; outline:none" class="createinput btn btn-xs btn-link" value="'.$countfor.'" onclick="show(this)">展开</button>';
+		}
+			echo'</div>';
+		}
+		
+		echo'<div>';
+		if(mysql_num_rows($resultx)>0)
+		{
+			echo'<div id="'.$countfor.'" style="display:none">';
 			while($rowx=mysql_fetch_row($resultx)){
 				if($rowx[1]=="游客")
 			$bmp="images/1.jpg";
 		else{
-		$result1=mysql_query("SELECT `touxiang`FROM rg.`use` WHERE `usename`='".$row[0]."'");
+		$result1=mysql_query("SELECT `touxiang`FROM rg.`use` WHERE `usename`='".$rowx[1]."'");
 		$row1=mysql_fetch_row($result1);
 		if($row1[0]=="")
 			$bmp="images/1.jpg";
@@ -593,7 +618,7 @@ background-attachment: fixed;">
 		echo '<a class="createname1">'.$rowx[1].'</a>';
 		echo '<a class="createtime1">'.$rowx[3].'</a>';
 		echo'<p class="createdivs1">'.$rowx[2].'</p>';
-		echo'<button class="createinput btn btn-default btn-link" value="dfpinglun" id="'.$rowx[0].'"onclick="fun3(this)">删除</button>';
+		echo'<button class="createinput btn btn-sm btn-link" style="outline:none" value="dfpinglun" id="'.$rowx[0].'"onclick="fun3(this)">删除</button>';
 		echo'</div>';
 		
 		}
@@ -603,7 +628,7 @@ background-attachment: fixed;">
 		echo '<a class="createname1">'.$rowx[1].'</a>';
 		echo '<a class="createtime1">'.$rowx[3].'</a>';
 		echo'<p class="createdivs1">'.$rowx[2].'</p>';
-		echo' <a id="modal-144829" href="#modal-container-144829" style="position: absolute;top: 25px;right: 15px" role="button" class="btn" data-toggle="modal">回复</a>
+		echo' <a id="modal-144829" href="#modal-container-144829" style="position: absolute;top: 25px;right: 20px;outline:none" role="button" class="btn btn-sm" data-toggle="modal">回复</a>
 			
 			<div class="modal fade" id="modal-container-144829" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -626,10 +651,14 @@ background-attachment: fixed;">
 			</div>	
 			</div>';
 		}
+		
 		}
+		echo'</div>';
 		echo'</div>';
 		mysql_free_result($resultx);
 		}
+		
+		$countfor++;
 		}
 		}		
 		mysql_free_result($result);
