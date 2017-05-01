@@ -276,20 +276,19 @@ background-attachment: fixed;">
 					error_reporting(E_ALL ^ E_WARNING);
 					$writer=$_SESSION["photouser"];
 						$date=date("Y-m");
-						$date1=date('Y-m',strtotime("$date
-						-1 month"));
-						$date2=date('Y-m',strtotime("$date
-						-2 month"));
+						$date1=date('Y-m',strtotime("$date -1 month"));
+						
+						$date2=date('Y-m',strtotime("$date -2 month"));
 						$result2=mysql_query("SELECT `id`,`writer` FROM rg.`photo` WHERE  `time` LIKE '%".$date."%' and `name`='".$writer."'");
 						$num1=mysql_num_rows($result2);
-						echo'<div class="tab-pane active" id="panel-536282">
-							<p>';
+						echo'<div class="tab-pane active" id="panel-536282">';
 						if($num1==0)
 						{	
-							echo"博主很懒，暂无图片";
+							echo"<p>博主很懒，暂无图片</p>";
 						}
 						else
 						{	
+							echo'<p>';
 							while($row=mysql_fetch_row($result2))
 							{							
 							if($_SESSION["UserName"]==$_SESSION["photouser"])
@@ -300,47 +299,46 @@ background-attachment: fixed;">
 							else
 								echo'<img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" />';
 							}
-							echo'<center><a href="liulan.php?date='.$date.'">点击我预览</a></center>';
+							echo'</p>';
+							echo'<a href="liulan.php?date='.$date.'">点击我预览</a>';
 							mysql_free_result($result2);
 						}
-						echo'</p>
-							</div>';
-						$result3=mysql_query("SELECT `writer` FROM rg.`photo` WHERE  `time` LIKE '%".$date1."%'and `name`='".$writer."'");
+						echo'</div>';
+						$result3=mysql_query("SELECT `id`,`writer` FROM rg.`photo` WHERE  `time` LIKE '%".$date1."%'and `name`='".$writer."'");
 						$num2=mysql_num_rows($result3);
-						echo'<div class="tab-pane " id="panel-3943">
-							<p>';
+						echo'<div class="tab-pane " id="panel-3943">';
 						if($num2==0)
 						{				
-							echo"博主很懒，暂无图片";
+							echo"<p>博主很懒，暂无图片</p>";
 						}
 						else
-						{							
-							while($row=mysql_fetch_row($result3))
+						{		
+							echo'<p>';					
+							while($row1=mysql_fetch_row($result3))
 							{
 							if($_SESSION["UserName"]==$_SESSION["photouser"])
 							{
-								echo'<div style="float:left"><img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" /><br>';
-								echo'<center><a href="wenzhang.php?case=pic2&id='.$row[0].'">删除</a><center></div>';
+								echo'<div style="float:left"><img alt="140x140" name="pic" width="140px" src="'.$row1[1].'" class="img-thumbnail" /><br>';
+								echo'<center><a href="wenzhang.php?case=pic2&id='.$row1[0].'">删除</a><center></div>';
 							}
 							else
-								echo'<img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" />';
+								echo'<img alt="140x140" name="pic" width="140px" src="'.$row1[1].'" class="img-thumbnail" />';
 							}
-							echo'<center><a href="liulan.php?date='.$date1.'">点击我预览</a></center>';
+							echo'</p>';
+							echo'<a href="liulan.php?date='.$date1.'">点击我预览</a>';
 							mysql_free_result($result3);
 						}
-						echo'</p>
-							</div>';
-						$result4=mysql_query("SELECT `writer` FROM rg.`photo` WHERE  `time` LIKE '%".$date2."%'and `name`='".$writer."'");
+						echo'</div>';
+						$result4=mysql_query("SELECT `id`,`writer` FROM rg.`photo` WHERE  `time` LIKE '%".$date2."%'and `name`='".$writer."'");
 						$num3=mysql_num_rows($result4);
-						echo'<div class="tab-pane" id="panel-3942">
-							<p>';
+						echo'<div class="tab-pane" id="panel-3942">';
 						if($num3==0)
 						{
-							echo"博主很懒，暂无图片";						
+							echo"<p>博主很懒，暂无图片</p>";						
 						}
 						else
 						{
-						
+							echo'<p>';
 							while($row=mysql_fetch_row($result4))
 							{
 							if($_SESSION["UserName"]==$_SESSION["photouser"])
@@ -351,23 +349,23 @@ background-attachment: fixed;">
 							else
 								echo'<img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" />';
 							}
-							echo'<center><a href="liulan.php?date='.$date2.'">点击我预览</a></center>';
+							echo'</p>';
+							echo'<a href="liulan.php?date='.$date2.'">点击我预览</a>';
 							mysql_free_result($result4);
 						}
-						echo'</p>
-							</div>';
-						$result4=mysql_query("SELECT `writer` FROM rg.`photo` WHERE `name`='".$writer."'");
-						$num3=mysql_num_rows($result4);
-						echo'<div class="tab-pane" id="panel-3941">
-							<p>';
+						echo'</div>';
+						$result5=mysql_query("SELECT `id`,`writer` FROM rg.`photo` WHERE `name`='".$writer."'");
+						$num3=mysql_num_rows($result5);
+						echo'<div class="tab-pane" id="panel-3941">';
+							
 						if($num3==0)
 						{
-							echo"博主很懒，暂无图片";						
+							echo"<p>博主很懒，暂无图片</p>";						
 						}
 						else
-						{
-						
-							while($row=mysql_fetch_row($result4))
+						{		
+							echo'<p>';
+							while($row=mysql_fetch_row($result5))
 							{
 							if($_SESSION["UserName"]==$_SESSION["photouser"])
 							{
@@ -377,11 +375,14 @@ background-attachment: fixed;">
 							else
 								echo'<img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" />';
 							}
-							echo'<center><a href="liulan.php?date=0">点击我预览</a></center>';
-							mysql_free_result($result4);
+							echo'</p>';
+							
+							echo'<a href="liulan.php?date=0" >点击我预览</a>';
+							mysql_free_result($result5);
+							
 						}
-						echo'</p>
-							</div>';
+						
+						echo'</div>';
 						mysql_close($link);
 				
 					?>

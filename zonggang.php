@@ -114,7 +114,7 @@ background-attachment: fixed;">
 		</div>
 		</center>
 	<div class="row clearfix" style=" margin-left:80px; margin-top:50px">
-		<div class="col-md-3 column" style=" margin-right:10px ;background:#fff ">
+		<div class="col-md-3 column" style=" margin-right:10px ;background:#fff">
 		<h3 style=" margin-left:60px">最新博文</h3>
 		<hr>
 			<ol>
@@ -151,7 +151,7 @@ background-attachment: fixed;">
 		
 
 
-		<div class="col-md-8 column" style="background:#fff">
+		<div class="col-md-8 column" style="background:#fff;">
 		<h3>博客总览</h3>
 		<hr>
 			<ul><?php

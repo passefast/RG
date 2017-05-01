@@ -48,8 +48,8 @@ background-attachment: fixed;">
 				
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="active">
-							 <a href="#">首页</a>
+						<li >
+							 <a href="index.php">首页</a>
 						</li>
 						<li>
 							 <a href="zonggang.php">博文总览</a>
