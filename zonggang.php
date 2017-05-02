@@ -60,7 +60,7 @@ background-attachment: fixed;">
 					</ul>
 					<form class="navbar-form navbar-left" role="search">
 						<div class="form-group">
-							<input type="text" class="form-control" id="seach"/>
+							<input type="text" class="form-control" id="seach" placeholder="博主名或文章相关"/>
 						</div> <button type="submit" class="btn btn-default"  value="check" onclick="fun(this)">查询</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
@@ -155,6 +155,7 @@ background-attachment: fixed;">
 		<h3>博客总览</h3>
 		<hr>
 			<ul><?php
+			$flag=0;
 			if(isset($_SESSION["searchmg"])&&$_SESSION["searchmg"]!="未搜索")
 			{
 				$seach=$_SESSION["searchmg"];
@@ -162,11 +163,34 @@ background-attachment: fixed;">
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
+				$resuluse=mysql_query("SELECT `id` FROM rg.`use` WHERE `usename` LIKE '%".$seach."%'");
+				$num=mysql_num_rows($resuluse);
+				if($num>=1)
+				{
+					$result=mysql_query("SELECT `id`,`texttitle`,`writer`,`leibie`,`time` FROM rg.`bolgtext` WHERE `writer` LIKE '%".$seach."%' and `zt`='1'");
+					$num=mysql_num_rows($result);
+					if($num>0)
+					{
+						while($row=mysql_fetch_row($result))
+					{
+						echo'<li>';
+						$lenth=376-strlen($row[1])*5;
+						echo '<a style="margin-right:'.$lenth.'px " font="7px" href="wenzhang.php?id='.$row[0].'&case=wenzhang" >'.$row[1].'</a>';
+						echo '<a style="margin-right:30px" font="7px">'.$row[2].'</a>';
+						echo '<a style="margin-right:30px" font="7px">'.$row[3].'</a>';
+						echo '<a style="margin-right:0px" font="7px">'.$row[4].'</a>';	
+						echo'</li>';
+					}				
+						$flag=1;
+					}					
+					mysql_free_result($resuluse);
+				}
 				$result=mysql_query("SELECT `id`,`texttitle`,`writer`,`leibie`,`time` FROM rg.`bolgtext` WHERE `texttitle` LIKE '%".$seach."%' and `zt`='1'");
 				$num=mysql_num_rows($result);
 				if($num==0)
 				{
-					echo '<center><a font="20px">搜索不到您想要的文章!!!!!</a></center>';
+					if($flag==0)
+						echo '<center><a font="20px">搜索不到您想要的文章!!!!!</a></center>';
 				}
 				else{
 				
@@ -180,10 +204,10 @@ background-attachment: fixed;">
 						echo '<a style="margin-right:0px" font="7px">'.$row[4].'</a>';	
 						echo'</li>';
 					}
-				
+					mysql_free_result($result);
 				}
 				$_SESSION["searchmg"]="未搜索";
-				mysql_free_result($result);
+				
 				mysql_close($link);
 			}
 			else

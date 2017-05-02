@@ -70,7 +70,7 @@
 					</ul>
 					<form class="navbar-form navbar-left" role="search">
 						<div class="form-group">
-							<input type="text" class="form-control" id="seach"/>
+							<input type="text" class="form-control" id="seach" placeholder="博主名或文章相关"/>
 						</div> <button type="submit" class="btn btn-default"  value="check" onclick="fun1(this)">查询</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
