@@ -259,6 +259,10 @@ error_reporting(E_ALL ^ E_WARNING);
     }  
 	function pinglun()
 	{
+		$str = file_get_contents('emotions.data');
+		$str = (trim($str));
+		$emotion=json_decode($str,true);
+		
 	$link=connect();
 	if (isset($_POST['text'])&&$_POST['text']!="")  
     { 	Session_Start();
@@ -269,6 +273,10 @@ error_reporting(E_ALL ^ E_WARNING);
 		$row=mysql_fetch_row($result);
 		$id=$row[0]+1;
 		$text=$_POST['text'];
+		for($i=0;$i<count($emotion,0);$i++)
+		{
+			$text=str_replace($emotion[$i]["phrase"],"<img src=".$emotion[$i]["url"].">",$text);			
+		}
 		$writer=$_SESSION["textid"];
 		$time=date("Y-m-d H:i:s");
 		$insert="insert into rg.`pinglun`(`id`,`name`,`text`,`time`,`writer`,`zhuangtai`) values ('".$id."','".$name."','".$text."','".$time."','".$writer."','1')";

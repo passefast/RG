@@ -446,7 +446,6 @@ error_reporting(E_ALL ^ E_WARNING);
 		echo'</div>';
 		}
 		}
-		mysql_free_result($result1);
 		mysql_free_result($result);
 		mysql_close($link);
 		}

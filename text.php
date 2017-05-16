@@ -102,6 +102,11 @@
 			else
 				alert(data);  
         } 
+		function img(n)
+		{
+			var text=document.getElementById("pingluntext");
+			text.value=text.value+n.title;
+		}
 		function fun3(n) {  
             var url = "sever.php";
             var data = {  
@@ -219,6 +224,11 @@
 style=" background-repeat:no-repeat ;
 background-size:100% 100%;
 background-attachment: fixed;">
+<?php
+$str = file_get_contents('emotions.data');
+$str = (trim($str));
+$emotion=json_decode($str,true);
+?>
 <div class="container" >
 <center>
 	<div  style=" margin-top:-0px; width:100%; height:50px;">
@@ -643,7 +653,7 @@ background-attachment: fixed;">
 							<textarea id="'.$rowx[3].'" cols="30" rows="10" maxlength="30" class="text1"></textarea><br>
 						</div>
 						<div class="modal-footer">
-							 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button id="'.$row[0].','.$rowx[3].'"type="button" class="btn btn-primary" value="huifu" onclick="func(this)">发表</button>
+						 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button id="'.$row[0].','.$rowx[3].'"type="button" class="btn btn-primary" value="huifu" onclick="func(this)">发表</button>
 						</div>
 					</div>
 					
@@ -666,9 +676,42 @@ background-attachment: fixed;">
 		?>
 		<div>
 	<a style="display:inline">你想对楼主说点什么</a>
+	 <a id="modal-611523" href="#modal-container-611523" role="button" class="btn" data-toggle="modal">表情</a>
+			
+			<div class="modal fade" id="modal-container-611523" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content" style="width:300px">
+						<div class="modal-header">
+							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">
+								表情包
+							</h4>
+						</div>
+						<div class="modal-body" >
+							<?php
+							$j=0;
+							for($i=0;$i<count($emotion,0);$i++)
+							{
+								if($j>10)
+								{
+									echo'<br>';
+									$j=0;
+								}
+								echo'<img title="'.$emotion[$i]["phrase"].'" src="'.$emotion[$i]["url"].'" data-dismiss="modal" onclick="img(this)">';
+								$j++;
+							}
+							?>
+						</div>
+						
+					</div>
+					
+				</div>
+				
+			</div>
+
 	<a class="tag">你最多可以输入30个字符</a>
 	<textarea id="pingluntext" cols="30" rows="10" maxlength="30" class="text"></textarea><br>
-
+	
 	<button type="submit" style="height:30px;width:50px;"value="pinglun" onclick="fun2(this)">发表</button>
 	</div>
 	</div>
