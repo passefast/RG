@@ -53,6 +53,20 @@
 			}
          
         } 
+		function change()
+		{
+			var div=document.getElementById("emotion");
+			if(div.style.display=="")
+			{
+				div.style.display="none";
+				
+			}
+			else
+			{
+				div.style.display="";
+				
+			}
+		}		
 		function func(n) {  
             var url = "sever.php";  
 			var strs= new Array(); //定义一数组 
@@ -650,6 +664,7 @@ $emotion=json_decode($str,true);
 							</h4>
 						</div>
 						<div class="modal-body">
+							
 							<textarea id="'.$rowx[3].'" cols="30" rows="10" maxlength="30" class="text1"></textarea><br>
 						</div>
 						<div class="modal-footer">
@@ -676,42 +691,26 @@ $emotion=json_decode($str,true);
 		?>
 		<div>
 	<a style="display:inline">你想对楼主说点什么</a>
-	 <a id="modal-611523" href="#modal-container-611523" role="button" class="btn" data-toggle="modal">表情</a>
-			
-			<div class="modal fade" id="modal-container-611523" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content" style="width:300px">
-						<div class="modal-header">
-							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-							<h4 class="modal-title" id="myModalLabel">
-								表情包
-							</h4>
-						</div>
-						<div class="modal-body" >
-							<?php
+	 <a onclick="change()">表情</a>
+
+	<a class="tag">你最多可以输入30个字符</a>
+	<div>
+	<div id="emotion" style="display:none ">
+	<?php
 							$j=0;
 							for($i=0;$i<count($emotion,0);$i++)
 							{
-								if($j>10)
+								if($j>33)
 								{
 									echo'<br>';
 									$j=0;
 								}
-								echo'<img title="'.$emotion[$i]["phrase"].'" src="'.$emotion[$i]["url"].'" data-dismiss="modal" onclick="img(this)">';
+								echo'<img title="'.$emotion[$i]["phrase"].'" src="'.$emotion[$i]["url"].'"  onclick="img(this)">';
 								$j++;
 							}
-							?>
-						</div>
-						
-					</div>
-					
-				</div>
-				
-			</div>
-
-	<a class="tag">你最多可以输入30个字符</a>
+							?></div>
 	<textarea id="pingluntext" cols="30" rows="10" maxlength="30" class="text"></textarea><br>
-	
+	</div>
 	<button type="submit" style="height:30px;width:50px;"value="pinglun" onclick="fun2(this)">发表</button>
 	</div>
 	</div>
