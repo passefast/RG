@@ -139,7 +139,7 @@ error_reporting(E_ALL ^ E_WARNING);
 	//链接
 	function connect()
 	{
-		$link=mysql_connect('localhost','root','122947');
+		$link=mysql_connect('localhost','root','123456');
 		if(!$link)
 			die('连接失败: '.mysql_error());
 		mysql_select_db('rg',$link) or die ('选定出错');
@@ -148,7 +148,7 @@ error_reporting(E_ALL ^ E_WARNING);
 	//注册
 	function zhuce()  
     {  
-	$link=mysql_connect('localhost','root','122947');
+	$link=mysql_connect('localhost','root','123456');
 		if(!$link)
 			die('连接失败: '.mysql_error());
 		mysql_select_db('rg',$link) or die ('选定出错');
@@ -204,7 +204,7 @@ error_reporting(E_ALL ^ E_WARNING);
 	//登陆
 	function signin()  
     {  
-	$link=mysql_connect('localhost','root','122947');
+	$link=mysql_connect('localhost','root','123456');
 		if(!$link)
 			die('连接失败: '.mysql_error());
 		mysql_select_db('rg',$link) or die ('选定出错');

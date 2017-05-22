@@ -42,7 +42,9 @@
 		<div class="col-md-12 column">
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="navbar-header">
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Bolg</a>
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					 <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span>
+					 <span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Bolg</a>
 				</div>
 				
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -68,7 +70,7 @@
 								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
 							 else 
 							 {
-							$link=mysql_connect('localhost','root','122947');
+							$link=mysql_connect('localhost','root','123456');
 							if(!$link)
 								die('连接失败: '.mysql_error());
 							mysql_select_db('rg',$link) or die ('选定出错');
@@ -180,7 +182,7 @@
 						<p>
 							<div class="jumbotron">
 							<?php
-							$link=mysql_connect('localhost','root','122947');
+							$link=mysql_connect('localhost','root','123456');
 							if(!$link)
 								die('连接失败: '.mysql_error());
 							mysql_select_db('rg',$link) or die ('选定出错');

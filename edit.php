@@ -80,7 +80,7 @@
 							 if($_SESSION["UserName"]=="未登录")
 								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
 							 else 
-							 {$link=mysql_connect('localhost','root','122947');
+							 {$link=mysql_connect('localhost','root','123456');
 							if(!$link)
 								die('连接失败: '.mysql_error());
 							mysql_select_db('rg',$link) or die ('选定出错');

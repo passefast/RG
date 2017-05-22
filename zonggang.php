@@ -69,7 +69,7 @@ background-attachment: fixed;">
 							 if($_SESSION["UserName"]=="未登录")
 								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
 							 else 
-							 {$link=mysql_connect('localhost','root','122947');
+							 {$link=mysql_connect('localhost','root','123456');
 							if(!$link)
 								die('连接失败: '.mysql_error());
 							mysql_select_db('rg',$link) or die ('选定出错');
@@ -119,7 +119,7 @@ background-attachment: fixed;">
 		<hr>
 			<ol>
 			<?php
-				$link=mysql_connect('localhost','root','122947');
+				$link=mysql_connect('localhost','root','123456');
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
@@ -159,7 +159,7 @@ background-attachment: fixed;">
 			if(isset($_SESSION["searchmg"])&&$_SESSION["searchmg"]!="未搜索")
 			{
 				$seach=$_SESSION["searchmg"];
-				$link=mysql_connect('localhost','root','122947');
+				$link=mysql_connect('localhost','root','123456');
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
@@ -212,7 +212,7 @@ background-attachment: fixed;">
 			}
 			else
 			{
-				$link=mysql_connect('localhost','root','122947');
+				$link=mysql_connect('localhost','root','123456');
 				if(!$link)
 				die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');

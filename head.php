@@ -68,7 +68,7 @@ background-attachment: fixed;">
 							 if($_SESSION["UserName"]=="未登录")
 								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
 							 else 
-							 {$link=mysql_connect('localhost','root','122947');
+							 {$link=mysql_connect('localhost','root','123456');
 							if(!$link)
 								die('连接失败: '.mysql_error());
 							mysql_select_db('rg',$link) or die ('选定出错');
@@ -134,14 +134,14 @@ background-attachment: fixed;">
 						<p>
 						<?php
 						echo '<a style="margin-right:460px;margin-left:100px" font="7px">文章名</a>';
-						echo '<a style="margin-right:40px" font="7px">类别</a>';
-						echo '<a style="margin-right:70px" font="7px">编写时间</a>';
-						echo '<a style="margin-right:20px" font="7px">状态</a>';	
+						echo '<a style="margin-right:40px" font="7px"><font color="#999999">类别</font></a>';
+						echo '<a style="margin-right:70px" font="7px"><font color="#999999">编写时间</font></a>';
+						echo '<a style="margin-right:20px" font="7px"><font color="#999999">状态</font></a>';	
 						?>
 							<ol>
 					<?php
 				$name=$_SESSION["UserName"];
-				$link=mysql_connect('localhost','root','122947');
+				$link=mysql_connect('localhost','root','123456');
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
@@ -149,7 +149,7 @@ background-attachment: fixed;">
 				$num=mysql_num_rows($result);
 				if($num==0)
 				{
-					echo '<center><a font="20px">暂无文章!!!!!</a></center>';
+					echo '<center><a font="20px"><font color="#999999">暂无文章!!!!!</font></a></center>';
 				}
 				else{
 					while($row=mysql_fetch_row($result))
@@ -184,7 +184,7 @@ background-attachment: fixed;">
 							<ol>
 					<?php
 				$name=$_SESSION["UserName"];			
-				$link=mysql_connect('localhost','root','122947');
+				$link=mysql_connect('localhost','root','123456');
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');

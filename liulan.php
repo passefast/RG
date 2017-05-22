@@ -7,9 +7,9 @@
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/gallery-app.css">
 </head>
-<body>
+<body >
 <div>
-<a href="photo.php">取消预览</a>
+<a href="photo.php"><font color="#999999" size=5 >返回</font></a>
 <div class="swiper-container">
 
   <div class="pagination"></div>
@@ -17,7 +17,7 @@
     
 	<?php
 	Session_start();
-	$link=mysql_connect('localhost','root','122947');
+	$link=mysql_connect('localhost','root','123456');
 	if(!$link)
 	die('连接失败: '.mysql_error());
 	mysql_select_db('rg',$link) or die ('选定出错');

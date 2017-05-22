@@ -24,7 +24,7 @@ error_reporting(E_ALL ^ E_WARNING);
 		echo'<p>
 				<a style="margin-right:460px;margin-left:100px" font="7px">文章名</a>
 				<ol>';
-				$link=mysql_connect('localhost','root','122947');
+				$link=mysql_connect('localhost','root','123456');
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
@@ -87,7 +87,7 @@ error_reporting(E_ALL ^ E_WARNING);
 				<a style="margin-right:460px;margin-left:100px" font="7px">文章名</a>
 
 				<ol>';
-				$link=mysql_connect('localhost','root','122947');
+				$link=mysql_connect('localhost','root','123456');
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
@@ -150,7 +150,7 @@ error_reporting(E_ALL ^ E_WARNING);
 				<a style="margin-right:460px;margin-left:100px" font="7px">文章名</a>
 
 				<ol>';
-				$link=mysql_connect('localhost','root','122947');
+				$link=mysql_connect('localhost','root','123456');
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
@@ -212,7 +212,7 @@ error_reporting(E_ALL ^ E_WARNING);
 			echo'<p>
 				<a style="margin-right:460px;margin-left:100px" font="7px">文章名</a>	
 				<ol>';
-				$link=mysql_connect('localhost','root','122947');
+				$link=mysql_connect('localhost','root','123456');
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
@@ -274,7 +274,7 @@ error_reporting(E_ALL ^ E_WARNING);
 			echo'<p>
 				<a style="margin-right:460px;margin-left:100px" font="7px">文章名</a>
 				<ol>';
-				$link=mysql_connect('localhost','root','122947');
+				$link=mysql_connect('localhost','root','123456');
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
@@ -333,7 +333,7 @@ error_reporting(E_ALL ^ E_WARNING);
 		}
 	function pinglun()
 		{
-			$link=mysql_connect('localhost','root','122947');
+			$link=mysql_connect('localhost','root','123456');
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
@@ -393,7 +393,7 @@ error_reporting(E_ALL ^ E_WARNING);
 		}
 	function dpinglun()
 		{
-			$link=mysql_connect('localhost','root','122947');
+			$link=mysql_connect('localhost','root','123456');
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
@@ -452,7 +452,7 @@ error_reporting(E_ALL ^ E_WARNING);
 	function zong()
 		{
 			error_reporting(E_ALL ^ E_WARNING);
-			$link=mysql_connect('localhost','root','122947');
+			$link=mysql_connect('localhost','root','123456');
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
@@ -503,7 +503,7 @@ error_reporting(E_ALL ^ E_WARNING);
 	function beng()
 		{
 			error_reporting(E_ALL ^ E_WARNING);
-			$link=mysql_connect('localhost','root','122947');
+			$link=mysql_connect('localhost','root','123456');
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
@@ -555,7 +555,7 @@ error_reporting(E_ALL ^ E_WARNING);
 	function shang()
 		{
 			error_reporting(E_ALL ^ E_WARNING);
-			$link=mysql_connect('localhost','root','122947');
+			$link=mysql_connect('localhost','root','123456');
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');

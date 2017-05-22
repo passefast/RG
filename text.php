@@ -274,7 +274,7 @@ $emotion=json_decode($str,true);
 							 if($_SESSION["UserName"]=="未登录")
 								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
 							 else 
-							 {$link=mysql_connect('localhost','root','122947');
+							 {$link=mysql_connect('localhost','root','123456');
 							if(!$link)
 								die('连接失败: '.mysql_error());
 							mysql_select_db('rg',$link) or die ('选定出错');
@@ -326,7 +326,7 @@ $emotion=json_decode($str,true);
 		<div>
 			<?php
 			$id=$_SESSION["textid"];
-				$link=mysql_connect('localhost','root','122947');
+				$link=mysql_connect('localhost','root','123456');
 				if(!$link)
 					die('连接失败: '.mysql_error());
 				mysql_select_db('rg',$link) or die ('选定出错');
@@ -342,12 +342,12 @@ $emotion=json_decode($str,true);
 			</div>
 			<div>';
 				
-			echo'<a font="15px">'.$row[2].'</a>';
+			echo'<a font="15px"><font color="#CCCCCC">'.$row[2].'</font></a>';
 			?>
 			</div>
 			</center>
 			<?php
-			echo'<center><a font="15px" href="wenzhang.php?case=photo&name='.$row[2].'">'.$row[2].'的相册</a></center>';
+			echo'<center><a font="15px" href="wenzhang.php?case=photo&name='.$row[2].'"><font color="#CCCCCC">'.$row[2].'的相册</font></a></center>';
 			$bozhu=$row[2];
 			if($bozhu==$_SESSION["UserName"])
 			{
@@ -369,7 +369,7 @@ $emotion=json_decode($str,true);
 								<textarea  cols="70" rows="5" maxlength="70"  id="message"></textarea>	
 								</p>';
 						else
-							echo'<p><textarea  cols="70" rows="5" maxlength="70"  id="message">'.$row3[1].'</textarea></p>';
+							echo'<p><textarea  cols="70" rows="5" maxlength="70"  id="message"><font color="#000000">'.$row3[1].'</font></textarea></p>';
 							
 						echo'</div>
 						<div class="modal-footer">
@@ -385,11 +385,12 @@ $emotion=json_decode($str,true);
 			<?php
 			if($row3[1]=="")
 				echo'
-				<p style="white">
+				<p style="white"><font color="#CCCCCC">
 				博主是个沉默寡言的人，他（她）把自己感兴趣的内容以博文和照片的形式呈现，博主的相册中有更具体的内容。。。	
+				</font>
 				</p>';
 			else
-				echo'<p>'.$row3[1].'</p>';
+				echo'<p><font color="#CCCCCC">'.$row3[1].'</font></p>';
 			
 			mysql_free_result($result2)
 			?>
@@ -690,10 +691,10 @@ $emotion=json_decode($str,true);
 		mysql_close($link);
 		?>
 		<div>
-	<a style="display:inline">你想对楼主说点什么</a>
-	 <a onclick="change()">表情</a>
+	<a style="display:inline"><font color="#FFFFFF">你想对楼主说点什么</font></a>
+	 <a onclick="change()"><font color="#FFFFFF">表情</font></a>
 
-	<a class="tag">你最多可以输入30个字符</a>
+	<a class="tag"><font color="#FFFFFF">你最多可以输入30个字符</font></a>
 	<div>
 	<div id="emotion" style="display:none ">
 	<?php

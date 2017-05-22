@@ -117,7 +117,7 @@ background-attachment: fixed;">
 								 echo '<a href="login.php">'.$_SESSION["UserName"].'</a>';
 							 else 
 							 {
-							$link=mysql_connect('localhost','root','122947');
+							$link=mysql_connect('localhost','root','123456');
 							if(!$link)
 								die('连接失败: '.mysql_error());
 							mysql_select_db('rg',$link) or die ('选定出错');
@@ -161,7 +161,7 @@ background-attachment: fixed;">
 	<div class="row clearfix">
 	
 	<?php	
-	$link=mysql_connect('localhost','root','122947');
+	$link=mysql_connect('localhost','root','123456');
 	if(!$link)
 	die('连接失败: '.mysql_error());
 	mysql_select_db('rg',$link) or die ('选定出错');
@@ -258,16 +258,17 @@ background-attachment: fixed;">
 			<div class="tabbable" id="tabs-193697">
 				<ul class="nav nav-tabs">
 					<li class="active">
-						 <a href="#panel-536282" data-toggle="tab">本月</a>
+						 <a href="#panel-536282" data-toggle="tab"> <font color="#999999">本月</font></a>
+						
 					</li>
 					<li>
-						 <a href="#panel-3943" data-toggle="tab">上个月</a>
+						 <a href="#panel-3943" data-toggle="tab"><font color="#999999">上月</font></a>
 					</li>
 					<li>
-						 <a href="#panel-3942" data-toggle="tab">两个月之前</a>
+						 <a href="#panel-3942" data-toggle="tab"><font color="#999999">两个月之前</font></a>
 					</li>
 					<li>
-						 <a href="#panel-3941" data-toggle="tab">总和</a>
+						 <a href="#panel-3941" data-toggle="tab"><font color="#999999">总和</font></a>
 					</li>
 				</ul>
 				<div class="tab-content">
@@ -294,7 +295,7 @@ background-attachment: fixed;">
 							if($_SESSION["UserName"]==$_SESSION["photouser"])
 							{
 								echo'<div style="float:left"><img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" /><br>';
-								echo'<center><a href="wenzhang.php?case=pic2&id='.$row[0].'">删除</a><center></div>';
+								echo'<center><a href="wenzhang.php?case=pic2&id='.$row[0].'"><font color="#999999"><font color="#ffffff">删除</font></font></a><center></div>';
 							}
 							else
 								echo'<img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" />';
@@ -316,13 +317,13 @@ background-attachment: fixed;">
 							echo'<p>';					
 							while($row1=mysql_fetch_row($result3))
 							{
-							if($_SESSION["UserName"]==$_SESSION["photouser"])
-							{
-								echo'<div style="float:left"><img alt="140x140" name="pic" width="140px" src="'.$row1[1].'" class="img-thumbnail" /><br>';
-								echo'<center><a href="wenzhang.php?case=pic2&id='.$row1[0].'">删除</a><center></div>';
-							}
-							else
-								echo'<img alt="140x140" name="pic" width="140px" src="'.$row1[1].'" class="img-thumbnail" />';
+								if($_SESSION["UserName"]==$_SESSION["photouser"])
+								{
+									echo'<div style="float:left"><img alt="140x140" name="pic" width="140px" src="'.$row1[1].'" class="img-thumbnail" /><br>';
+									echo'<center><a href="wenzhang.php?case=pic2&id='.$row1[0].'"><font color="#ffffff">删除</font></a><center></div>';
+								}
+								else
+									echo'<img alt="140x140" name="pic" width="140px" src="'.$row1[1].'" class="img-thumbnail" />';
 							}
 							echo'</p>';
 							echo'<a href="liulan.php?date='.$date1.'">点击我预览</a>';
@@ -344,7 +345,7 @@ background-attachment: fixed;">
 							if($_SESSION["UserName"]==$_SESSION["photouser"])
 							{
 								echo'<div style="float:left"><img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" /><br>';
-								echo'<center><a href="wenzhang.php?case=pic2&id='.$row[0].'">删除</a><center></div>';
+								echo'<center><a href="wenzhang.php?case=pic2&id='.$row[0].'"><font color="#ffffff">删除</font></a><center></div>';
 							}
 							else
 								echo'<img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" />';
@@ -370,7 +371,7 @@ background-attachment: fixed;">
 							if($_SESSION["UserName"]==$_SESSION["photouser"])
 							{
 								echo'<div style="float:left"><img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" /><br>';
-								echo'<center><a href="wenzhang.php?case=pic2&id='.$row[0].'">删除</a><center></div>';
+								echo'<center><a href="wenzhang.php?case=pic2&id='.$row[0].'"><font color="#ffffff">删除</font></a><center></div>';
 							}
 							else
 								echo'<img alt="140x140" name="pic" width="140px" src="'.$row[1].'" class="img-thumbnail" />';

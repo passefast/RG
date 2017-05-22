@@ -27,7 +27,7 @@ header("location:/rg/text.php");
 function fabiao()
 {
 $id = $_GET["id"];
-$link=mysql_connect('localhost','root','122947');
+$link=mysql_connect('localhost','root','123456');
 if(!$link)
 	die('连接失败: '.mysql_error());
 mysql_select_db('rg',$link) or die ('选定出错');
@@ -38,7 +38,7 @@ header("location:/rg/head.php");
 function delete1()
 {
 $id = $_GET["id"];
-$link=mysql_connect('localhost','root','122947');
+$link=mysql_connect('localhost','root','123456');
 if(!$link)
 	die('连接失败: '.mysql_error());
 mysql_select_db('rg',$link) or die ('选定出错');
@@ -49,7 +49,7 @@ header("location:/rg/head.php");
 function delete2()
 {
 $id = $_GET["id"];
-$link=mysql_connect('localhost','root','122947');
+$link=mysql_connect('localhost','root','123456');
 if(!$link)
 	die('连接失败: '.mysql_error());
 mysql_select_db('rg',$link) or die ('选定出错');
@@ -79,7 +79,7 @@ function photo1()
 }
 function pic()
 	{
-		$link=mysql_connect('localhost','root','122947');
+		$link=mysql_connect('localhost','root','123456');
 		if(!$link)
 			die('连接失败: '.mysql_error());
 		mysql_select_db('rg',$link) or die ('选定出错');
@@ -90,7 +90,7 @@ function pic()
 	}
 	function pic2()
 	{
-		$link=mysql_connect('localhost','root','122947');
+		$link=mysql_connect('localhost','root','123456');
 		if(!$link)
 			die('连接失败: '.mysql_error());
 		mysql_select_db('rg',$link) or die ('选定出错');

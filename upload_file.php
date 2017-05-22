@@ -12,7 +12,7 @@ $time=date("Y_m_d_H_i_s");     //获取当前时间
 	$img_name = "upload/".$name;
 	if(move_uploaded_file($_FILES['file']['tmp_name'],$img_name)){ 	//move_uploaded_file 移动文件
 	Session_start();
-	$link=mysql_connect('localhost','root','122947');
+	$link=mysql_connect('localhost','root','123456');
 	if(!$link)
 	die('连接失败: '.mysql_error());
 	mysql_select_db('rg',$link) or die ('选定出错');
