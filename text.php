@@ -369,7 +369,7 @@ $emotion=json_decode($str,true);
 								<textarea  cols="70" rows="5" maxlength="70"  id="message"></textarea>	
 								</p>';
 						else
-							echo'<p><textarea  cols="70" rows="5" maxlength="70"  id="message"><font color="#000000">'.$row3[1].'</font></textarea></p>';
+							echo'<p><textarea  cols="70" rows="5" maxlength="70"  id="message">'.$row3[1].'</textarea></p>';
 							
 						echo'</div>
 						<div class="modal-footer">
