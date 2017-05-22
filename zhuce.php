@@ -56,6 +56,7 @@
                 <a href="#" class="zhuce_qq">QQ注册</a>
                 <a href="#" class="zhuce_wb">微博注册</a>
                 <a href="#" class="zhuce_wx">微信注册</a>
+			
                 <p>已有账号？<a href="login.php">立即登录</a></p>
             
             </div>
