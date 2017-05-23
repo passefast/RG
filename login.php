@@ -8,7 +8,15 @@
     
 
     <link rel="stylesheet" href="css/style.css">
-
+	<Script type="text/javascript">
+	function Calc()
+	{
+		var x=parseInt(document.getElementById("Text1").value);
+		var y=parseInt(document.getElementById("Text2").value);
+		var xPOWy=Math.pow(x,y);
+		document.getElementById("Text3").value=xPOWy;
+	}
+</Script>
     
     <script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
     <script type="text/javascript" language="javascript">   
