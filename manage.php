@@ -163,7 +163,33 @@
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
-    <script type="text/javascript" language="javascript">            
+    <script type="text/javascript" language="javascript">  
+	function log($arg)
+{
+    $log = vsprintf('%s', print_r($arg, true));
+    $log = date('[Y/m/d H:i:s]') .'---'. $log . PHP_EOL;
+    $path = dirname(__FILE__) . '/log.log';
+    $fp = file_put_contents( $path,$log, FILE_APPEND);
+    log(){
+    $args = func_get_args();//获得传入的所有参数的数组
+    $numargs = func_num_args(); //参数的个数
+    if ($numargs == 0) {
+        $log = "";
+    } elseif ($numargs == 1) {
+        $log = $args[0];
+    } else {
+        $format = array_shift($args); //分割掉函数第一个元素,并且做返回值返回,'$user_address:%s'
+        $log = vsprintf($format, $args); //把参数代入$format中,
+    }
+    $log = date("[Y/m/d H:i:s] ") . $log . PHP_EOL;//加上时间
+   $file = '/usr/share/nginx/html/log.log';
+    $fp = fopen($file, 'a');
+    fwrite($fp, $log);
+    fclose($fp);
+    return true;
+    } 
+}
+	
         function fun(n) {  
             var url = "managesever.php"; 
             var data = {  
@@ -175,6 +201,7 @@
 			document.getElementById('fresh').innerHTML = data;	
 			
         }  
+		
     </script> 
 </body>
 </html>
