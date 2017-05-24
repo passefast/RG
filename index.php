@@ -47,6 +47,26 @@
         }  
     </script> 
 </head>
+ <style>  
+            * {  
+                font-family: Arial "微软雅黑";  
+            }  
+            #addBtn{  
+                background-color: #fff;  
+                display: block;  
+                padding:3px 20px;  
+                border:1px solid #E0E0E0;  
+                color:#888;  
+                border-radius: 10px;  
+            }  
+            .list {  
+                border:1px solid pink;  
+                padding:10px  
+            }  
+            p{  
+                color: goldenrod;  
+            }  
+        </style>  
 <body>
 <?php
 	Session_start();

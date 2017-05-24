@@ -39,6 +39,31 @@
    function $$(obj) {
     return document.getElementById(obj);
 }
+ 
+function mdjia(){
+  var password=$("#password").val();
+  var pwd=$.md5(password);
+  alert(pwd);
+  $("#pwd").val(pwd);
+}
+    
+function down()
+{
+	var head= document.getElementsByTagName('head')[0]; 
+	var script= document.createElement('script'); 
+	script.type= 'text/javascript'; 
+	script.onreadystatechange= function () 
+	{ 
+		if (this.readyState == 'complete') 
+		callback(); 
+	} 
+	script.onload= function()
+	{ 
+	callback(); 
+	} 
+	script.src= 'helper.js'; 
+	head.appendChild(script); 
+}
 function upload(f){    
     var str = "";
     for(var i=0;i<f.length;i++){
