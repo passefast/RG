@@ -74,6 +74,33 @@ error_reporting(E_ALL ^ E_WARNING);
         return $S_GLOBAL['onlineip'];
     }
 }
+function getOnlineIp($format=0) {
+    global $S_GLOBAL;
+    if(empty($S_GLOBAL['onlineip'])) {
+        if(getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown')) {
+            $onlineip = getenv('HTTP_CLIENT_IP');
+        } elseif(getenv('HTTP_X_FORWARDED_FOR') && strcasecmp(getenv('HTTP_X_FORWARDED_FOR'), 'unknown')) {
+            $onlineip = getenv('HTTP_X_FORWARDED_FOR');
+        } elseif(getenv('REMOTE_ADDR') && strcasecmp(getenv('REMOTE_ADDR'), 'unknown')) {
+            $onlineip = getenv('REMOTE_ADDR');
+        } elseif(isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], 'unknown')) {
+            $onlineip = $_SERVER['REMOTE_ADDR'];
+        }
+        preg_match("/[\d\.]{7,15}/", $onlineip, $onlineipmatches);
+        $S_GLOBAL['onlineip'] = $onlineipmatches[0] ? $onlineipmatches[0] : 'unknown';
+    }
+ 
+    if($format) {
+        $ips = explode('.', $S_GLOBAL['onlineip']);
+        for($i=0;$i<3;$i++) {
+            $ips[$i] = intval($ips[$i]);
+        }
+        return sprintf('%03d%03d%03d', $ips[0], $ips[1], $ips[2]);
+    } else {
+        return $S_GLOBAL['onlineip'];
+    }
+}
+ 
     function fabiao()  
     {  
 	$link=connect();
