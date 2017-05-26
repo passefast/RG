@@ -10,7 +10,14 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
     <script type="text/javascript" language="javascript">   
-          
+           function search(Arr,x){
+    for(var i=0; i<Arr.length; i++){
+     if(Arr[i]==x){
+      return i; //返回x在数组中的位置；
+     }
+    }
+    return "不存在"; //循环结束还未发现的话 则返回"不存在";
+   }
         function fun(n) {  
             var url = "sever.php"; 
 			var phone= document.getElementById("num").value;

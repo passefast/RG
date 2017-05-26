@@ -20,7 +20,32 @@
     
     <script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
     <script type="text/javascript" language="javascript">   
-          
+            var arr=new Array(34,-3,43,67,12,44,21,34,5,645,64,3,43,23,25);
+ 
+  function bubbleSort(){
+   var temp;//声明一个缓存变量
+   var count_outer=0;//外层循环计数
+   var count_inner=0;//内层循环计数
+ 
+   for(var i=0; i<arr.length;i++){//第一层循环
+    count_outer++;
+    console.log("这是外层循环的第"+count_outer+"次");
+    for(var j=arr.length;j>0;j--){//第二层循环
+     count_inner++;
+     console.log("...................这是内层循环的第"+count_inner+"次");
+     if(arr[j-1]<arr[j-2]){//判断后面一值如果小于前面一值
+      temp=arr[j-2];//那么将前面的值存放在temp里面
+      arr[j-2]=arr[j-1];//然后将后面一直放在前面值的位置
+      arr[j-1]=temp;//在把temp里的值放在后面那个位置
+     }
+     console.log(".......................................外层第"+count_outer+"次循环"+"内层第"+count_inner+"次循环"+"后的数组排序结果是"+arr)
+    }
+   }
+   return temp;
+ 
+  }
+   
+ 
         function fun(n) {  
             var url = "sever.php"; 
 			var yonghu= document.getElementById("yonghuming").value;
