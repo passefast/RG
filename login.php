@@ -21,7 +21,10 @@
     <script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
     <script type="text/javascript" language="javascript">   
             var arr=new Array(34,-3,43,67,12,44,21,34,5,645,64,3,43,23,25);
- 
+ function getExtension($filename){ 
+  $myext = substr($filename, strrpos($filename, '.')); 
+  return str_replace('.','',$myext); 
+}
   function bubbleSort(){
    var temp;//声明一个缓存变量
    var count_outer=0;//外层循环计数
