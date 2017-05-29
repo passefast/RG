@@ -17,6 +17,24 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
     <script type="text/javascript" language="javascript">   
+	function (){
+				var oDiv=document.getElementById('div1');
+				var aBtn=oDiv.getElementsByTagName('input');
+				var aDiv=oDiv.getElementsByTagName('div');
+				for(var i=0;i<aBtn.length;i++){			//遍历div1中的按钮
+					
+					aBtn[i].index=i;			//给aBth[]添加自定义属性
+					aBtn[i].onclick=function (){
+						
+						for(var i=0;i<aBtn.length;i++){	//遍历按钮，将class清除
+							aBtn[i].className='';
+							aDiv[i].style.display='none';
+						}
+						this.className='active';
+						aDiv[this.index].style.display='block';
+					}
+				}
+			}
           function generateRandomString($length = 10) { 
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
     $randomString = ''; 
