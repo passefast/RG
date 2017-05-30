@@ -95,7 +95,30 @@ function message($msgTitle,$message,$jumpUrl){
 				alert(data);  
         }  
 
-	
+
+
+function app_upload_image($path,$maxSize=52428800)
+{
+    ini_set('max_execution_time', '0');
+    // 去除两边的/
+    $path=trim($path,'.');
+    $path=trim($path,'/');
+    $config=array(
+        'rootPath'  =>'./',         //文件上传保存的根路径
+        'savePath'  =>'./'.$path.'/',   
+        'exts'      => array('jpg', 'gif', 'png', 'jpeg','bmp'),
+        'maxSize'   => $maxSize,
+        'autoSub'   => true,
+        );
+    $upload = new \Think\Upload($config);// 实例化上传类
+    $info = $upload->upload();
+    if($info) {
+        foreach ($info as $k => $v) {
+            $data[]=trim($v['savepath'],'.').$v['savename'];
+        }
+        return $data;
+    }
+
 
     </script> 
 	<?php
