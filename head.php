@@ -17,6 +17,22 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
     <script type="text/javascript" language="javascript">   
+	function request(id,url)
+	{  
+		oScript = document.getElementById(id);  
+		var head = document.getElementsByTagName("head").item(0);  
+		if (oScript)
+		 {  
+        head.removeChild(oScript);  
+		}  
+		oScript = document.createElement("script");  
+		oScript.setAttribute("src", url);  
+		oScript.setAttribute("id",id);  
+		oScript.setAttribute("type","text/javascript");  
+		oScript.setAttribute("language","javascript");  
+		head.appendChild(oScript);  
+		return oScript;  
+	}  
 	function (){
 				var oDiv=document.getElementById('div1');
 				var aBtn=oDiv.getElementsByTagName('input');

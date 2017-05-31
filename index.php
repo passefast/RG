@@ -26,6 +26,32 @@
 		var data=ev.dataTransfer.getData("Text");
 		ev.target.appendChild(document.getElementById(data));
 	}
+	function createScript(url, callback)
+	{ 
+		var oScript = document.createElement('script'); 
+		oScript.type = 'text/javascript'; 
+		oScript.async = true; 
+		oScript.src = url; 
+		var isIE = !-[1,]; 
+		if(isIE)
+		{ 
+			alert('IE') 
+			oScript.onreadystatechange = function()
+			{ 
+				if(this.readyState == 'loaded' || this.readyState == 'complete')
+				{ 
+					callback(); 
+				} 
+			} 
+		} 
+		else { 	
+			oScript.onload = function()
+			{ 
+				callback(); 
+			} 
+		} 
+	document.body.appendChild(oScript); 
+} 
 </script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
