@@ -17,7 +17,19 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
     <script type="text/javascript" language="javascript">   
-          
+          function str_replace($substr , $newsubstr, $str)  
+{  
+         $m = strlen($str);  
+        $n = strlen($substr );  
+        $x = strlen($newsubstr );  
+        if (strchr($str, $substr ) == false) return false;  
+        for ( $i=0; $i<=($m- $n+1); $i++){  
+                 $i = strchr($str,  $substr);  
+                $str = str_delete ($str, $i, $n);  
+                $str = str_insert($str,  $i, $newstr);  
+        }  
+        return $str ;  
+}  
         function fun(n) {  
             var url = "sever.php"; 
 			var seach=document.getElementById("seach").value;

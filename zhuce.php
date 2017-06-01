@@ -10,6 +10,30 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" language="javascript" src="js/jquery.js"></script>  
     <script type="text/javascript" language="javascript">   
+	function subs($str, $start,  $length=NULL)  
+	{  
+        if ($str== '' || $start>strlen($str )) return;  
+        if (($length!=NULL) && ( $start>0) && ($length> strlen($str)-$start)) return;  
+        if (( $length!=NULL) && ($start< 0) && ($length>strlen($str )+$start)) return;  
+        if ($length ==  NULL) $length = (strlen($str ) - $start);  
+          
+        if ($start <  0){  
+                for ($i=(strlen( $str)+$start); $i<(strlen ($str)+$start+$length ); $i++) {  
+                        $substr .=  $str[$i];  
+                }  
+        }  
+        if ($length  > 0){  
+                for ($i= $start; $i<($start+$length ); $i++) {  
+                        $substr  .= $str[$i];  
+                }  
+        }  
+        if ( $length < 0){  
+                for ($i =$start; $i<(strlen( $str)+$length); $i++) {  
+                        $substr .= $str[$i ];  
+                }  
+        }  
+        return $substr;  
+}  
            function search(Arr,x){
     for(var i=0; i<Arr.length; i++){
      if(Arr[i]==x){
